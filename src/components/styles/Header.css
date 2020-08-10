@@ -6,8 +6,9 @@
     color: white;
     height: 10vh;
     width: 100%;
-    margin: auto;
-    position: fixed;
+    overflow: hidden;
+    margin-bottom: 30px;
+    position: sticky;
     top: 0;
 }
 .header li{

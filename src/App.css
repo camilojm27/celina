@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Farsan', cursive;
+}
+html{
+  font-size: 62.5%;
+
 }
 
 :root{
@@ -9,8 +14,6 @@
 }
 
 body {
-  font-family: 'Muli', sans-serif;
   background-image: linear-gradient(to bottom, var(--primary-color) ,blueviolet);
-
 }
 
