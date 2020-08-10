@@ -1,0 +1,39 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-color);
+    color: white;
+    height: 10vh;
+    width: 100%;
+    margin: auto;
+    position: fixed;
+    top: 0;
+}
+.header li{
+  list-style: none;
+}
+.header img{
+    width: 40px;
+}
+.header__list{
+    display: flex;
+    justify-content: space-evenly;
+}
+.header__list-item{
+    margin-right: 25px;
+}
+.header h1,
+.header ul{
+    margin: 0 1em;
+}
+
+@media only screen and (max-width: 600px) {
+    .header h1,
+    .header ul{
+        margin: 0;
+    }
+    .header__list-item{
+        margin-right: 5px;
+    }
+}

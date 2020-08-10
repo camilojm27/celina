@@ -1,0 +1,37 @@
+import React from 'react'
+
+//STYLES
+import './styles/Header.css'
+
+//ASSETS
+import FACEBOOK from '../assets/img/facebook.png'
+import INSTAGRAM from '../assets/img/instagram1.svg'
+import CARRITO from '../assets/img/carito.png'
+import USER_ICON from '../assets/img/user1.svg'
+
+
+function Header() {
+    return(
+        <header className="header">
+            <h1>CELINA</h1>
+            <ul className="header__list">
+
+                <li className="header__list-item">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/celina.tienda/">
+                        <img src={INSTAGRAM} alt=""/>
+                    </a>
+                </li>
+                <li className="header__list-item">
+                    <img src={FACEBOOK} alt=""/>
+                </li>
+                <li className="header__list-item">
+                    <img src={CARRITO} alt=""/>
+                </li>
+                <li className="header__list-item">
+                    <img src={USER_ICON} alt=""/>
+                </li>
+            </ul>
+        </header>
+    )
+}
+export default Header
