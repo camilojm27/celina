@@ -1,6 +1,7 @@
 import React from "react";
+import data from "../data";
 import './styles/Home.css';
-import Product from "./Product";
+import './styles/Product.css'
 
 export default function Home(){
     return(
@@ -14,10 +15,21 @@ export default function Home(){
             <div className="hero--hotproduct">P6</div>
         </section>
         <section className="products">
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
+            {
+                data.products.map(product =>
+                    <div className="product">
+                        <img className="product-image" src={product.image} alt=""/>
+                        <div className="product-detail">
+                            <h3>{product.name}</h3>
+                            <strong>{product.price}</strong>
+                        </div>
+
+                    </div>
+
+                )
+
+            }
+
 
         </section>
         </>
