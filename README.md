@@ -1,8 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Celina | Tienda - Ecommerce
 
-## Available Scripts
+Este proyecto es sobre un ecommerce hecho con React, Express, Node, MongoDB y Yarn - aun está en desarrollo
 
-In the project directory, you can run:
 
 ### `yarn start`
 

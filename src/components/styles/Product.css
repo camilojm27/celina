@@ -1,0 +1,31 @@
+.product{
+    display: flex;
+    max-width: 24rem;
+    justify-content: space-between;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.product-image{
+    max-width: 24rem;
+    max-height: 24rem;
+}
+
+.product-detail{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: whitesmoke;
+}
+.product-detail h3{
+    font-size: 1.8rem;
+}
+.product-detail strong{
+    font-size: 2rem;
+    font-weight: bold;
+}
+@media only screen and (max-width: 600px) {
+    .product{
+        padding-bottom: 20px;
+    }
+}

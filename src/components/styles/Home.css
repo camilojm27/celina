@@ -1,4 +1,13 @@
-.home{
+.products{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 10rem auto auto;
+}
+
+
+.hero{
     display: grid;
     grid-gap: 10px;
     width: 90%;
@@ -6,31 +15,31 @@
     margin-top: 5em;
 }
 
-.home--hotproduct{
+.hero--hotproduct{
     outline: 1px solid black;
     cursor: pointer;
 }
-.home--hotproduct:nth-child(1){
+.hero--hotproduct:nth-child(1){
 
     background-image: linear-gradient( rgba(31, 75, 114, 0.85), rgba(111, 204, 115, 0.62));
 }
-.home--hotproduct:nth-child(2){
+.hero--hotproduct:nth-child(2){
 
     background-image: linear-gradient(313deg, #3F51B5, #FFEB3B)
 }
-.home--hotproduct:nth-child(3){
+.hero--hotproduct:nth-child(3){
 
     background-image: linear-gradient(313deg, #3F51B5, #E91E63)
 }
-.home--hotproduct:nth-child(4){
+.hero--hotproduct:nth-child(4){
     background-image: linear-gradient(313deg, #9E9E9E, #795548)
 }
-.home--hotproduct:nth-child(5){
+.hero--hotproduct:nth-child(5){
 
     background-image: linear-gradient(313deg, #FF5722, #00BCD4)
 }
 
-.home--hotproduct:nth-child(6){
+.hero--hotproduct:nth-child(6){
     grid-column: span 1;
     grid-row: span 1;
     background-image: linear-gradient(313deg, rgba(111, 204, 115, 0.62), rgba(31, 75, 114, 0.85));
@@ -38,37 +47,42 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .home{
+    .products{
+        justify-content: center;
+        margin: 1rem auto auto;
+    }
+    .hero{
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(6, 200px);
     }
-    .home--hotproduct{
+    .hero--hotproduct{
         grid-column: span 1;
     }
-    .home--hotproduct:nth-child(1){
+    .hero--hotproduct:nth-child(1){
         grid-column: span 2;
     }
-    .home--hotproduct:nth-child(2){
+    .hero--hotproduct:nth-child(2){
         grid-column: span 2;
         grid-row: span 2;
     }
 }
 
 @media only screen and (min-width: 600px) {
-    .home{
+
+    .hero{
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: repeat(6, 200px);
     }
 
-    .home--hotproduct:nth-child(1){
+    .hero--hotproduct:nth-child(1){
         grid-column: 1/-1;
     }
 
-    .home--hotproduct:nth-child(2){
+    .hero--hotproduct:nth-child(2){
         grid-column: span 2;
         grid-row: span 1;
     }
-    .home--hotproduct:nth-child(3){
+    .hero--hotproduct:nth-child(3){
         grid-column: 3/4;
 
     }
@@ -78,41 +92,41 @@
 
 @media only screen and (min-width: 768px){
 
-    .home{
+    .hero{
         grid-template-columns: repeat(7, 1fr);
         grid-template-rows: repeat(4, 135px);
     }
 
-    .home--hotproduct{
+    .hero--hotproduct{
         outline: 1px solid black;
         cursor: pointer;
     }
-    .home--hotproduct:nth-child(1){
+    .hero--hotproduct:nth-child(1){
         grid-column: 1/-1;
         grid-row: span 2;
         background-image: linear-gradient( rgba(31, 75, 114, 0.85), rgba(111, 204, 115, 0.62));
     }
-    .home--hotproduct:nth-child(2){
+    .hero--hotproduct:nth-child(2){
         grid-column: span 3;
         grid-row: span 2;
         background-image: linear-gradient(313deg, #3F51B5, #FFEB3B)
     }
-    .home--hotproduct:nth-child(3){
+    .hero--hotproduct:nth-child(3){
         grid-column: span 2;
         grid-row: span 2;
         background-image: linear-gradient(313deg, #3F51B5, #E91E63)
     }
-    .home--hotproduct:nth-child(4){
+    .hero--hotproduct:nth-child(4){
         grid-column: span 2;
         background-image: linear-gradient(313deg, #9E9E9E, #795548)
     }
-    .home--hotproduct:nth-child(5){
+    .hero--hotproduct:nth-child(5){
         grid-column: span 1;
         grid-row: span 1;
         background-image: linear-gradient(313deg, #FF5722, #00BCD4)
     }
 
-    .home--hotproduct:nth-child(6){
+    .hero--hotproduct:nth-child(6){
         grid-column: span 1;
         grid-row: span 1;
         background-image: linear-gradient(313deg, rgba(111, 204, 115, 0.62), rgba(31, 75, 114, 0.85));
