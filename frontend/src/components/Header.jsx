@@ -8,12 +8,15 @@ import FACEBOOK from '../assets/img/facebook.png'
 import INSTAGRAM from '../assets/img/instagram1.svg'
 import CARRITO from '../assets/img/carito.png'
 import USER_ICON from '../assets/img/user1.svg'
+import {Link} from "react-router-dom";
 
 
 function Header() {
     return(
         <header className="header">
+            <Link to="/">
             <h1>CELINA</h1>
+            </Link>
             <ul className="header__list">
 
                 <li className="header__list-item">

@@ -3,6 +3,7 @@ import IMAGEN from './assets/img/p1.jpg'
 export default  {
     products: [
         {
+            _id: 1,
             name: 'Blusa Basica',
             category: 'Blusa',
             image: IMAGEN,
@@ -13,6 +14,7 @@ export default  {
             numReviews: 10,
         },
         {
+            _id: 2,
             name: 'Vestido Basico',
             category: 'Vestido',
             image: IMAGEN,
@@ -23,6 +25,7 @@ export default  {
             numReviews: 10,
         },
         {
+            _id: 3,
             name: 'Vestido premium',
             category: 'Vestido',
             image: IMAGEN,

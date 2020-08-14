@@ -1,12 +1,15 @@
 import React from "react";
 import data from "../data";
 import './styles/Home.css';
-import './styles/Product.css'
+import '../components/styles/Product.css'
+import SearchBar from "../components/SearchBar";
+import { Link} from "react-router-dom";
 
 export default function Home(){
     return(
         <>
-        <section className="hero">
+            <SearchBar/>
+            <section className="hero">
             <div className="hero--hotproduct">P1</div>
             <div className="hero--hotproduct">P2</div>
             <div className="hero--hotproduct">P3</div>
@@ -17,12 +20,14 @@ export default function Home(){
         <section className="products">
             {
                 data.products.map(product =>
-                    <div className="product">
+                    <div className="product" key={product._id}>
+                        <Link to={"product/" + product._id}>
                         <img className="product-image" src={product.image} alt=""/>
                         <div className="product-detail">
                             <h3>{product.name}</h3>
                             <strong>{product.price}</strong>
                         </div>
+                        </Link>
 
                     </div>
 
