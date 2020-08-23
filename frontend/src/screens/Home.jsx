@@ -21,8 +21,8 @@ export default function Home(){
             {
                 data.products.map(product =>
                     <div className="product" key={product._id}>
-                        <Link to={"product/" + product._id}>
-                        <img className="product-image" src={product.image} alt=""/>
+                        <Link to={"/product/" + product._id}>
+                        <img className="product-image" src={product.images[0]} alt=""/>
                         <div className="product-detail">
                             <h3>{product.name}</h3>
                             <strong>{product.price}</strong>
