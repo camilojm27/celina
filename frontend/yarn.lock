@@ -8853,6 +8853,14 @@ react-scripts@3.4.1:
   optionalDependencies:
     fsevents "2.1.2"
 
+react-simple-image-slider@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-simple-image-slider/-/react-simple-image-slider-1.0.4.tgz#2d57ce006d3912f560969e6ac2d8730e08386f7f"
+  integrity sha512-R1zh/HkAwzIplEA+zmt/qsq2S6wuIdN5I2hWllCiw5mYg37jE0GMxzcyQ+Noat3yArjg87YWgK4IdPkve2DXOw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    prop-types "^15.6.2"
+
 react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
