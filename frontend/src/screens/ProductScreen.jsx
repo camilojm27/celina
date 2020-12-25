@@ -13,7 +13,7 @@ const ProductScreen = (props) => {
                 <SimpleImageSlider
                 width={800}
                 height={500}
-                images={product.images}
+                images={product.images.map(img => ({url: img} ))}
                 style={stilos}
                 />
                 <h2>{product.price}</h2>

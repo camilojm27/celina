@@ -16,8 +16,9 @@ h1{
     display: grid;
     grid-gap: 10px;
     width: 90%;
-    margin: auto;
-    margin-top: 5em;
+    margin: 5em auto auto;
+    /*margin: auto;
+    margin-top: 5em;*/
 }
 
 .hero--hotproduct{
@@ -50,7 +51,7 @@ h1{
     background-image: linear-gradient(313deg, rgba(111, 204, 115, 0.62), rgba(31, 75, 114, 0.85));
 
 }
-
+/*Celular*/
 @media only screen and (max-width: 600px) {
     .products{
         justify-content: center;
@@ -68,10 +69,10 @@ h1{
     }
     .hero--hotproduct:nth-child(2){
         grid-column: span 2;
-        grid-row: span 2;
+        grid-row: span 1;
     }
 }
-
+/*Tablet*/
 @media only screen and (min-width: 600px) {
 
     .hero{
@@ -94,7 +95,7 @@ h1{
 
 }
 
-
+/*Desktop*/
 @media only screen and (min-width: 768px){
 
     .hero{
@@ -136,6 +137,14 @@ h1{
         grid-row: span 1;
         background-image: linear-gradient(313deg, rgba(111, 204, 115, 0.62), rgba(31, 75, 114, 0.85));
 
+    }
+
+}
+/*TVs*/
+@media only screen and (min-width: 1201px){
+
+    .hero{
+        width: 70%;
     }
 
 }
