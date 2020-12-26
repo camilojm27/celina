@@ -10,6 +10,7 @@
     margin-bottom: 30px;
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 .header li{
   list-style: none;
