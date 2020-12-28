@@ -1,4 +1,4 @@
-import IMAGEN from './assets/img/p1.jpg'
+const IMAGEN =  'http://127.0.0.1:5000/p1.jpg'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default  {

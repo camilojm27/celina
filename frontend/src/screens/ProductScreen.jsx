@@ -1,14 +1,20 @@
-import React from "react";
-import data from "../data";
-import SimpleImageSlider from "react-simple-image-slider";
+import React, {useState, useEffect} from "react";
 
 import stilos from './styles/ProductScreen.css'
 
+import SimpleImageSlider from "react-simple-image-slider";
+//import ButtonAction from "../components/ButtonAction";
+
 const ProductScreen = (props) => {
+
+
     const size = sliderSize();
-    const product = data.products.find(x => x._id === Number(props.match.params.id))
+    const product = props.products.find(x => x._id === Number(props.match.params.id))
+    console.log(this.state.count)
     return(
+
         <section className="details">
+
             <figure className="details__product">
             <h4>{product.name}</h4>
                 <SimpleImageSlider
@@ -53,7 +59,7 @@ function sliderSize (){
         size = 400;
     }
     else{
-        size = 500;
+        size = 430;
     }
 
     return size;
