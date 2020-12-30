@@ -4,6 +4,7 @@ import './App.css';
 import Header from "./components/Header";
 import Home from "./screens/Home";
 import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/product/:id" component={ProductScreen}/>
+            <Route exact path="/cart/:id" component={CartScreen}/>
 
         </Switch>
       </BrowserRouter>
