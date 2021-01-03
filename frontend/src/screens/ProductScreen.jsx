@@ -13,7 +13,7 @@ const ProductScreen = (props) => {
     const size = sliderSize();
     const dispatch = useDispatch()
     const productID = props.match.params.id
-    const [colorState, setColor] = useState('generic');
+    let [colorState, setColor] = useState('generic');
     const [qtyState, setQty] = useState(1);
     const productDetails = useSelector(state => state.productDetails)
     const {loading, error, product} = productDetails
@@ -40,6 +40,7 @@ const ProductScreen = (props) => {
                     stock.push(product.stock[i])
                 }
             }
+            colorState = colors[0];
             console.log(colors)
             return true
         }
@@ -72,9 +73,8 @@ const ProductScreen = (props) => {
                                 {
                                     verifyStock() && (
                                         <>
-                                            <select value={colorState}
-                                            onClick={(e) => setColor(e.target.value)}
-                                            >
+                                            <select  value={colorState}
+                                                     onChange={(e) => setColor(e.target.value)}>
                                                 {
                                                     colors.map(x => (
                                                       <option key={x} value={x}>{x}</option>

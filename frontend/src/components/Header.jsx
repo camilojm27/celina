@@ -28,7 +28,9 @@ function Header() {
                     <img src={FACEBOOK} alt=""/>
                 </li>
                 <li className="header__list-item">
+                    <Link to="/cart">
                     <img src={CARRITO} alt=""/>
+                    </Link>
                 </li>
                 <li className="header__list-item">
                     <img src={USER_ICON} alt=""/>
