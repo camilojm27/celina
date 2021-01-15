@@ -1,4 +1,4 @@
-const IMAGEN = 'http://127.0.0.1:5000/p1.jpg'
+const IMAGEN = 'http://192.168.1.54:5000/p1.jpg'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -21,7 +21,7 @@ export default {
             name: 'Vestido Basico',
             category: 'Vestido',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias',
-            colors: ['Negro'],
+            colors: ['Morada'],
             stock: [10],
             images: [IMAGEN, IMAGEN, IMAGEN],
             price: 30000,
@@ -34,7 +34,7 @@ export default {
             name: 'Vestido premium',
             category: 'Vestido',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias',
-            colors: ['Negro', 'Amarillo'],
+            colors: ['Rojo Velvet', 'Amarillo'],
             stock: [0, 5],
             images: [IMAGEN, IMAGEN, IMAGEN],
             price: 70000,
@@ -43,7 +43,7 @@ export default {
             numReviews: 10,
         }, {
             _id: 4,
-            name: 'Vestido premium',
+            name: 'Vestido Clasico',
             category: 'Vestido',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias',
             colors: ['Negro', 'Azul', 'Rosado'],
@@ -56,7 +56,7 @@ export default {
         },
         {
             _id: 5,
-            name: 'Vestido premium',
+            name: 'Premiun Dress',
             category: 'Vestido',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias',
             colors: ['Negro', 'Azul', 'Rosado'],

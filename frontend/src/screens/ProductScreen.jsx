@@ -6,6 +6,7 @@ import '../components/styles/Buttons.css'
 import SimpleImageSlider from "react-simple-image-slider";
 import {useDispatch, useSelector} from "react-redux";
 import {detailsProduct} from "../actions/productActions";
+import {addToCart} from "../actions/cartActions";
 
 //import ButtonAction from "../components/ButtonAction";
 
@@ -13,9 +14,9 @@ const ProductScreen = (props) => {
     const size = sliderSize();
     const dispatch = useDispatch()
     const productID = props.match.params.id
-    let [colorState, setColor] = useState('generic');
-    const [qtyState, setQty] = useState(1);
     const productDetails = useSelector(state => state.productDetails)
+    let [colorState, setColor] = useState(props.location.state.color);
+    const [qtyState, setQty] = useState(props.location.state.color);
     const {loading, error, product} = productDetails
 
     const colors = [], stock = []
@@ -29,7 +30,8 @@ const ProductScreen = (props) => {
             alert('Por favor elige un producto')
             return
         }
-       props.history.push(`/cart/${productID}?colorState=${colorState}?qtyState=${qtyState}`)
+        dispatch(addToCart(productID, qtyState, colorState))
+        props.history.push(`/cart`)
     }
 
     function verifyStock() {
@@ -40,12 +42,12 @@ const ProductScreen = (props) => {
                     stock.push(product.stock[i])
                 }
             }
-            colorState = colors[0];
-            console.log(colors)
+            //console.log(colors)
             return true
         }
         return false
     }
+
 
     return (
         <>
@@ -86,6 +88,7 @@ const ProductScreen = (props) => {
 
                                             <select value={qtyState}
                                                     onChange={(e) => setQty(e.target.value)}
+                                                    onClick={(e) => setQty(e.target.value)}
                                             >
                                                 {
                                                     [...Array(stock[colors.indexOf(colorState)]).keys()].map(x => (
@@ -95,7 +98,12 @@ const ProductScreen = (props) => {
                                                 }
                                             </select>
 
-                                            <button className="button-action" onClick={addToCartHandler}>
+                                            <button className="button-action" onClick={
+                                                function () {
+                                                    addToCartHandler()
+                                                }
+                                            }
+                                            >
                                                 Añadir al carrito
                                             </button>
                                         </>
