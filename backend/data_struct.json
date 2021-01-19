@@ -1,0 +1,11 @@
+
+{
+  "_id": 1,
+  "name": "Blusa Basica",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias",
+  "category": "Blusa",
+  "colors": ["Negro", "Amarillo", "Rojo"],
+  "stock": [10, 5, 1],
+  "images": ["https://imagen.png", "https://imagen.png", "https://imagen.png"],
+  "price": 25000
+}

@@ -7,13 +7,28 @@ import {
 } from "../constants/productConstants";
 import Axios from "axios";
 
+const url = "https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/";
+const config = {
+   url,
+   headers: {
+    'Access-Control-Allow-Origin' : '*',
+    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    }
+}
+
+
+
 
 export const listProducts = () => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST
     })
     try {
-        const {data} = await Axios.get('/api/products')
+      let {data} = {};
+      await Axios(config).then(response => {
+          data = response.data
+      })
+
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
     } catch (e) {
         dispatch({type: PRODUCT_LIST_FAIL, payload: e.message})
@@ -23,8 +38,11 @@ export const listProducts = () => async (dispatch) => {
 export const detailsProduct = (productId) => async (dispatch) => {
     dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId})
     try {
-        const {data} = await Axios.get(`/api/products/${productId}`)
-        dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data})
+        let data  = await Axios.get(
+          `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/${productId}`
+        );
+
+        dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data.data})
     } catch (e) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,

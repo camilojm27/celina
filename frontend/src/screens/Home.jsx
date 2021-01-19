@@ -1,26 +1,28 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
-
+import {useDispatch, useSelector} from "react-redux";
+import {listProducts} from "../actions/productActions";
 import SearchBar from "../components/SearchBar";
 
 
 import './styles/Home.css';
 import '../components/styles/Product.css'
-import {useDispatch, useSelector} from "react-redux";
-import {listProducts} from "../actions/productActions";
+
 
 
 export default function Home() {
 
     const dispatch = useDispatch()
-    const productList = useSelector((state) => state.productList)
-    const {loading, error, products} = productList
+
 
 
     useEffect(() => {
         dispatch(listProducts())
     }, [dispatch])
 
+    const productList = useSelector((state) => state.productList)
+    const {loading, error, products} = productList
+    console.log(productList)
     return (
         <>
             {loading ? <h1>Cargando</h1>
@@ -39,7 +41,7 @@ export default function Home() {
                         </section>
                         <section className="products">
                             {
-                                products.map(product =>
+                                Array.from(products).map(product =>
                                     <div className="product" key={product._id}>
                                         <Link to={{
                                             pathname: `/product/${product._id}`,
