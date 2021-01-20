@@ -6,8 +6,9 @@ import {
     PRODUCT_LIST_SUCCESS
 } from "../constants/productConstants";
 import Axios from "axios";
+import {API} from "../constants/backend";
 
-const url = "https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/";
+const url = API;
 const config = {
    url,
    headers: {
@@ -39,7 +40,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
     dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId})
     try {
         let data  = await Axios.get(
-          `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/${productId}`
+          `${API}${productId}`
         );
 
         dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data.data})

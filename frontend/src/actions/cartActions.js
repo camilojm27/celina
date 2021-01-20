@@ -1,9 +1,10 @@
 import  Axios from "axios";
 import {CART_ADD_ITEM, CART_ADD_FAIL, CART_REMOVE_ITEM} from "../constants/cartConstants";
+import {API} from "../constants/backend";
 
 export const addToCart = (productID, qty, color) => async (dispatch, getState) => {
     try{
-        const {data} = await Axios.get(`https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/${productID}`)
+        const {data} = await Axios.get(`${API}${productID}`)
         dispatch({
             type: CART_ADD_ITEM,
             payload: {

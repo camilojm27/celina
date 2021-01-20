@@ -32,10 +32,13 @@ export default function CartScreen(props) {
                                 <p> {item.name} en color {item.color}</p>
                                 <select className="cart-select" value={item.qty}
                                         onChange={(e) =>
+                                        {
+                                            console.log(item)
+
                                             dispatch(
                                                 addToCart(item.product, Number(e.target.value), item.color)
                                             )
-                                        }
+                                        }}
                                 >
                                     {
                                         [...Array(item.stock[item.colors.indexOf(item.color)]).keys()].map(x => (

@@ -59,7 +59,6 @@ app.get("/api/products", (req, res) => {
           images: doc.data().images,
           price: doc.data().price,
         }));
-        console.table(response);
         res.json(response);
       }).catch((error) => res.status(500).send(error));
 });
@@ -68,7 +67,9 @@ app.get("/api/products/:product_id", (req, res) => {
   db.collection("products").doc(req.params.product_id).get()
       .then((doc) => {
         if (doc.exists) {
-          res.json(doc.data());
+          const jsonResponse = doc.data();
+          jsonResponse._id = req.params.product_id;
+          res.json(jsonResponse);
         } else {
           res.status(404).send("El documento no existe");
         }
