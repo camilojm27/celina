@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Home from "./screens/Home";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import Register from "./screens/Register";
+import Login from "./screens/Login";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
             <Route exact path="/" component={Home}/>
             <Route exact path="/product/:id" component={ProductScreen}/>
             <Route exact path="/cart" component={CartScreen}/>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/login" component={Login}/>
 
         </Switch>
       </BrowserRouter>

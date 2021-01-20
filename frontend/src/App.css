@@ -17,6 +17,17 @@ body {
   background-image: linear-gradient(to bottom, var(--primary-color) ,blueviolet);
 }
 
+input,
+select,
+textarea{
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 .button-action{
   margin :10px 0;
   padding: 1rem 0;
@@ -26,7 +37,9 @@ body {
   background-color: #51C185;
   border-radius: 8px;
   box-shadow: 0 5px 15px ;
+  cursor: pointer;
 }
 .danger-color{
   background-color: #FBB70A;
 }
+
