@@ -3,7 +3,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     width: 90%;
-    margin: 10rem auto auto;
+    margin: 1rem auto auto;
 }
 
 h1{
@@ -16,7 +16,7 @@ h1{
     display: grid;
     grid-gap: 10px;
     width: 90%;
-    margin: 5em auto auto;
+    margin: 5em auto 75px auto;
     /*margin: auto;
     margin-top: 5em;*/
 }
