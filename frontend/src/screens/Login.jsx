@@ -1,9 +1,10 @@
 import React from "react";
-import './styles/Login.css'
+import './styles/Register.css'
 
 export default function Login(props) {
     return (
-        <section className="login">
+        <section className="register">
+            <div className="wrapper">
             <form className="register-form">
                 <div>
                     <h1>Iniciar sesión</h1>
@@ -37,6 +38,7 @@ export default function Login(props) {
                 </div>
 
             </form>
+            </div>
         </section>
     )
 }

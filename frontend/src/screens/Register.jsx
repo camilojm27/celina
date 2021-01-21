@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 function Register() {
     return (
         <section className="register">
+            <div className="wrapper">
             <form className="register-form">
                 <div>
                     <h1>Crear una <strong> Celi Cuenta</strong></h1>
@@ -58,11 +59,12 @@ function Register() {
                 <div>
                     <label/>
                     <div>
-                        ¿Ya tiene una cuenta?{' '}
-                        <Link to={`/login?redirect=`}>Sign-In</Link>
+                        <p>¿Ya tiene una cuenta? <Link to={`/login?redirect=`}>Iniciar Sesión</Link></p>
+                        
                     </div>
                 </div>
             </form>
+            </div>
         </section>
     )
 }

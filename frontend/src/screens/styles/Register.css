@@ -1,3 +1,10 @@
+.register{
+    min-height: 90vh;
+    margin: auto;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .register-form{
     display: flex;
     flex-direction: column;
@@ -5,11 +12,20 @@
     justify-content: space-between;
 }
 
+
+.wrapper{
+    
+    width: fit-content;
+    background: rgba(47, 46, 46, 0.287);
+    border-radius: 9px;
+    
+}
 .register-form {
     max-width: 60rem;
     margin: 0 auto;
 }
 .register-form > div {
+    color: whitesmoke;
     display: flex;
     flex-direction: column;
     margin: 1rem;
@@ -17,4 +33,22 @@
 }
 .register-form label {
     margin: 1rem 0;
+}
+
+.register button{
+    margin-bottom: 1rem;
+}
+
+.register p{
+    color: aliceblue;
+}
+
+.register a{
+    color: var(--danger-color);
+}
+
+@media only screen and (min-width: 768px){
+    .wrapper{
+        padding: 50px;
+    }
 }
