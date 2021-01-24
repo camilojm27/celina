@@ -14,11 +14,11 @@
 
 
 .wrapper{
-    
+
     width: fit-content;
     background: rgba(47, 46, 46, 0.287);
     border-radius: 9px;
-    
+
 }
 .register-form {
     max-width: 60rem;
@@ -39,7 +39,7 @@
     margin-bottom: 1rem;
 }
 
-.register p{
+.register p, label{
     color: aliceblue;
 }
 
