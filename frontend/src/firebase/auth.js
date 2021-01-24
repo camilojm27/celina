@@ -7,6 +7,9 @@ class Auth {
                 userCredential.user.updateProfile({
                     displayName: name
                 })
+
+                userCredential.user.getIdTokenResult()
+                userCredential.user.sendEmailVerification()
             }).catch(error => {
             console.error(error)
         })

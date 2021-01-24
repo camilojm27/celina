@@ -1,65 +1,19 @@
-import React, {useEffect, useReducer} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {listProducts} from '../actions/productActions';
 import ProductsList from '../components/ProductsList';
 import './styles/Admin.css'
 import './styles/Register.css'
 import Persistence from "../firebase/persistence";
+import {useForm} from "react-hook-form";
 
 const persistance = new Persistence()
-const formReducer = (state, event) => {
-    switch (event.name) {
-        case  'images':
-        return{
-            ...state,
-        }
-        default:
-            return {
-                ...state,
-                [event.name]: event.value
-            }
-    }
-
-}
 
 
 export default function Admin() {
 
-    const [formData, setFormData] = useReducer(formReducer, {
-        name: "",
-        description: "",
-        category: "",
-        colors: [],
-        stock: [],
-        images: [],
-        price: 0,
-    })
-
-    const handleChange = event => {
-        console.log(event)
-        if (event.target.name === 'images'){
-            setFormData({
-                name: event.target.name,
-                value: event.target.files,
-            });
-        }
-        setFormData({
-            name: event.target.name,
-            value: event.target.value,
-        });
-    }
-
-
-    const handleSubmit = event => {
-        event.preventDefault()
-        console.log(formData)
-        const {name, description, category, colors, stock, price} = formData
-        let images = document.getElementById('images').getAttribute('files')
-        console.log(images)
-        //persistance.uploadProduct(name, description, category, colors.toString().split(','), stock.toString().split(',').map(x => Number.parseInt(x)), images, price)
-    }
+    const {register, handleSubmit} = useForm()
     const dispatch = useDispatch()
-
 
     useEffect(() => {
         dispatch(listProducts())
@@ -67,6 +21,17 @@ export default function Admin() {
 
     const productList = useSelector((state) => state.productList)
     const {loading, error, products} = productList
+
+
+    const  onSubmit = async (data) => {
+        console.log((data))
+        let {name, description, category, colors, stock, images, price} = data
+        stock = stock.toString().split(',').map(x => Number.parseInt(x))
+        colors = colors.toString().split(',')
+        console.info(name, description, category, colors, stock, images, price)
+        await persistance.uploadProduct(name, description, category, colors, stock, images, price)
+    }
+
 
 
     return (
@@ -78,7 +43,7 @@ export default function Admin() {
                             <div className="modal-content">
                                 <span className="close"
                                       onClick={() => document.getElementById('modal').style.display = 'none'}>&times;</span>
-                                <form className="register-form" onSubmit={handleSubmit}>
+                                <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
                                     <div>
                                         <h2>Nuevo Producto</h2>
                                     </div>
@@ -90,8 +55,7 @@ export default function Admin() {
                                             name="name"
                                             placeholder="Nombre"
                                             required
-                                            value={formData.name}
-                                            onChange={(e) => handleChange(e)}
+                                            ref={register}
                                         />
                                     </div>
                                     <div>
@@ -100,8 +64,7 @@ export default function Admin() {
                                                   name="description"
                                                   placeholder="Ingrese la Descripción"
                                                   required maxLength={1000}
-                                                  value={formData.description}
-                                                  onChange={(e) => handleChange(e)}
+                                                  ref={register}
 
                                         />
                                     </div>
@@ -111,8 +74,7 @@ export default function Admin() {
                                             type="text"
                                             name="category"
                                             placeholder="category"
-                                            value={formData.category}
-                                            onChange={(e) => handleChange(e)}
+                                            ref={register}
 
                                         />
                                     </div>
@@ -123,8 +85,7 @@ export default function Admin() {
                                             name="colors"
                                             placeholder="Ingrese la Descripción"
                                             required maxLength={500}
-                                            value={formData.colors}
-                                            onChange={(e) => handleChange(e)}
+                                            ref={register}
 
                                         />
                                         <label htmlFor="description">Cantidad de los colores - talla</label>
@@ -133,8 +94,7 @@ export default function Admin() {
                                             name="stock"
                                             placeholder="Ingrese la Descripción"
                                             required maxLength={500}
-                                            value={formData.stock}
-                                            onChange={(e) => handleChange(e)}
+                                            ref={register}
 
                                         />
                                         <input
@@ -144,8 +104,17 @@ export default function Admin() {
                                             id="images"
                                             placeholder="category"
                                             multiple
-                                            value={formData.images}
-                                            onChange={(e) => handleChange(e)}
+                                            ref={register}
+
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="price">Precio</label>
+                                        <input
+                                            type="number"
+                                            name="price"
+                                            placeholder="Precio"
+                                            ref={register}
 
                                         />
                                     </div>

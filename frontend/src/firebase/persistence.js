@@ -7,7 +7,18 @@ class Persistence {
 
     async uploadProduct(name, description, category, colors, stock, images, price){
         const id = camelcase(name)
-        const imagesLink = images.map((img, index) => this.uploadImage(img, id, index))
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+
+        const imagesLink = []
+
+             for  (let i = 0; i < images.length; i++) {
+
+                 imagesLink.push(await this.uploadImage(images[i], id, i))
+                 console.log(imagesLink)
+             }
+
+
         await db.collection("products").doc(id).set({
             name: name,
             description: description,
@@ -16,13 +27,15 @@ class Persistence {
             stock: stock,
             images: imagesLink,
             price: price,
-        })
+        }).then((doc) => {
+             console.log('creado correctamente' +doc)
+         })
     }
 
    async uploadImage(img, uid, imgPOS){
 
         const fileRef = firebase.storage().ref('public/img/' + uid + `/${imgPOS}`)
-         fileRef.put(img)
+         await fileRef.put(img)
 
          return ( await fileRef.getDownloadURL())
 

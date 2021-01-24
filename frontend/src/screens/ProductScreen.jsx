@@ -110,16 +110,7 @@ const ProductScreen = (props) => {
 
                                         )
                                 }
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias
-                                    architecto
-                                    blanditiis, corporis debitis deleniti dignissimos dolore, error ex illo, inventore
-                                    ipsam
-                                    laboriosam maxime mollitia nemo neque nisi odio optio praesentium sint soluta
-                                    suscipit
-                                    temporibus totam. Iste sunt tempora tenetur unde. Assumenda consequuntur distinctio
-                                    enim
-                                    eos error est impedit, iste laborum libero magnam obcaecati reiciendis sapiente sunt
-                                    veritatis?</p>
+                                <p>{product.description}</p>
 
                             </div>
                         </section>
