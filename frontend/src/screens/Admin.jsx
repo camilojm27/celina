@@ -2,17 +2,20 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {listProducts} from '../actions/productActions';
 import ProductsList from '../components/ProductsList';
-import './styles/Admin.css'
-import './styles/Register.css'
 import Persistence from "../firebase/persistence";
 import {useForm} from "react-hook-form";
 
-const persistance = new Persistence()
+import './styles/Admin.css'
+import './styles/Register.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const persistence = new Persistence()
 
 
 export default function Admin() {
 
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, reset } = useForm()
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -24,12 +27,18 @@ export default function Admin() {
 
 
     const  onSubmit = async (data) => {
-        console.log((data))
-        let {name, description, category, colors, stock, images, price} = data
-        stock = stock.toString().split(',').map(x => Number.parseInt(x))
-        colors = colors.toString().split(',')
-        console.info(name, description, category, colors, stock, images, price)
-        await persistance.uploadProduct(name, description, category, colors, stock, images, price)
+
+
+    console.log((data))
+    let {name, description, category, colors, stock, images, price} = data
+    stock = stock.toString().split(',').map(x => Number.parseInt(x))
+    colors = colors.toString().split(',')
+    console.info(name, description, category, colors, stock, images, price)
+    await persistence.uploadProduct(name, description, category, colors, stock, images, price)
+        .then(()=>{
+            reset()
+        })
+
     }
 
 
@@ -38,7 +47,8 @@ export default function Admin() {
         <>
             {loading ? <h1>Cargando</h1>
                 : error ? <h1>{error}</h1>
-                    : <>
+                    : <>        <ToastContainer />
+
                         <div className="modal" id="modal">
                             <div className="modal-content">
                                 <span className="close"
@@ -121,7 +131,7 @@ export default function Admin() {
 
                                     <div>
                                         <label/>
-                                        <button className="button-action" type="submit">
+                                        <button className="button-action" type="submit" >
                                             Ingresar
                                         </button>
                                     </div>

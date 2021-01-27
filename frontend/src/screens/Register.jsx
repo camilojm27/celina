@@ -3,8 +3,11 @@ import './styles/Register.css'
 import {Link} from "react-router-dom";
 import '../firebase/auth'
 import Auth from "../firebase/auth";
-const auth = new  Auth()
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const auth = new  Auth()
 //https://www.digitalocean.com/community/tutorials/how-to-build-forms-in-react
 const formReducer = (state, event) => {
     return {
@@ -15,7 +18,7 @@ const formReducer = (state, event) => {
 
 
 
-function Register() {
+function Register(props) {
     const [formData, setFormData] = useReducer(formReducer, {
         name: "",
         email: "",
@@ -29,16 +32,24 @@ function Register() {
         });
     }
 
-    const handleSubmit = event => {
-        event.preventDefault()
-        console.log(formData)
-        const {name, email, password} = formData
-        auth.registerEmail(name, email, password)
+    const handleSubmit = async event => {
+
+            event.preventDefault()
+            console.log(formData)
+            const {name, email, password} = formData
+            await auth.registerEmail(name, email, password)
+                .then(()=>{
+                    setTimeout(()=> {
+
+                        props.history.push('/')
+                    }, 1000)
+                })
     }
 
 
     return (
         <section className="register">
+            <ToastContainer/>
             <div className="wrapper">
             <form className="register-form" onSubmit={handleSubmit}>
                 <div>

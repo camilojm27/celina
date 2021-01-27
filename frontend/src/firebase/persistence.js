@@ -1,5 +1,6 @@
 import firebase from "./app";
 import camelcase from "camelcase"
+import {toast} from "react-toastify";
 const db = firebase.firestore()
 
 class Persistence {
@@ -27,9 +28,13 @@ class Persistence {
             stock: stock,
             images: imagesLink,
             price: price,
-        }).then((doc) => {
-             console.log('creado correctamente' +doc)
-         })
+        }).then(
+            () => toast.success("Producto creado correctamente")
+
+        )
+            .catch((e) => {
+                toast.error("Error" + e.message)
+            })
     }
 
    async uploadImage(img, uid, imgPOS){
