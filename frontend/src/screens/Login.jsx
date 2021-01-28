@@ -22,6 +22,13 @@ export default function Login(props) {
 
     }
 
+    async function handleGoogle() {
+        await auth.loginWithGoogle()
+        setTimeout(() => {
+            props.history.push('/')
+        }, 1500)
+    }
+
     return (
         <section className="register">
             <ToastContainer/>
@@ -61,6 +68,12 @@ export default function Login(props) {
                     </div>
 
                 </form>
+                <div className="button-action google" onClick={handleGoogle}>
+                    <img
+                        src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fgoogle_48px.png?alt=media&token=87bc4216-6b62-4411-a826-026fe951f23d"
+                        alt="icono de google"/>
+                    <p>Iniciar Sesión con google</p>
+                </div>
             </div>
         </section>
     )

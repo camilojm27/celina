@@ -29,7 +29,7 @@
 
 
 /* The Modal (background) */
-.modal {
+.modal, .modal-edit {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 10; /* Sit on top */
@@ -44,7 +44,7 @@
 }
 
 /* Modal Content */
-.modal-content {
+.modal-content, .modal-content-edit {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -64,7 +64,7 @@
     color: #000;
 }
 /* The Close Button */
-.close {
+.close, .close-edit {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -72,7 +72,7 @@
 }
 
 .close:hover,
-.close:focus {
+.close:focus, .close-edit:hover, .close-edit:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

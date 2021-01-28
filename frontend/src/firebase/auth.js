@@ -41,6 +41,24 @@ class Auth {
         })
     }
 
+    loginWithGoogle(){
+        return new Promise(((resolve, reject) => {
+            const provider = new firebase.auth.GoogleAuthProvider()
+
+            firebase.auth().signInWithPopup(provider).then(result => {
+               toast.success(`Bienvenido a celina ${result.user.displayName}`)
+                resolve(true)
+            }).catch((e) => {
+                toast.error(e.message)
+                console.error(e)
+                reject(false)
+            })
+
+
+
+        }))
+    }
+
 }
 
 export default Auth

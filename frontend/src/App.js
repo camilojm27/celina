@@ -8,6 +8,7 @@ import CartScreen from "./screens/CartScreen";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Admin from './screens/Admin';
+import ProductEdit from "./components/ProductEdit";
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/product/:id" component={ProductScreen} />
-        <Route exact path="/cart" component={CartScreen} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/admin" component={Admin} />
+          <Route exact path="/edit/:id" component={ProductEdit} />
+          <Route exact path="/cart" component={CartScreen} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/admin" component={Admin} />
       </Switch>
     </BrowserRouter>
   );

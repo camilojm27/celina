@@ -47,6 +47,15 @@
     color: var(--danger-color);
 }
 
+.google{
+    background-color: #3F51B5;
+    color: wheat;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-around;
+}
+
 @media only screen and (min-width: 768px){
     .wrapper{
         padding: 50px;

@@ -23,5 +23,17 @@ if(!firebase.apps.length){
     }
 }
 
+firebase.auth().onAuthStateChanged(user => {
+    let profile = document.getElementById('profile')
+    if (user) {
+
+        if (user.photoURL) {
+            profile.src = user.photoURL
+        }
+    } else {
+        profile.src = 'https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fuser1.svg?alt=media&token=4f2fd9c4-ecb3-4013-ad07-68224d89b97f'
+    }
+})
+
 export default firebase
 

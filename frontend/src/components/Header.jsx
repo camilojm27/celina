@@ -34,7 +34,7 @@ function Header() {
                 </li>
                 <li className="header__list-item">
                     <Link to="/register">
-                    <img src={USER_ICON} alt=""/>
+                    <img src={USER_ICON} alt="" id="profile"/>
                     </Link>
                 </li>
             </ul>

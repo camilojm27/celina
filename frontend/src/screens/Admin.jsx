@@ -142,7 +142,7 @@ export default function Admin() {
                         <button id="add-item"
                                 onClick={() => document.getElementById('modal').style.display = 'block'}>+
                         </button>
-                        <ProductsList products={products}/>
+                        <ProductsList products={products} admin/>
                     </>
             }
         </>
