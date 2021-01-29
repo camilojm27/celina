@@ -69,7 +69,7 @@ function Register(props) {
                         type="text"
                         name="name"
                         value={formData.name}
-                        placeholder="Ingrese su nombre"
+                        placeholder="Lina Mendoza"
                         required
                         onChange={(e) => handleChange(e)}
                     />
@@ -80,7 +80,7 @@ function Register(props) {
                         type="email"
                         name="email"
                         value={formData.email}
-                        placeholder="Correo Electronico"
+                        placeholder="correo@celina.com"
                         required
                         onChange={(e) => handleChange(e)}
                     />
@@ -91,7 +91,6 @@ function Register(props) {
                         type="password"
                         name="password"
                         value={formData.password}
-                        placeholder="Ingrese su Contraseña"
                         required
                         onChange={(e) => handleChange(e)}
 
@@ -103,19 +102,20 @@ function Register(props) {
                         Registrar
                     </button>
                 </div>
-                <div>
-                    <label/>
-                    <div>
-                        <p>¿Ya tiene una cuenta? <Link to={`/login?redirect=`}>Iniciar Sesión</Link></p>
 
-                    </div>
-                </div>
+
+
             </form>
                 <div className="button-action google" onClick={handleGoogle}>
                     <img
                         src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fgoogle_48px.png?alt=media&token=87bc4216-6b62-4411-a826-026fe951f23d"
                         alt="icono de google"/>
                     <p>Registrarse con google</p>
+                </div>
+
+                <div>
+                     <p>¿Ya tiene una cuenta? <Link to={`/login?redirect=`}> <strong>Iniciar Sesión</strong> </Link></p>
+
                 </div>
             </div>
         </section>

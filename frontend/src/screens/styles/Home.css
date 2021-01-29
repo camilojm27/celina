@@ -5,12 +5,14 @@
     width: 90%;
     margin: 1rem auto auto;
 }
-
+.center{
+    text-align: center;
+}
 h1{
     list-style: none;
     text-decoration: none;
     text-underline: none;
-    color: white;
+    color: var(--text-color);
 }
 .hero{
     display: grid;
@@ -24,6 +26,10 @@ h1{
 .hero--hotproduct{
     outline: 1px solid black;
     cursor: pointer;
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fcategory.svg?alt=media&token=6d903e02-b690-4c25-aa20-bfce4598f885");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
 }
 .hero--hotproduct:nth-child(1){
 
@@ -31,24 +37,21 @@ h1{
 }
 .hero--hotproduct:nth-child(2){
 
-    background-image: linear-gradient(313deg, #3F51B5, #FFEB3B)
 }
 .hero--hotproduct:nth-child(3){
 
-    background-image: linear-gradient(313deg, #3F51B5, #E91E63)
+             /* optional, center the image */
+
 }
 .hero--hotproduct:nth-child(4){
-    background-image: linear-gradient(313deg, #9E9E9E, #795548)
 }
 .hero--hotproduct:nth-child(5){
 
-    background-image: linear-gradient(313deg, #FF5722, #00BCD4)
 }
 
 .hero--hotproduct:nth-child(6){
     grid-column: span 1;
     grid-row: span 1;
-    background-image: linear-gradient(313deg, rgba(111, 204, 115, 0.62), rgba(31, 75, 114, 0.85));
 
 }
 /*Celular*/
@@ -106,36 +109,32 @@ h1{
     .hero--hotproduct{
         outline: 1px solid black;
         cursor: pointer;
+
     }
     .hero--hotproduct:nth-child(1){
         grid-column: 1/-1;
         grid-row: span 2;
-        background-image: linear-gradient( rgba(31, 75, 114, 0.85), rgba(111, 204, 115, 0.62));
     }
     .hero--hotproduct:nth-child(2){
         grid-column: span 3;
         grid-row: span 2;
-        background-image: linear-gradient(313deg, #3F51B5, #FFEB3B)
+                   /* optional, center the image */
     }
     .hero--hotproduct:nth-child(3){
         grid-column: span 2;
         grid-row: span 2;
-        background-image: linear-gradient(313deg, #3F51B5, #E91E63)
     }
     .hero--hotproduct:nth-child(4){
         grid-column: span 2;
-        background-image: linear-gradient(313deg, #9E9E9E, #795548)
     }
     .hero--hotproduct:nth-child(5){
         grid-column: span 1;
         grid-row: span 1;
-        background-image: linear-gradient(313deg, #FF5722, #00BCD4)
     }
 
     .hero--hotproduct:nth-child(6){
         grid-column: span 1;
         grid-row: span 1;
-        background-image: linear-gradient(313deg, rgba(111, 204, 115, 0.62), rgba(31, 75, 114, 0.85));
 
     }
 

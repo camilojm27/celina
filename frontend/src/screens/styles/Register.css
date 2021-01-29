@@ -14,9 +14,11 @@
 
 
 .wrapper{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: fit-content;
-    background: rgba(47, 46, 46, 0.287);
+    background-color: rgba(89, 175, 255, 0.287);
     border-radius: 9px;
 
 }
@@ -28,7 +30,7 @@
     color: whitesmoke;
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    margin: 0.3rem;
     font-size: 18px;
 }
 .register-form label {
@@ -39,17 +41,15 @@
     margin-bottom: 1rem;
 }
 
-.register p{
-    color: aliceblue;
-}
+
 
 .register a{
     color: var(--danger-color);
 }
 
 .google{
-    background-color: #3F51B5;
-    color: wheat;
+    background-color: whitesmoke;
+    color: var(--text-color);
     display: flex;
     height: 50px;
     align-items: center;

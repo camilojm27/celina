@@ -43,7 +43,7 @@ export default function Login(props) {
                         <input
                             type="email"
                             name="email"
-                            placeholder="Correo Electronico"
+                            placeholder="correo@celina.com"
                             required
                             ref={register}
                         />

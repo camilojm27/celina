@@ -57,11 +57,11 @@
     max-width: inherit;
 }
 .register-form > div {
-    color: #000;
+    color: var(--text-color);
 }
 
 .register-form h2 {
-    color: #000;
+    color: var(--text-color);
 }
 /* The Close Button */
 .close, .close-edit {
