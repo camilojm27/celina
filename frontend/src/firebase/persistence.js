@@ -5,7 +5,7 @@ const db = firebase.firestore()
 
 class Persistence {
 
-
+//TODO: Actualizar estas funciones con promesas y manejar mensajes en interfaz
     async uploadProduct(name, description, category, colors, stock, images, price){
         const id = camelcase(name)
             .normalize("NFD")
@@ -19,7 +19,7 @@ class Persistence {
                  console.log(imagesLink)
              }
 
-
+            const time = firebase.firestore.FieldValue.serverTimestamp()
         await db.collection("products").doc(id).set({
             name: name,
             description: description,
@@ -28,8 +28,31 @@ class Persistence {
             stock: stock,
             images: imagesLink,
             price: price,
+            created: time,
+            updated: time
         }).then(
             () => toast.success("Producto creado correctamente")
+
+        )
+            .catch((e) => {
+                toast.error("Error" + e.message)
+            })
+    }
+
+    async updateProduct(id, name, description, category, colors, stock, price){
+
+
+        await db.collection("products").doc(id).update({
+            name: name,
+            description: description,
+            category: category,
+            colors: colors,
+            stock: stock,
+            price: price,
+            updated: firebase.firestore.FieldValue.serverTimestamp()
+
+        }).then(
+            () => toast.success("Producto actualizado correctamente")
 
         )
             .catch((e) => {

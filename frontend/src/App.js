@@ -9,10 +9,14 @@ import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Admin from './screens/Admin';
 import ProductEdit from "./components/ProductEdit";
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from "react-toastify";
 
 function App() {
   return (
+
     <BrowserRouter>
+        <ToastContainer />
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />

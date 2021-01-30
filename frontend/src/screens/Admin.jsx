@@ -7,8 +7,6 @@ import {useForm} from "react-hook-form";
 
 import './styles/Admin.css'
 import './styles/Register.css'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const persistence = new Persistence()
 
@@ -47,7 +45,7 @@ export default function Admin() {
         <>
             {loading ? <h1>Cargando</h1>
                 : error ? <h1>{error}</h1>
-                    : <>        <ToastContainer />
+                    : <>
 
                         <div className="modal" id="modal">
                             <div className="modal-content">
