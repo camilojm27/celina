@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {useSelector, useDispatch} from "react-redux"
 //STYLES
 import './styles/Header.css'
 
@@ -7,11 +7,20 @@ import './styles/Header.css'
 import FACEBOOK from '../assets/img/facebook.png'
 import INSTAGRAM from '../assets/img/instagram1.svg'
 import CARRITO from '../assets/img/carito.png'
-import USER_ICON from '../assets/img/user1.svg'
 import {Link} from "react-router-dom";
-
+import {signOut} from "../actions/userActions";
 
 function Header() {
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
+    const userSigning = useSelector((state) => state.userSigning);
+    const { userInfo } = userSigning;
+    const dispatch = useDispatch()
+
+
+    const signOutHandler = () =>{
+        dispatch(signOut())
+    }
     return(
         <header className="header">
             <Link to="/">
@@ -27,16 +36,75 @@ function Header() {
                 <li className="header__list-item">
                     <img src={FACEBOOK} alt=""/>
                 </li>
-                <li className="header__list-item">
+                <div>
                     <Link to="/cart">
-                    <img src={CARRITO} alt=""/>
+                        <img id="cart" src={CARRITO} alt=""/>
+                        {cartItems.length > 0 && (
+                            <span className="badge">{cartItems.length}</span>
+                        )}
                     </Link>
-                </li>
-                <li className="header__list-item">
-                    <Link to="/register">
-                    <img src={USER_ICON} alt="" id="profile"/>
-                    </Link>
-                </li>
+                    {userInfo ? (
+
+                        <div className="dropdown">
+                            <Link to="#">
+                                {/*{userInfo.name} <i className="fa fa-caret-down"/>{' '}*/}
+                                {userInfo.name}
+                            </Link>
+                            <ul className="dropdown-content">
+                                <li>
+                                    <Link to="/profile">Perfil</Link>
+                                </li>
+                                <li>
+                                    <Link to="/orderhistory">Historial de ordenes</Link>
+                                </li>
+                                <li>
+                                    <Link to="#signout" onClick={signOutHandler}>
+                                        Cerrar Sesión
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                    ) : (
+                        <Link to="/login">Iniciar Sesión</Link>
+                    )}
+                    {/*{userInfo && userInfo.isSeller && (*/}
+                    {/*    <div className="dropdown">*/}
+                    {/*        <Link to="#admin">*/}
+                    {/*            Seller <i className="fa fa-caret-down"></i>*/}
+                    {/*        </Link>*/}
+                    {/*        <ul className="dropdown-content">*/}
+                    {/*            <li>*/}
+                    {/*                <Link to="/productlist/seller">Products</Link>*/}
+                    {/*            </li>*/}
+                    {/*            <li>*/}
+                    {/*                <Link to="/orderlist/seller">Orders</Link>*/}
+                    {/*            </li>*/}
+                    {/*        </ul>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
+                    {/*{userInfo && userInfo.isAdmin && (*/}
+                    {/*    <div className="dropdown">*/}
+                    {/*        <Link to="#admin">*/}
+                    {/*            Admin <i className="fa fa-caret-down"></i>*/}
+                    {/*        </Link>*/}
+                    {/*        <ul className="dropdown-content">*/}
+                    {/*            <li>*/}
+                    {/*                <Link to="/dashboard">Dashboard</Link>*/}
+                    {/*            </li>*/}
+                    {/*            <li>*/}
+                    {/*                <Link to="/productlist">Products</Link>*/}
+                    {/*            </li>*/}
+                    {/*            <li>*/}
+                    {/*                <Link to="/orderlist">Orders</Link>*/}
+                    {/*            </li>*/}
+                    {/*            <li>*/}
+                    {/*                <Link to="/userlist">Users</Link>*/}
+                    {/*            </li>*/}
+                    {/*        </ul>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
+                </div>
             </ul>
         </header>
     )

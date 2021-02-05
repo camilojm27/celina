@@ -2,36 +2,54 @@ import React from "react";
 import './styles/Register.css'
 import {useForm} from "react-hook-form";
 import Auth from "../firebase/auth";
-import {ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {useDispatch} from "react-redux";
+import {signing} from "../actions/userActions";
+
 
 export default function Login(props) {
-    const auth = new Auth()
+    const dispatch = useDispatch()
 
+    // if (Auth.isLogIn()){
+    //     props.history.push('/');
+    // }
     const {register, handleSubmit} = useForm()
 
     async function onSubmit(data) {
-        const {email, password} = data
-        let user = await auth.loginWithEmail(email, password)
-        if (user === true) {
-            console.log('sip')
-            setTimeout(() => {
-                props.history.push('/')
-            }, 1500)
+        try{
+            const {email, password} = data
+            let user = await Auth.loginWithEmail(email, password)
+            console.info(user)
+            dispatch(signing(user))
+
+                setTimeout(() => {
+                    props.history.push('/')
+                }, 1500)
+
+
+        }catch (e) {
+
         }
+
 
     }
 
     async function handleGoogle() {
-        await auth.loginWithGoogle()
-        setTimeout(() => {
-            props.history.push('/')
-        }, 1500)
+        try{
+           const userCredential = await Auth.loginWithGoogle()
+            dispatch(signing(userCredential))
+            setTimeout(() => {
+                props.history.push('/')
+            }, 1500)
+        }
+        catch (e) {
+
+        }
+
+
     }
 
     return (
         <section className="register">
-            <ToastContainer/>
             <div className="wrapper">
                 <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
                     <div>

@@ -11,24 +11,29 @@ import Admin from './screens/Admin';
 import ProductEdit from "./components/ProductEdit";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 
 function App() {
-  return (
+    return (
 
-    <BrowserRouter>
-        <ToastContainer />
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/product/:id" component={ProductScreen} />
-          <Route exact path="/edit/:id" component={ProductEdit} />
-          <Route exact path="/cart" component={CartScreen} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/admin" component={Admin} />
-      </Switch>
-    </BrowserRouter>
-  );
+        <BrowserRouter>
+            <ToastContainer position="top-center"
+                            style={{fontSize: "24px"}}/>
+            <Header/>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/product/:id" component={ProductScreen}/>
+                <Route exact path="/edit/:id" component={ProductEdit}/>
+                <Route exact path="/cart" component={CartScreen}/>
+                <Route exact path="/register" component={Register}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/admin" component={Admin}/>
+                <Route path="/shipping" component={ShippingAddressScreen}/>
+                <Route path="/payment" component={PaymentMethodScreen}/>
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;

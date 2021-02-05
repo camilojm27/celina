@@ -6,7 +6,6 @@
     color: white;
     height: 10vh;
     width: 100%;
-    overflow: hidden;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -16,6 +15,9 @@
 }
 .header img{
     width: 40px;
+}
+#cart{
+    width: 30px;
 }
 .header__list{
     display: flex;
@@ -28,7 +30,55 @@
 .header ul{
     margin: 0 1em;
 }
+header a {
+    color: var(--text-color);
+    padding: 1rem;
+}
+div > a{
+    font-size: 2rem;
 
+}
+a.brand {
+    color: var(--text-color);
+    font-weight: bold;
+}
+.badge {
+    background-color: #f02020;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 0.2rem 0.7rem;
+    font-size: 1.4rem;
+    margin-left: 0.2rem;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Dropdown */
+.dropdown {
+    display: inline-block;
+    position: relative;
+
+}
+.dropdown-content {
+    position: absolute;
+    display: none;
+    right: 0;
+    min-width: 12rem;
+    padding: 1rem;
+    z-index: 1;
+    background-color: var(--primary-color);
+    margin: 0;
+    margin-top: 0.4rem;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 @media only screen and (max-width: 600px) {
     .header h1,
     .header ul{

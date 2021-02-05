@@ -22,18 +22,21 @@ if(!firebase.apps.length){
         console.error('Firebase initialization error raised', err.stack)
     }
 }
-
-firebase.auth().onAuthStateChanged(user => {
-    let profile = document.getElementById('profile')
-    if (user) {
-
-        if (user.photoURL) {
-            profile.src = user.photoURL
-        }
-    } else {
-        profile.src = 'https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fuser1.svg?alt=media&token=4f2fd9c4-ecb3-4013-ad07-68224d89b97f'
-    }
-})
+//
+// firebase.auth().onAuthStateChanged(user => {
+//    // let profile = document.getElementById('profile')
+//     //let username = document.getElementById('username')
+//
+//     if (user) {
+//
+//         if (user.photoURL) {
+//             //profile.src = user.photoURL
+//             //username.innerText = user.displayName
+//         }
+//     } else {
+//         //profile.src = 'https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fuser1.svg?alt=media&token=4f2fd9c4-ecb3-4013-ad07-68224d89b97f'
+//     }
+// })
 
 export default firebase
 

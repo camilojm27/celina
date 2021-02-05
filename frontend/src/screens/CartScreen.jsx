@@ -71,7 +71,7 @@ export default function CartScreen(props) {
                                     <li>
                                         <button
                                             type="button"
-                                            // onClick={() => checkoutHandler}
+                                            onClick={() => props.history.push('/shipping')}
                                             className="button-action "
                                             disabled={cartItems.length === 0}
                                         >

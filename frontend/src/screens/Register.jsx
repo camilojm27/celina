@@ -1,13 +1,12 @@
-import React, { useReducer} from "react";
+import React, {useReducer} from "react";
 import './styles/Register.css'
 import {Link} from "react-router-dom";
 import '../firebase/auth'
 import Auth from "../firebase/auth";
+import {signing} from "../actions/userActions";
+import {useDispatch} from "react-redux";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-const auth = new  Auth()
 //https://www.digitalocean.com/community/tutorials/how-to-build-forms-in-react
 const formReducer = (state, event) => {
     return {
@@ -17,8 +16,8 @@ const formReducer = (state, event) => {
 }
 
 
-
 function Register(props) {
+    const dispatch = useDispatch()
     const [formData, setFormData] = useReducer(formReducer, {
         name: "",
         email: "",
@@ -34,78 +33,80 @@ function Register(props) {
 
     const handleSubmit = async event => {
 
-            event.preventDefault()
-            console.log(formData)
-            const {name, email, password} = formData
-            await auth.registerEmail(name, email, password)
-                .then(()=>{
-                    setTimeout(()=> {
+        event.preventDefault()
+        console.log(formData)
+        const {name, email, password} = formData
+        const user = await Auth.registerEmail(name, email, password)
 
-                        props.history.push('/')
-                    }, 1000)
-                })
+        setTimeout(() => {
+
+            props.history.push('/')
+        }, 1000)
+
+        dispatch(signing(user));
     }
 
 
     async function handleGoogle() {
-       await auth.loginWithGoogle()
+        const user = await Auth.loginWithGoogle()
         setTimeout(() => {
             props.history.push('/')
         }, 1500)
+
+        dispatch(signing(user));
+
     }
 
     return (
         <section className="register">
-            <ToastContainer/>
             <div className="wrapper">
-            <form className="register-form" onSubmit={handleSubmit}>
-                <div>
-                    <h1>Crear una <strong> Celi Cuenta</strong></h1>
-                </div>
+                <form className="register-form" onSubmit={handleSubmit}>
+                    <div>
+                        <h1>Crear una <strong> Celi Cuenta</strong></h1>
+                    </div>
 
-                <div>
-                    <label htmlFor="name">Nombre Completo</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        placeholder="Lina Mendoza"
-                        required
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Correo Electronico</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        placeholder="correo@celina.com"
-                        required
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        required
-                        onChange={(e) => handleChange(e)}
+                    <div>
+                        <label htmlFor="name">Nombre Completo</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            placeholder="Lina Mendoza"
+                            required
+                            onChange={(e) => handleChange(e)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Correo Electronico</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            placeholder="correo@celina.com"
+                            required
+                            onChange={(e) => handleChange(e)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            required
+                            onChange={(e) => handleChange(e)}
 
-                    />
-                </div>
-                <div>
-                    <label/>
-                    <button className="button-action" type="submit">
-                        Registrar
-                    </button>
-                </div>
+                        />
+                    </div>
+                    <div>
+                        <label/>
+                        <button className="button-action" type="submit">
+                            Registrar
+                        </button>
+                    </div>
 
 
-
-            </form>
+                </form>
                 <div className="button-action google" onClick={handleGoogle}>
                     <img
                         src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fgoogle_48px.png?alt=media&token=87bc4216-6b62-4411-a826-026fe951f23d"
@@ -114,7 +115,7 @@ function Register(props) {
                 </div>
 
                 <div>
-                     <p>¿Ya tiene una cuenta? <Link to={`/login?redirect=`}> <strong>Iniciar Sesión</strong> </Link></p>
+                    <p>¿Ya tiene una cuenta? <Link to={`/login?redirect=`}> <strong>Iniciar Sesión</strong> </Link></p>
 
                 </div>
             </div>
