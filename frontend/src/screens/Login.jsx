@@ -1,18 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './styles/Register.css'
 import {useForm} from "react-hook-form";
 import Auth from "../firebase/auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {signing} from "../actions/userActions";
 
 
 export default function Login(props) {
     const dispatch = useDispatch()
 
-    // if (Auth.isLogIn()){
-    //     props.history.push('/');
-    // }
+    const redirect = props.location.search
+        ? props.location.search.split('=')[1]
+        : '/';
+
+    const userSigning = useSelector((state) => state.userSigning)
+    const { userInfo } = userSigning
+
     const {register, handleSubmit} = useForm()
+
+    useEffect(() => {
+        if (userInfo) {
+            props.history.push(redirect);
+        }
+    }, [props.history, redirect, userInfo]);
 
     async function onSubmit(data) {
         try{
@@ -20,12 +30,6 @@ export default function Login(props) {
             let user = await Auth.loginWithEmail(email, password)
             console.info(user)
             dispatch(signing(user))
-
-                setTimeout(() => {
-                    props.history.push('/')
-                }, 1500)
-
-
         }catch (e) {
 
         }

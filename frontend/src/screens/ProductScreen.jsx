@@ -15,8 +15,9 @@ const ProductScreen = (props) => {
     const dispatch = useDispatch()
     const productID = props.match.params.id
     const productDetails = useSelector(state => state.productDetails)
-    let [colorState, setColor] = useState(props.location.state.color);
-    const [qtyState, setQty] = useState(props.location.state.color);
+
+    let [colorState, setColor] = useState("generic");
+    const [qtyState, setQty] = useState(1);
     const {loading, error, product} = productDetails
 
     const colors = [], stock = []

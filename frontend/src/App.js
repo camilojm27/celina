@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                 <Route exact path="/admin" component={Admin}/>
                 <Route path="/shipping" component={ShippingAddressScreen}/>
                 <Route path="/payment" component={PaymentMethodScreen}/>
+                <Route path="/placeorder" component={PlaceOrderScreen}/>
             </Switch>
         </BrowserRouter>
     );

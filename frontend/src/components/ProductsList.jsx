@@ -27,10 +27,6 @@ export default function ProductsList(props) {
                                             <div className="product" key={product._id}>
                                                 <Link to={{
                                                     pathname: `/product/${product._id}`,
-                                                    state: {
-                                                        qty: product.qty,
-                                                        color: product.colors[0]
-                                                    }
                                                 }}>
                                                     <img className="product-image" src={product.images[0]} alt=""/>
                                                     <div className="product-detail">
