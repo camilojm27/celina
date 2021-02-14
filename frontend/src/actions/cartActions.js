@@ -10,7 +10,7 @@ import {API} from "../constants/backend";
 
 export const addToCart = (productID, qty, color) => async (dispatch, getState) => {
     try{
-        const {data} = await Axios.get(`${API}${productID}`)
+        const {data} = await Axios.get(`${API}/products/${productID}`)
         dispatch({
             type: CART_ADD_ITEM,
             payload: {

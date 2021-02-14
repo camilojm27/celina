@@ -11,7 +11,7 @@ import {toast} from 'react-toastify';
                         displayName: name
                     })
                     toast.success("Registro creado correctamente")
-                    resolve(this.json(userCredential))
+                    resolve(this.userPropsToJson(userCredential))
 
 
                     //userCredential.user.sendEmailVerification()
@@ -32,7 +32,7 @@ import {toast} from 'react-toastify';
                 .then((user) => {
                     toast.success(`${user.user.displayName} Bienvenid@ a Celina`)
 
-                    resolve(this.json(user))
+                    resolve(this.userPropsToJson(user))
 
                 }).catch((e) => {
                 toast.error('Email o contraseña incorrecta')
@@ -50,7 +50,8 @@ import {toast} from 'react-toastify';
 
             firebase.auth().signInWithPopup(provider).then(result => {
                toast.success(`Bienvenido a celina ${result.user.displayName}`)
-                resolve(this.json(result))
+
+                resolve(this.userPropsToJson(result))
             }).catch((e) => {
                 toast.error(e.message)
                 console.error(e)
@@ -63,7 +64,6 @@ import {toast} from 'react-toastify';
     }
     static isLogIn(){
         let user = firebase.auth().currentUser
-        console.log(user)
         return !!user;
     }
 
@@ -75,12 +75,22 @@ import {toast} from 'react-toastify';
              .catch(()=> {return false })
     }
 
-   static json(userCredential){
-         return {
-             name: userCredential.user.displayName,
-             email: userCredential.user.email,
-             picture:  userCredential.user.photoURL,
+   static async userPropsToJson(userCredential){
+         try {
+             const token = await userCredential.user.getIdToken()
+             return {
+                 name: userCredential.user.displayName,
+                 email: userCredential.user.email,
+                 picture:  userCredential.user.photoURL,
+                 token: token
+             }
+
          }
+         catch (e) {
+             console.log(e)
+         }
+
+
     }
 
 }

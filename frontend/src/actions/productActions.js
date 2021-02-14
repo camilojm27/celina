@@ -25,10 +25,8 @@ export const listProducts = () => async (dispatch) => {
         type: PRODUCT_LIST_REQUEST
     })
     try {
-      let {data} = {};
-      await Axios(config).then(response => {
-          data = response.data
-      })
+      let {data} = await Axios.get(`${API}/products/`
+      )
 
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
     } catch (e) {
@@ -40,7 +38,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
     dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId})
     try {
         let data  = await Axios.get(
-          `${API}${productId}`
+          `${API}/products/${productId}`
         );
 
         dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data.data})
