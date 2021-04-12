@@ -16,7 +16,6 @@ exports.isAuth = async (req, res, next) => {
                 console.error("Error while verifying token ", e);
                 return res.status(403).json(e);
 
-
         }
 
     } else {

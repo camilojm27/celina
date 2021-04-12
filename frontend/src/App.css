@@ -6,17 +6,22 @@
 }
 html{
   font-size: 62.5%;
-
 }
 
 :root{
-  --primary-color: #bea8f6;
-  --danger-color : #FBB70A;
-  --text-color : #000000
+  --primary-color: #ffa5a5ff;
+  --danger-color : #ec368dff;
+  --text-color : #000000;
+
+  --sky-blue-crayola: #51e5ffff;
+  --indigo: #440381ff;
+  --magenta-process: #ec368dff;
+  --light-pink: #ffa5a5ff;
+  --unbleached-silk: #ffd6c0ff;
 }
 
 body {
-  background-color: #DFD2FA;
+  background-color: whitesmoke;
 }
 
 input,

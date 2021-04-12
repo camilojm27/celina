@@ -26,12 +26,12 @@ export default function PlaceOrderScreen(props) {
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
     };
     // TODO: Implementar el cambio de pantalla, cerrado de sesión
-    // useEffect(() => {
-    //     if (success) {
-    //         props.history.push(`/order/${order._id}`);
-    //         dispatch({ type: ORDER_CREATE_RESET });
-    //     }
-    // }, [dispatch, order, props.history, success]);
+    useEffect(() => {
+        if (success) {
+            props.history.push(`/order/${order.orderId}`);
+            dispatch({ type: ORDER_CREATE_RESET });
+        }
+    }, [dispatch, order, props.history, success]);
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4/>

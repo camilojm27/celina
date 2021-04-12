@@ -1,31 +1,38 @@
-.register{
+.register {
     min-height: 90vh;
     margin: auto;
-        display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.register-form{
+
+.register-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    max-width: 60rem;
+    margin: 0 auto;
+    color: papayawhip;
 }
 
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: fit-content;
-    background-color: rgba(89, 175, 255, 0.287);
+    background-color: rgba(12, 109, 220, 0.29);
     border-radius: 9px;
 
 }
-.register-form {
-    max-width: 60rem;
-    margin: 0 auto;
+
+
+.register-form h1, .register-form label, .register-form input::placeholder {
+    color: papayawhip;
 }
+
 .register-form > div {
     color: whitesmoke;
     display: flex;
@@ -33,21 +40,28 @@
     margin: 0.3rem;
     font-size: 18px;
 }
+
 .register-form label {
     margin: 1rem 0;
+
 }
 
-.register button{
+.register-form input {
+    color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.2);
+}
+
+.register button {
     margin-bottom: 1rem;
+    background-color: rgb(220, 168, 12);
+
 }
 
-
-
-.register a{
+.register a {
     color: var(--danger-color);
 }
 
-.google{
+.google {
     background-color: whitesmoke;
     color: var(--text-color);
     display: flex;
@@ -56,8 +70,27 @@
     justify-content: space-around;
 }
 
-@media only screen and (min-width: 768px){
-    .wrapper{
-        padding: 50px;
+.register {
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fmobile%2Fpexels-anna-shvets-4556686.jpg?alt=media&token=d91d3139-1538-46da-830e-94cf7862da9c);
+    background-size: contain;
+}
+
+footer figure{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 800px) {
+    .register {
+        background-image: url(https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fdesktop%2Fpexels-koolshooters-7346340.jpg?alt=media&token=0992d008-cd8e-4533-900d-435c8a696fb6);
+    }
+
+    .register-form{
+        padding: 2rem;
+    }
+    .wrapper label{
+        font-size: 24px;
     }
 }

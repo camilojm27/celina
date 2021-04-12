@@ -1,0 +1,57 @@
+{
+  "shippingAddress": {
+    "fullName": "Camilo J",
+    "address": "calle hola",
+    "city": "cali",
+    "postalCode": "123464",
+    "country": "COL"
+  },
+  "orderItems": [
+    {
+      "name": "Blusa Fire",
+      "image": "https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/public%2Fimg%2Fp1.jpg?alt=media&token=4cf7aaec-fb9a-4eb3-99b7-d59d80084ca1",
+      "price": "24998",
+      "stock": [
+        3,
+        5
+      ],
+      "colors": [
+        "Negro",
+        " Negro l"
+      ],
+      "product": "PUAJQdvCbfKifql9L3hq",
+      "color": " Negro l",
+      "qty": 1
+    }
+  ],
+  "itemsPrice": 24998,
+  "shippingPrice": 0,
+  "taxPrice": 3749.7,
+  "totalPrice": 28747.7,
+  "user": {
+    "name": "camilo mezu",
+    "picture": "https://lh3.googleusercontent.com/a-/AOh14GihtU0keKfo2QuLHqTngZQKfivqH-d1A4TJ1Mru3I0=s96-c",
+    "iss": "https://securetoken.google.com/celina-tienda",
+    "aud": "celina-tienda",
+    "auth_time": 1613424982,
+    "user_id": "Xqf9kt4F0CVqwFXa4IgDpV48kED3",
+    "sub": "Xqf9kt4F0CVqwFXa4IgDpV48kED3",
+    "iat": 1613424982,
+    "exp": 1613428582,
+    "email": "camilo272001@gmail.com",
+    "email_verified": true,
+    "firebase": {
+      "identities": {
+        "google.com": [
+          "108163908570942787455"
+        ],
+        "email": [
+          "camilo272001@gmail.com"
+        ]
+      },
+      "sign_in_provider": "password"
+    },
+    "uid": "Xqf9kt4F0CVqwFXa4IgDpV48kED3"
+  },
+  "camilo": "test"
+}
