@@ -35,7 +35,7 @@ function ProductEdit (props) {
                         :
 
                         <section className="edit">
-                            <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+                            <form className="product-form" onSubmit={handleSubmit(onSubmit)}>
                                 <div>
                                     <h1>{`Edición de ${product.name}`}</h1>
                                 </div>

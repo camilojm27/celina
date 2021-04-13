@@ -14,7 +14,7 @@
 
     max-width: 60rem;
     margin: 0 auto;
-    color: papayawhip;
+    color: var(--text-invert-color);
 }
 
 
@@ -30,11 +30,11 @@
 
 
 .register-form h1, .register-form label, .register-form input::placeholder {
-    color: papayawhip;
+    color: var(--text-invert-color);
 }
 
 .register-form > div {
-    color: whitesmoke;
+    color: var(--text-invert-color);
     display: flex;
     flex-direction: column;
     margin: 0.3rem;
@@ -47,7 +47,7 @@
 }
 
 .register-form input {
-    color: whitesmoke;
+    color: var(--text-invert-color);
     background-color: rgba(245, 245, 245, 0.2);
 }
 
@@ -62,7 +62,7 @@
 }
 
 .google {
-    background-color: whitesmoke;
+    background-color: var(--text-invert-color);
     color: var(--text-color);
     display: flex;
     height: 50px;

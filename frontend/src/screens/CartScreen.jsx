@@ -16,7 +16,7 @@ export default function CartScreen(props) {
 
 
     return (
-        <>
+        <section className="cart">
             <h1>Carrito de Compras</h1>
             {
                 cartItems === 0 ?(
@@ -90,7 +90,7 @@ export default function CartScreen(props) {
             {/*    <p>*/}
             {/*        En el carrito tienes el producto: #{productID}, en color  {colorState.split('?')[0]} {qty} {Number(qty) === 1  ? 'vez' : 'veces'}*/}
             {/*    </p>*/}
-        </>
+        </section>
     )
 }
 

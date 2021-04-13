@@ -24,6 +24,7 @@ function App() {
             <ToastContainer position="top-center"
                             style={{fontSize: "24px"}}/>
             <Header/>
+            <main>
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/product/:id" component={ProductScreen}/>
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/placeorder" component={PlaceOrderScreen}/>
                 {/*<Route path="/order/:id" component={OrderScreen}/>*/}
             </Switch>
+            </main>
             <Footer/>
         </BrowserRouter>
     );

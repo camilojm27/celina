@@ -4,7 +4,7 @@ footer{
     background-color: #ece1f1;
     height: 200px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
 
@@ -12,12 +12,28 @@ footer div{
     margin-left: 20px;
 }
 footer h2{
+    text-align: center;
     margin: 1rem;
     font-size: 2.2rem;
 }
-
+footer a{
+margin: 15px;
+    color: black;
+}
+footer a:hover{
+    color: blue;
+}
 footer figure{
     font-size: 20px;
+}
+
+footer ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    list-style: disc;
 }
 
 @media only screen and (max-width: 800px) {

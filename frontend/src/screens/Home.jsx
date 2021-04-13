@@ -29,7 +29,7 @@ export default function Home() {
                 :
                 error ? <h1>{error}</h1>
                     :
-                    <>
+                    <><br/>
                         <SearchBar/>
                         <section className="hero">
                             <div className="hero--hotproduct"/>

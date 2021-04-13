@@ -3,7 +3,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     width: 90%;
-    margin: 1rem auto auto;
+    margin: auto;
 }
 .center{
     text-align: center;

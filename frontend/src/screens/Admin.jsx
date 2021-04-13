@@ -6,7 +6,6 @@ import Persistence from "../firebase/persistence";
 import {useForm} from "react-hook-form";
 
 import './styles/Admin.css'
-import './styles/Register.css'
 
 const persistence = new Persistence()
 
@@ -51,7 +50,7 @@ export default function Admin() {
                             <div className="modal-content">
                                 <span className="close"
                                       onClick={() => document.getElementById('modal').style.display = 'none'}>&times;</span>
-                                <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+                                <form className="product-form" onSubmit={handleSubmit(onSubmit)}>
                                     <div>
                                         <h2>Nuevo Producto</h2>
                                     </div>

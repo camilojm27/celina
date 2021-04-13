@@ -12,7 +12,7 @@ html{
   --primary-color: #ffa5a5ff;
   --danger-color : #ec368dff;
   --text-color : #000000;
-
+--text-invert-color: papayawhip;
   --sky-blue-crayola: #51e5ffff;
   --indigo: #440381ff;
   --magenta-process: #ec368dff;
@@ -22,6 +22,14 @@ html{
 
 body {
   background-color: whitesmoke;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer{
+
 }
 
 input,

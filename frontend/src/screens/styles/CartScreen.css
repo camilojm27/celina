@@ -1,3 +1,7 @@
+.cart{
+    min-height: 70vh;
+    background-size: contain;
+}
 .cart-item__image {
     max-width: 10rem;
     margin: 10px;
