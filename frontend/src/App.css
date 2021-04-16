@@ -28,8 +28,9 @@ body {
   min-height: 100vh;
 }
 
-footer{
-
+main{
+  min-height: 70%;
+  margin: auto;
 }
 
 input,

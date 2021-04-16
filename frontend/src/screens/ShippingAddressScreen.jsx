@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {saveShippingAddress} from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import './styles/Shipping.css'
 
 export default function ShippingAddressScreen(props) {
     const cart = useSelector((state) => state.cart);
@@ -20,6 +21,10 @@ export default function ShippingAddressScreen(props) {
         props.history.push('/payment');
     };
     return (
+        <section className="shipping">
+            <aside>
+                <img  src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fdesktop%2Fshipping-address.jpg?alt=media&token=9b9f9a34-81d8-4957-b3a4-2b8f959fbcea"  alt=""/>
+            </aside>
         <div>
             <CheckoutSteps step1 step2/>
             <form className="form" onSubmit={submitHandler}>
@@ -89,5 +94,6 @@ export default function ShippingAddressScreen(props) {
                 </div>
             </form>
         </div>
+        </section>
     );
 }

@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import {ORDER_CREATE_RESET} from "../constants/orderConstants";
 import {createOrder} from "../actions/orderActions";
+import './styles/PlaceOrderScreen.css'
+
 
 export default function PlaceOrderScreen(props) {
     const cart = useSelector((state) => state.cart);
@@ -33,6 +35,10 @@ export default function PlaceOrderScreen(props) {
         }
     }, [dispatch, order, props.history, success]);
     return (
+        <section className="place-order">
+            <aside>
+                <img  src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fdesktop%2Fplaceorder.jpg?alt=media&token=b61c0b42-2121-4f27-9e58-ae1deb1944ac"  alt=""/>
+            </aside>
         <div>
             <CheckoutSteps step1 step2 step3 step4/>
             <div className="row top">
@@ -139,5 +145,6 @@ export default function PlaceOrderScreen(props) {
                 </div>
             </div>
         </div>
+        </section>
     );
 }

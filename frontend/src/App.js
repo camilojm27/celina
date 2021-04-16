@@ -33,10 +33,10 @@ function App() {
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/admin" component={Admin}/>
+                <Route exact path="/order/:id" component={OrderScreen}/>
                 <Route path="/shipping" component={ShippingAddressScreen}/>
                 <Route path="/payment" component={PaymentMethodScreen}/>
                 <Route path="/placeorder" component={PlaceOrderScreen}/>
-                {/*<Route path="/order/:id" component={OrderScreen}/>*/}
             </Switch>
             </main>
             <Footer/>

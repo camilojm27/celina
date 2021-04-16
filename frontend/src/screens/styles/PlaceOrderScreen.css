@@ -1,0 +1,28 @@
+.place-order{
+    font-size: 1.8rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.shipping button{
+    font-size: 1.8rem;
+}
+
+aside>img {
+    object-fit: cover;
+    height: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+    aside>img {
+        display: none;
+    }
+    .place-order{
+        grid-template-columns: 1fr;
+    }
+    .button-delete {
+        padding: 0;
+        width: 8rem;
+    }
+}

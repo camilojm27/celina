@@ -28,7 +28,7 @@ const reducer = combineReducers({
     cart: cartReducer,
     userSigning: userSigningReducer,
     orderCreate: orderCreateReducer,
-    orderDetails: orderDetailsReducer
+    orderDetails: orderDetailsReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose()

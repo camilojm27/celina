@@ -32,9 +32,9 @@ function Footer() {
             <div>
                 <ul>
                     <li>
-                        <Link>Garantía y Devoluciones </Link>
-                        <Link>Politicas de privacidad </Link>
-                        <Link>Contactanos</Link>
+                        <a>Garantía y Devoluciones </a>
+                        <a>Politicas de privacidad </a>
+                        <a>Contactanos</a>
                     </li>
                 </ul>
             </div>

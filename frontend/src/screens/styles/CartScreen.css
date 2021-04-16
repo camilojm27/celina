@@ -1,3 +1,7 @@
+.cart-items{
+    width: 90%;
+    margin: auto;
+}
 .cart{
     min-height: 70vh;
     background-size: contain;
@@ -32,6 +36,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .cart-items{
+
+    }
     .button-delete {
         padding: 0;
         width: 8rem;

@@ -17,6 +17,11 @@ export default function PaymentMethodScreen(props) {
         props.history.push('/placeorder');
     };
     return (
+        <section className="shipping">
+
+            <aside>
+                <img  src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fdesktop%2Fshipping-address.jpg?alt=media&token=9b9f9a34-81d8-4957-b3a4-2b8f959fbcea"  alt=""/>
+            </aside>
         <div>
             <CheckoutSteps step1 step2 step3/>
             <form className="form" onSubmit={submitHandler}>
@@ -58,5 +63,6 @@ export default function PaymentMethodScreen(props) {
                 </div>
             </form>
         </div>
+        </section>
     );
 }
