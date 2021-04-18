@@ -16,6 +16,7 @@ import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import Footer from "./components/Footer";
+import Categories from "./screens/Categories";
 
 function App() {
     return (
@@ -28,15 +29,16 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/product/:id" component={ProductScreen}/>
+                <Route exact path="/categories/:id" component={Categories}/>
                 <Route exact path="/edit/:id" component={ProductEdit}/>
                 <Route exact path="/cart" component={CartScreen}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/admin" component={Admin}/>
                 <Route exact path="/order/:id" component={OrderScreen}/>
-                <Route path="/shipping" component={ShippingAddressScreen}/>
-                <Route path="/payment" component={PaymentMethodScreen}/>
-                <Route path="/placeorder" component={PlaceOrderScreen}/>
+                <Route exact path="/shipping" component={ShippingAddressScreen}/>
+                <Route exact path="/payment" component={PaymentMethodScreen}/>
+                <Route exact path="/placeorder" component={PlaceOrderScreen}/>
             </Switch>
             </main>
             <Footer/>

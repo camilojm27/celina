@@ -11,6 +11,7 @@
 # production
 /build
 /frontend/build
+/backend/functions/lib
 # misc
 .DS_Store
 .env.local
@@ -19,6 +20,8 @@
 .env.production.local
 .eslintcache
 
-
 credentials.json*
 *.log
+
+#Junk
+*.gz

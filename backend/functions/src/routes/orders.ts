@@ -1,18 +1,17 @@
-const express = require("express");
-// eslint-disable-next-line new-cap
-const orderApi = express.Router();
-const {db, admin} = require("../util/admin");
+import { Request, Response, Router } from 'express';
+const orderApi = Router();
+import admin, {db} from '../util/admin'
 const {isAuth} = require("../util/auth");
 // Create a product with Auto ID
 
-orderApi.post("/", isAuth, async (req, res) =>{
+orderApi.post("/", isAuth, async (req: Request, res: Response) =>{
     if (req.body.orderItems.length === 0) {
         res.status(400).json({message: "El carrito esta vacio"});
     } else {
         const {shippingAddress, orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice} = req.body;
-        const newOrder = {
+        const newOrder: any = {
             shippingAddress, orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice,
-            user: req.user.uid,
+            user: req.body.user.uid,
             isPaid: false,
             paidAt: "0",
             isDelivered: false,
@@ -25,7 +24,7 @@ orderApi.post("/", isAuth, async (req, res) =>{
     }
 });
 
-orderApi.get("/:id",  async (req, res) =>{
+orderApi.get("/:id",  async (req: Request, res: Response) =>{
     try {
         let order = await db.collection("orders").doc(req.params.id).get()
         if (order.exists) {
@@ -42,4 +41,4 @@ orderApi.get("/:id",  async (req, res) =>{
     }
 })
 
-module.exports = orderApi;
+export default orderApi
