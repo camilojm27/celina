@@ -6,42 +6,46 @@ import {
     PRODUCT_LIST_SUCCESS
 } from "../constants/productConstants";
 import Axios from "axios";
-import {API} from "../constants/backend";
+import { API } from "../constants/backend";
 
-const url = API;
-const config = {
-   url,
-   headers: {
-    'Access-Control-Allow-Origin' : '*',
-    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+
+
+export const listProducts = () => async (dispatch, getState) => {
+    const { productList: { products }, } = getState();
+
+    if (Object.keys(products).length > 0 ){
+        //dispatch({ type: PRODUCT_LIST_SUCCESS, payload: products })
+        console.log('Reciclao', products);
+        return
     }
-}
 
+    console.log('FUCK');
 
-
-
-export const listProducts = () => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST
     })
-    try {
-      let {data} = await Axios.get(`${API}/products/`
-      )
 
-        dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
+    try {
+        let { data } = await Axios.get(`${API}/products/`)
+
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch (e) {
-        dispatch({type: PRODUCT_LIST_FAIL, payload: e.message})
+        dispatch({ type: PRODUCT_LIST_FAIL, payload: e.message })
     }
 }
 
-export const detailsProduct = (productId) => async (dispatch) => {
-    dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId})
+export const detailsProduct = (productId) => async (dispatch, getState) => {
+    // TODO: Hacer cache desde el estado de redux
+    // Hay que almacenar cada objeto en lugar de reemplazarlo
+
+
+    dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId })
     try {
-        let data  = await Axios.get(
-          `${API}/products/${productId}`
+        let data = await Axios.get(
+            `${API}/products/${productId}`
         );
 
-        dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data.data})
+        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.data })
     } catch (e) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,

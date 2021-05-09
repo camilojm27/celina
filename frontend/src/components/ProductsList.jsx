@@ -12,18 +12,19 @@ export default function ProductsList(props) {
 
     const dispatch = useDispatch()
 
-
-    useEffect(() => {
-        dispatch(listProducts())
-    }, [dispatch])
-
+    
     const productList = useSelector((state) => state.productList)
     const {loading, error, products} = productList
 
-    let history = useHistory();
-    function filtrarLista() {
+    useEffect(() => {
+        if (!productList.lenght > 0) {
+            
+            dispatch(listProducts())
+        }
+    }, [dispatch, productList.lenght])
 
-    }
+    let history = useHistory();
+
     return (
         <section className="products">
             {

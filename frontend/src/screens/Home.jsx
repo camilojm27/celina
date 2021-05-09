@@ -1,4 +1,4 @@
-import SearchBar from "../components/SearchBar";
+//import SearchBar from "../components/SearchBar";
 import './styles/Home.css';
 import '../components/styles/Product.css'
 import ProductsList from "../components/ProductsList";
