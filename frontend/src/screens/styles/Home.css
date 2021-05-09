@@ -3,147 +3,85 @@
     justify-content: space-around;
     flex-wrap: wrap;
     width: 90%;
-    margin: auto;
+    margin: 20px auto;
 }
-.center{
-    text-align: center;
-}
+
 h1{
     list-style: none;
     text-decoration: none;
-    text-underline: none;
     color: var(--text-color);
 }
-.hero{
-    display: grid;
-    grid-gap: 10px;
-    width: 90%;
-    margin: 5em auto 75px auto;
-    /*margin: auto;
-    margin-top: 5em;*/
+.banner{
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fboth%2Fbanner3c.jpg?alt=media&token=a449b5fc-84cd-4a54-83c7-305db7ed6b85");
+    background-size: cover;
+    height: 70vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner--text{
+    position: absolute;
+    color: aliceblue;
+    font-size: 30px;
+    font-weight: 500;
 }
 
-.hero--hotproduct{
-    outline: 1px solid black;
+.home--categories{
+    margin: 100px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.home--categorie{
     cursor: pointer;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fcategory.svg?alt=media&token=6d903e02-b690-4c25-aa20-bfce4598f885");
-    background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
-    background-position: center center;
+    height: 400px;
+    flex-basis: 25%;
 }
-.hero--hotproduct:nth-child(1){
 
-    background-image: linear-gradient( rgba(31, 75, 114, 0.85), rgba(111, 204, 115, 0.62));
-}
-.hero--hotproduct:nth-child(2){
 
-}
-.hero--hotproduct:nth-child(3){
 
-             /* optional, center the image */
 
-}
-.hero--hotproduct:nth-child(4){
-}
-.hero--hotproduct:nth-child(5){
+.home--categories__img{
+max-width:80%;
+max-height:80%;
+transition: all 300ms ease-in-out;
 
 }
 
-.hero--hotproduct:nth-child(6){
-    grid-column: span 1;
-    grid-row: span 1;
-
+.home--categories__img:hover{
+    max-width:90%;
+    max-height:90%;
 }
-/*Celular*/
+
+
+
+
+.benefits{
+    background-color: papayawhip;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px;
+    flex-wrap: wrap;
+}
+.benefits img{
+    height: 70px;
+    width: 70px;
+}
+
 @media only screen and (max-width: 600px) {
-    .products{
-        justify-content: center;
-        margin: 1rem auto auto;
+    .banner{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 30vh;
     }
-    .hero{
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(6, 200px);
-    }
-    .hero--hotproduct{
-        grid-column: span 1;
-    }
-    .hero--hotproduct:nth-child(1){
-        grid-column: span 2;
-    }
-    .hero--hotproduct:nth-child(2){
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-}
-/*Tablet*/
-@media only screen and (min-width: 600px) {
-
-    .hero{
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: repeat(6, 200px);
-    }
-
-    .hero--hotproduct:nth-child(1){
-        grid-column: 1/-1;
-    }
-
-    .hero--hotproduct:nth-child(2){
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-    .hero--hotproduct:nth-child(3){
-        grid-column: 3/4;
-
-    }
-
-}
-
-/*Desktop*/
-@media only screen and (min-width: 768px){
-
-    .hero{
-        grid-template-columns: repeat(7, 1fr);
-        grid-template-rows: repeat(4, 135px);
-    }
-
-    .hero--hotproduct{
-        outline: 1px solid black;
-        cursor: pointer;
-
-    }
-    .hero--hotproduct:nth-child(1){
-        grid-column: 1/-1;
-        grid-row: span 2;
-    }
-    .hero--hotproduct:nth-child(2){
-        grid-column: span 3;
-        grid-row: span 2;
-                   /* optional, center the image */
-    }
-    .hero--hotproduct:nth-child(3){
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-    .hero--hotproduct:nth-child(4){
-        grid-column: span 2;
-    }
-    .hero--hotproduct:nth-child(5){
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .hero--hotproduct:nth-child(6){
-        grid-column: span 1;
-        grid-row: span 1;
-
-    }
-
-}
-/*TVs*/
-@media only screen and (min-width: 1201px){
-
-    .hero{
-        width: 70%;
+    .home--categorie{
+        flex-basis: auto;
     }
 
 }

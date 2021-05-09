@@ -19,8 +19,6 @@ export default function Admin() {
         dispatch(listProducts())
     }, [dispatch])
 
-    const productList = useSelector((state) => state.productList)
-    const {loading, error, products} = productList
 
 
     const  onSubmit = async (data) => {
@@ -42,10 +40,7 @@ export default function Admin() {
 
     return (
         <>
-            {loading ? <h1>Cargando</h1>
-                : error ? <h1>{error}</h1>
-                    : <>
-
+            
                         <div className="modal" id="modal">
                             <div className="modal-content">
                                 <span className="close"
@@ -139,9 +134,8 @@ export default function Admin() {
                         <button id="add-item"
                                 onClick={() => document.getElementById('modal').style.display = 'block'}>+
                         </button>
-                        <ProductsList products={products} admin/>
-                    </>
-            }
+                        <ProductsList admin/>
         </>
     )
+    
 }

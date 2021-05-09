@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--primary-color);
-    color: white;
+    background: white;
+    color: thistle;
     height: 10vh;
     width: 100%;
     position: sticky;

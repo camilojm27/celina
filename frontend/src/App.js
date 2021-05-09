@@ -29,7 +29,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/product/:id" component={ProductScreen}/>
-                <Route exact path="/categories/:id" component={Categories}/>
+                <Route exact path="/categories/:id?" component={Categories}/>
                 <Route exact path="/edit/:id" component={ProductEdit}/>
                 <Route exact path="/cart" component={CartScreen}/>
                 <Route exact path="/register" component={Register}/>

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import '../screens/styles/Home.css'
+import '../components/styles/Product.css'
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../actions/productActions";
@@ -47,7 +47,13 @@ export default function ProductsList(props) {
                                     </div>
                                 )) :
                             (
-                                Array.from(products).map(product =>
+                                Array.from(products).filter(function (product) {
+                                    if (props.categoriesID){
+                                        return  product.category === props.categoriesID
+                                    }
+                                    return product
+                                }).map( product =>
+
                                     <div className="product" key={product._id}>
                                         <Link to={{
                                             pathname: `/product/${product._id}`,

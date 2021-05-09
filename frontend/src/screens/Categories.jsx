@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import ProductsList from "../components/ProductsList";
 import CategoriesPanel from "../components/CategoriesPanel";
-import {useEffect, useState} from "react";
-import Axios from "axios";
-import {API} from "../constants/backend";
+
 
 
 const SectionCategories = styled.section`
@@ -21,7 +19,7 @@ const Categories = (props) => {
     return(
         <SectionCategories >
             <CategoriesPanel categoriesID={categoriesID}/>
-            <ProductsList />
+            <ProductsList categoriesID={categoriesID} />
         </SectionCategories>
 
     )
