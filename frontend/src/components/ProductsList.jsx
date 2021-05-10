@@ -34,7 +34,12 @@ export default function ProductsList(props) {
                         :
                         props.admin ?
                             (
-                                Array.from(products).map(product =>
+                                Array.from(products).filter(function (product) {
+                                    if (props.categoriesID){
+                                        return  product.category === props.categoriesID
+                                    }
+                                    return product
+                                }).map(product =>
                                     <div className="product" key={product._id} onClick={() =>
                                         history.push(`/edit/${product._id}`)
                                     }>

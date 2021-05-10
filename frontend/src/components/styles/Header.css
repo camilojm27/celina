@@ -2,26 +2,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
-    color: thistle;
+    background: var(--primary-color);
     height: 10vh;
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 1;
 }
-.header li{
-  list-style: none;
-}
-.header img{
-    width: 40px;
+#username{
+    color: var(--magenta-process);
+    text-decoration: underline;
 }
 #cart{
     width: 30px;
 }
 .header__list{
     display: flex;
-    justify-content: space-evenly;
 }
 .header__list-item{
     margin-right: 25px;
@@ -33,11 +29,16 @@
 header a {
     color: var(--text-color);
     padding: 1rem;
+    margin-right: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 200ms ease;
 }
-div > a{
-    font-size: 2rem;
+header a:hover{
+    text-decoration: underline;
+    color: var(--magenta-process);
+}
 
-}
 a.brand {
     color: var(--text-color);
     font-weight: bold;
@@ -66,14 +67,13 @@ a.brand {
     position: absolute;
     display: none;
     right: 0;
-    min-width: 12rem;
-    padding: 1rem;
+    min-width: 200px;
     z-index: 1;
     background-color: var(--primary-color);
     margin: 0;
     margin-top: 0.4rem;
     border-radius: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
 
 }
 .dropdown:hover .dropdown-content {

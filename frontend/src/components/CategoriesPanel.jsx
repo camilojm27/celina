@@ -19,9 +19,8 @@ const Panel = styled.aside`
   overflow: auto;
 `;
 
-const CategoriesPanel = (props) => {
+const CategoriesPanel = ({categoriesID, fatherURL}) => {
     let [categories, setCategories] = useState([])
-    console.log(props.categoriesID)
     useEffect(() => {
         Axios.get(API + '/products/categories').then((res) => setCategories(res.data))
     }, [])
@@ -29,10 +28,13 @@ const CategoriesPanel = (props) => {
     return (
         <Panel>
             <ul>
+                <Link to={`/${fatherURL}`}>
+                    <Li className={categoriesID === '' ? 'active' : ''}>Todas</Li>
+                </Link>
                 {
                     categories.map((cat) =>
-                        <Link to={`/categories/${cat}`}>
-                            <Li  className={props.categoriesID === cat ? 'active' : ''}>{cat}</Li>
+                        <Link to={`/${fatherURL}/${cat}`}>
+                            <Li  className={categoriesID === cat ? 'active' : ''}>{cat}</Li>
                         </Link>
 
                     )

@@ -29,12 +29,12 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/product/:id" component={ProductScreen}/>
-                <Route exact path="/categories/:id?" component={Categories}/>
+                <Route exact path="/categories/:id?" render={(props) => <Categories fatherURL="categories" {...props} /> } />
                 <Route exact path="/edit/:id" component={ProductEdit}/>
                 <Route exact path="/cart" component={CartScreen}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
-                <Route exact path="/admin" component={Admin}/>
+                <Route exact path="/admin/:id?" component={Admin}/>
                 <Route exact path="/order/:id" component={OrderScreen}/>
                 <Route exact path="/shipping" component={ShippingAddressScreen}/>
                 <Route exact path="/payment" component={PaymentMethodScreen}/>

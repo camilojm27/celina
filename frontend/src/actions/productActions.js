@@ -13,10 +13,15 @@ import { API } from "../constants/backend";
 export const listProducts = () => async (dispatch, getState) => {
     const { productList: { products }, } = getState();
 
-    if (Object.keys(products).length > 0 ){
-        //dispatch({ type: PRODUCT_LIST_SUCCESS, payload: products })
-        console.log('Reciclao', products);
-        return
+    try {
+        if (Object.keys(products).length > 0 ){
+            //dispatch({ type: PRODUCT_LIST_SUCCESS, payload: products })
+            console.log('Reciclao', products);
+            return
+        }
+
+    }catch (e) {
+        //No hay cache
     }
 
     console.log('FUCK');

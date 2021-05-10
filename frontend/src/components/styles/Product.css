@@ -1,8 +1,5 @@
 .product{
-    display: flex;
     flex-basis: 33%;
-    justify-content: space-between;
-    flex-direction: column;
     cursor: pointer;
 }
 
@@ -22,7 +19,7 @@
 }
 .product-detail strong{
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 @media only screen and (max-width: 600px) {
     .product{

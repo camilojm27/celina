@@ -6,11 +6,13 @@ import Persistence from "../firebase/persistence";
 import {useForm} from "react-hook-form";
 
 import './styles/Admin.css'
+import CategoriesPanel from "../components/CategoriesPanel";
+import Categories from "./Categories";
 
 const persistence = new Persistence()
 
 
-export default function Admin() {
+export default function Admin(props) {
 
     const {register, handleSubmit, reset } = useForm()
     const dispatch = useDispatch()
@@ -20,7 +22,7 @@ export default function Admin() {
     }, [dispatch])
 
 
-
+    const categoriesID = props.match.params.id
     const  onSubmit = async (data) => {
 
 
@@ -40,7 +42,7 @@ export default function Admin() {
 
     return (
         <>
-            
+            <Categories fatherURL="admin"/>
                         <div className="modal" id="modal">
                             <div className="modal-content">
                                 <span className="close"
@@ -134,7 +136,6 @@ export default function Admin() {
                         <button id="add-item"
                                 onClick={() => document.getElementById('modal').style.display = 'block'}>+
                         </button>
-                        <ProductsList admin/>
         </>
     )
     

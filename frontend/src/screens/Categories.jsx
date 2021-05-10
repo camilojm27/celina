@@ -1,28 +1,37 @@
 import styled from 'styled-components';
 import ProductsList from "../components/ProductsList";
 import CategoriesPanel from "../components/CategoriesPanel";
-
-
+import SearchBar from "../components/SearchBar"
+import {withRouter} from "react-router"
 
 const SectionCategories = styled.section`
-    padding-top: 30px;
-    display: flex;
-    justify-content: center;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
 `;
 
 
+const Categories = ({fatherURL, match}) => {
 
-const Categories = (props) => {
+    const categoriesID = match.params.id
 
-    const categoriesID = props.match.params.id
+    return (
+        <>
+            <br/>
+            <SearchBar/>
+            <SectionCategories>
+                <CategoriesPanel fatherURL={fatherURL} categoriesID={categoriesID}/>
+                {fatherURL === 'admin'
+                    ? <ProductsList categoriesID={categoriesID} admin/>
+                    :
+                    <ProductsList categoriesID={categoriesID}/>}
 
-    return(
-        <SectionCategories >
-            <CategoriesPanel categoriesID={categoriesID}/>
-            <ProductsList categoriesID={categoriesID} />
-        </SectionCategories>
+            </SectionCategories>
+
+        </>
+
 
     )
 }
 
-export default Categories
+export default withRouter(Categories)
