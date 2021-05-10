@@ -81,7 +81,8 @@ transition: all 300ms ease-in-out;
     height: 30vh;
     }
     .home--categorie{
-        flex-basis: auto;
+        flex-basis: 50%;
+        height: auto;
     }
 
 }

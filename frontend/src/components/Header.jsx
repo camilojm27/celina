@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useSelector, useDispatch} from "react-redux"
+
 //STYLES
 import './styles/Header.css'
 
@@ -7,6 +8,8 @@ import './styles/Header.css'
 import CARRITO from '../assets/img/carito.png'
 import {Link} from "react-router-dom";
 import {signOut} from "../actions/userActions";
+import {StyledBurger, Ul} from "./styles/HeaderStyled";
+
 
 function Header() {
     const cart = useSelector((state) => state.cart);
@@ -14,6 +17,8 @@ function Header() {
     const userSigning = useSelector((state) => state.userSigning);
     const { userInfo } = userSigning;
     const dispatch = useDispatch()
+
+    const [open, setOpen] = useState(false)
 
 
     const signOutHandler = () =>{
@@ -24,13 +29,18 @@ function Header() {
             <Link to="/">
             <h1>CELINA</h1>
             </Link>
-            <ul className="header__list">
+            <StyledBurger open={open} onClick={() => setOpen(!open)}>
+                <div />
+                <div />
+                <div />
+            </StyledBurger>
+            <Ul onClick={()=> setOpen(false)} open={open} className="header__list">
                 <Link to="/categories">Productos</Link>
                 <Link to="/sobre-nosotros">Sobre Nosotros</Link>
                 <Link to="/contacto">Contacto</Link>
 
 
-                <div>
+                <li>
                     
                     {userInfo ? (
 
@@ -66,15 +76,24 @@ function Header() {
                     ) : (
                         <Link to="/login">Iniciar Sesión</Link>
                     )}
-                    <Link to="/cart">
-                        <img id="cart" src={CARRITO} alt="" />
-                        {cartItems.length > 0 && (
-                            <span className="badge">{cartItems.length}</span>
-                        )}
-                    </Link>
-                </div>
-            </ul>
+
+                </li>
+                <Link to="/cart">
+                    <img id="cart" src={CARRITO} alt="" />
+                    {cartItems.length > 0 && (
+                        <span className="badge">{cartItems.length}</span>
+                    )}
+                </Link>
+            </Ul>
+            <div className="burger">
+                <span className="line1"/>
+                <span className="line2"/>
+                <span className="line3"/>
+            </div>
         </header>
     )
 }
+
+
+
 export default Header

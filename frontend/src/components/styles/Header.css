@@ -79,6 +79,7 @@ a.brand {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 @media only screen and (max-width: 600px) {
     .header h1,
     .header ul{
@@ -87,4 +88,5 @@ a.brand {
     .header__list-item{
         margin-right: 5px;
     }
+
 }
