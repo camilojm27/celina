@@ -25,4 +25,3 @@ credentials.json*
 
 #Junk
 *.gz
-frontend/yarn.lock

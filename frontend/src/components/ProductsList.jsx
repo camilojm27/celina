@@ -46,7 +46,7 @@ export default function ProductsList(props) {
                                         <img className="product-image" src={product.images[0]} alt=""/>
                                         <div className="product-detail">
                                             <h3>{product.name}</h3>
-                                            <strong>{product.price}</strong>
+                                            <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
                                         </div>
 
 
@@ -67,7 +67,7 @@ export default function ProductsList(props) {
                                             <img className="product-image" src={product.images[0]} alt=""/>
                                             <div className="product-detail">
                                                 <h3>{product.name}</h3>
-                                                <strong>{product.price}</strong>
+                                                <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
                                             </div>
                                         </Link>
 

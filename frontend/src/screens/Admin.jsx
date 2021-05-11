@@ -1,16 +1,24 @@
 import React, {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {listProducts} from '../actions/productActions';
 import Persistence from "../firebase/persistence";
 import {useForm} from "react-hook-form";
-
+import avatar from "./images/avatar.png"
 import './styles/Admin.css'
 import Categories from "./Categories";
+import {AiOutlineHome} from 'react-icons/ai'
+import {VscGraph} from 'react-icons/vsc'
+import {FiUsers} from 'react-icons/fi'
+import {GiClothes} from 'react-icons/gi'
+
 
 const persistence = new Persistence()
 
 
 export default function Admin(props) {
+
+    const userSigning = useSelector((state) => state.userSigning);
+    const { userInfo } = userSigning;
 
     const {register, handleSubmit, reset } = useForm()
     const dispatch = useDispatch()
@@ -19,9 +27,7 @@ export default function Admin(props) {
         dispatch(listProducts())
     }, [dispatch])
 
-
     const  onSubmit = async (data) => {
-
 
     console.log((data))
     let {name, description, category, colors, stock, images, price} = data
@@ -35,11 +41,45 @@ export default function Admin(props) {
 
     }
 
-
+    console.log(userSigning)
 
     return (
-        <>
-            <Categories fatherURL="admin"/>
+        <section className="admin">
+            <aside className="glass">
+                <div className="dashboard">
+                    <div className="user">
+                        <img src={userInfo.picture} alt="" />
+                        <h3>{userInfo.name.toUpperCase()}</h3>
+                        <p>Pro Member</p>
+                    </div>
+                    <div className="links">
+                        <div className="link">
+
+                            <h2> <AiOutlineHome/> Inicio</h2>
+                        </div>
+                        <div className="link">
+                            <h2> <VscGraph/> Reportes</h2>
+                        </div>
+                        <div className="link">
+                            <h2><GiClothes/> Productos</h2>
+                        </div>
+                        <div className="link">
+                            <h2> <FiUsers/> Usuarios</h2>
+
+                        </div>
+                    </div>
+                    {/*<div className="pro">*/}
+                    {/*    <h2>Join pro for free games.</h2>*/}
+                    {/*</div>*/}
+                </div>
+                <div className="games">
+                    <div className="status">
+                        <h1>Active Games</h1>
+                    </div>
+
+                </div>
+            </aside>
+            {/*<Categories fatherURL="admin"/>*/}
                         <div className="modal" id="modal">
                             <div className="modal-content">
                                 <span className="close"
@@ -133,7 +173,7 @@ export default function Admin(props) {
                         <button id="add-item"
                                 onClick={() => document.getElementById('modal').style.display = 'block'}>+
                         </button>
-        </>
+        </section>
     )
     
 }
