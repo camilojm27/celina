@@ -4,13 +4,12 @@
     flex-direction: row;
 }
 .checkout-steps > div {
-    border-top: 0.8rem #c0c0c0 solid;
     color: #c0c0c0;
     flex: 1;
     padding: 1rem;
     font-weight: bold;
 }
 .checkout-steps > div.active {
-    border-top-color: var(--indigo);
-    color: var(--text-color);
+    border-top-color: var(--unbleached-silk);
+    color: var(--text-invert-color);
 }

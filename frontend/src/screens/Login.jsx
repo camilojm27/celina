@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import Auth from "../firebase/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {signing} from "../actions/userActions";
+import {Link} from "react-router-dom";
 
 
 export default function Login(props) {
@@ -96,6 +97,7 @@ export default function Login(props) {
                         alt="icono de google"/>
                     <p>Iniciar Sesión con google</p>
                 </div>
+                <p>¿No tienes cuenta? <Link to="/register">Registrate</Link></p>
             </div>
         </section>
     )

@@ -85,11 +85,6 @@ function Header() {
                     )}
                 </Link>
             </Ul>
-            <div className="burger">
-                <span className="line1"/>
-                <span className="line2"/>
-                <span className="line3"/>
-            </div>
         </header>
     )
 }

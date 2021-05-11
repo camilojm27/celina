@@ -23,16 +23,17 @@ export default function OrderScreen(props) {
 
                     <section>
                         
-                        <h1>Order {order._id}</h1>
+                        <h1>Orden </h1>
+                        <p>código {orderId}</p>
                         <div className="row top">
                             <div className="col-2">
                                 <ul>
                                     <li>
                                         <div className="card card-body">
-                                            <h2>Shipping</h2>
+                                            <h2>Envío</h2>
                                             <p>
-                                                <strong>Name:</strong> {order.shippingAddress.fullName} <br/>
-                                                <strong>Address: </strong> {order.shippingAddress.address},
+                                                <strong>Nombre:</strong> {order.shippingAddress.fullName} <br/>
+                                                <strong>Dirección: </strong> {order.shippingAddress.address},
                                                 {order.shippingAddress.city},{' '}
                                                 {order.shippingAddress.postalCode},
                                                 {order.shippingAddress.country}
@@ -50,7 +51,7 @@ export default function OrderScreen(props) {
                                         <div className="card card-body">
                                             <h2>Pago</h2>
                                             <p>
-                                                <strong>Metodo:</strong> {order.paymentMethod}
+                                                <strong>Método:</strong> {order.paymentMethod}
                                             </p>
                                             {order.isPaid ? (
                                                 <h1>
@@ -63,7 +64,7 @@ export default function OrderScreen(props) {
                                     </li>
                                     <li>
                                         <div className="card card-body">
-                                            <h2>Order Items</h2>
+                                            <h2>Artículos pedidos</h2>
                                             <ul>
                                                 {order.orderItems.map((item) => (
                                                     <li key={item.product}>
@@ -82,7 +83,8 @@ export default function OrderScreen(props) {
                                                             </div>
 
                                                             <div>
-                                                                {item.qty} x ${item.price} = ${item.qty * item.price}
+                                                                {item.qty} x ${Number(item.price).toLocaleString('es-CO')} = ${(item.qty * item.price)
+                                                                .toLocaleString('es-CO')}
                                                             </div>
                                                         </div>
                                                     </li>
@@ -96,33 +98,33 @@ export default function OrderScreen(props) {
                                 <div className="card card-body">
                                     <ul>
                                         <li>
-                                            <h2>Order Summary</h2>
+                                            <h2>Resumen de Orden</h2>
                                         </li>
                                         <li>
                                             <div className="row">
-                                                <div>Items</div>
-                                                <div>${order.itemsPrice.toFixed(2)}</div>
+                                                <div>Artículos</div>
+                                                <div>${order.itemsPrice.toLocaleString('es-CO')}</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="row">
-                                                <div>Shipping</div>
-                                                <div>${order.shippingPrice.toFixed(2)}</div>
+                                                <div>Envío</div>
+                                                <div>${order.shippingPrice.toLocaleString('es-CO')}</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="row">
-                                                <div>Tax</div>
-                                                <div>${order.taxPrice.toFixed(2)}</div>
+                                                <div>Impuestos</div>
+                                                <div>${order.taxPrice.toLocaleString('es-CO')}</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="row">
                                                 <div>
-                                                    <strong> Order Total</strong>
+                                                    <strong> Precio Total</strong>
                                                 </div>
                                                 <div>
-                                                    <strong>${order.totalPrice.toFixed(2)}</strong>
+                                                    <strong>${Number.parseInt(order.totalPrice).toLocaleString('es-CO')}</strong>
                                                 </div>
                                             </div>
                                         </li>

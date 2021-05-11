@@ -49,7 +49,7 @@ export default function CartScreen(props) {
                                 </select>
                             </div>
                             <div>
-                                <h2>{item.price} {Number(item.qty) === 1 ? '' : `* ${item.qty}`}</h2>
+                                <h2>${Number.parseInt(item.price).toLocaleString('es-CO') } {Number(item.qty) === 1 ? '' : `* ${item.qty}`}</h2>
                                 <button className="button-action danger-color button-delete"
                                         type="button"
                                         onClick={() => removeFromCartHandler(item.product)}
@@ -65,7 +65,7 @@ export default function CartScreen(props) {
                                     <li>
                                         <h2>
                                             Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
-                                            {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                                            {cartItems.reduce((a, c) => Number.parseInt(a) + c.price * c.qty, 0).toLocaleString('es-CO')}
                                         </h2>
                                     </li>
                                     <li>

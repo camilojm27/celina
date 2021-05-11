@@ -11,12 +11,12 @@ export default function ShippingAddressScreen(props) {
     const [address, setAddress] = useState(shippingAddress.address);
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
-    const [country, setCountry] = useState(shippingAddress.country);
+    const [state, setState] = useState(shippingAddress.state);
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(
-            saveShippingAddress({fullName, address, city, postalCode, country})
+            saveShippingAddress({fullName, address, city, postalCode, state})
         );
         props.history.push('/payment');
     };
@@ -29,10 +29,11 @@ export default function ShippingAddressScreen(props) {
             <CheckoutSteps step1 step2/>
             <form className="form" onSubmit={submitHandler}>
                 <div>
-                    <h1>Shipping Address</h1>
+                    <h1>Dirección de Envió</h1>
+                    <p>Los campos con * asterisco indican que son obligatorios</p>
                 </div>
                 <div>
-                    <label htmlFor="fullName">Full Name</label>
+                    <label htmlFor="fullName">Nombre completo *</label>
                     <input
                         type="text"
                         id="fullName"
@@ -43,7 +44,7 @@ export default function ShippingAddressScreen(props) {
                     />
                 </div>
                 <div>
-                    <label htmlFor="address">Address</label>
+                    <label htmlFor="address">Dirección *</label>
                     <input
                         type="text"
                         id="address"
@@ -54,7 +55,7 @@ export default function ShippingAddressScreen(props) {
                     />
                 </div>
                 <div>
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">Ciudad *</label>
                     <input
                         type="text"
                         id="city"
@@ -65,31 +66,33 @@ export default function ShippingAddressScreen(props) {
                     />
                 </div>
                 <div>
-                    <label htmlFor="postalCode">Postal Code</label>
+                    <label htmlFor="postalCode">
+                        <a href="https://codigo-postal.co/colombia/" target="_blank" rel="noreferrer">Código postal</a>
+                    </label>
                     <input
                         type="text"
                         id="postalCode"
                         placeholder="Enter postal code"
                         value={postalCode}
                         onChange={(e) => setPostalCode(e.target.value)}
-                        required
+
                     />
                 </div>
                 <div>
-                    <label htmlFor="country">Country</label>
+                    <label htmlFor="state">Departamento *</label>
                     <input
                         type="text"
-                        id="country"
+                        id="state"
                         placeholder="Enter country"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
                         required
                     />
                 </div>
                 <div>
                     <label/>
                     <button className="primary" type="submit">
-                        Continue
+                        Continuar
                     </button>
                 </div>
             </form>

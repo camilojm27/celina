@@ -25,7 +25,7 @@
     width: fit-content;
     background-color: rgba(12, 109, 220, 0.29);
     border-radius: 9px;
-
+    color: white;
 }
 
 
@@ -72,7 +72,7 @@
 
 .register {
     background-image: url(https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fmobile%2Fpexels-anna-shvets-4556686.jpg?alt=media&token=d91d3139-1538-46da-830e-94cf7862da9c);
-    background-size: contain;
+    background-size: cover;
 }
 
 footer figure{

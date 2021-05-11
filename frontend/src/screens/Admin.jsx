@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {listProducts} from '../actions/productActions';
-import ProductsList from '../components/ProductsList';
 import Persistence from "../firebase/persistence";
 import {useForm} from "react-hook-form";
 
 import './styles/Admin.css'
-import CategoriesPanel from "../components/CategoriesPanel";
 import Categories from "./Categories";
 
 const persistence = new Persistence()
@@ -22,7 +20,6 @@ export default function Admin(props) {
     }, [dispatch])
 
 
-    const categoriesID = props.match.params.id
     const  onSubmit = async (data) => {
 
 
