@@ -17,7 +17,6 @@ const Categories = ({fatherURL, match}) => {
 
     return (
         <>
-            <br/>
             <SearchBar/>
             <SectionCategories>
                 <CategoriesPanel fatherURL={fatherURL} categoriesID={categoriesID}/>

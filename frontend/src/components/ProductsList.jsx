@@ -40,10 +40,10 @@ export default function ProductsList(props) {
                                     }
                                     return product
                                 }).map(product =>
-                                    <div className="product" key={product._id} onClick={() =>
+                                    <div className="product-admin" key={product._id} onClick={() =>
                                         history.push(`/edit/${product._id}`)
                                     }>
-                                        <img className="product-image" src={product.images[0]} alt=""/>
+                                        <img className="product-image-small" src={product.images[0]} alt=""/>
                                         <div className="product-detail">
                                             <h3>{product.name}</h3>
                                             <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>

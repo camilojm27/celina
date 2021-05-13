@@ -29,12 +29,12 @@ const CategoriesPanel = ({categoriesID, fatherURL}) => {
         <Panel>
             <ul>
                 <Link to={`/${fatherURL}`}>
-                    <Li className={categoriesID === '' ? 'active' : ''}>Todas</Li>
+                    <Li className={categoriesID === '' ? 'steps-active' : ''}>Todas</Li>
                 </Link>
                 {
                     categories.map((cat) =>
                         <Link to={`/${fatherURL}/${cat}`}>
-                            <Li  className={categoriesID === cat ? 'active' : ''}>{cat}</Li>
+                            <Li  className={categoriesID === cat ? 'steps-active' : ''}>{cat}</Li>
                         </Link>
 
                     )

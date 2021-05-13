@@ -9,7 +9,7 @@
     padding: 1rem;
     font-weight: bold;
 }
-.checkout-steps > div.active {
+.checkout-steps > div.steps-active {
     border-top-color: var(--unbleached-silk);
     color: var(--text-invert-color);
 }

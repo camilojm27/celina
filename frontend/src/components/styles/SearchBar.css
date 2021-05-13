@@ -12,14 +12,15 @@ h2{
     height: 50px;
     margin-bottom: 2em;
     padding: 0 25px;
-    width: 70%;
+    width: 40%;
     font-family: 'Muli', sans-serif;
     outline: none;
 }
 ::placeholder{
     color: var(--text-color);
 }
-.home--SearchBar{
+.searchBar{
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;

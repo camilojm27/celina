@@ -76,7 +76,8 @@ ul li{
 .danger-color{
   background-color: #FBB70A;
 }
-.active{
+
+.steps-active{
   color: white;
   background-color: var(--indigo);
 }
@@ -128,7 +129,10 @@ ul li{
 
 /* Card */
 .card {
-  border: 0.1rem #c0c0c0 solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 0.2rem #c0c0c0 solid;
   background-color: #f8f8f8;
   border-radius: 0.5rem;
   margin: 1rem;

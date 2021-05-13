@@ -1,11 +1,21 @@
 .product{
     flex-basis: 33%;
     cursor: pointer;
+    margin-bottom: 20px;
+}
+.product-admin{
+    flex-basis: 20%;
+    cursor: pointer;
 }
 
 .product-image{
     max-width: 24rem;
     max-height: 24rem;
+}
+
+.product-image-small{
+    max-width: 10rem;
+    max-height: 10rem;
 }
 
 .product-detail{
