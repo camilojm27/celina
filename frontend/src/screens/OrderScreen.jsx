@@ -6,13 +6,15 @@ import {orderDetailsAction} from '../actions/orderActions';
 
 export default function OrderScreen(props) {
     const orderId = props.match.params.id;
-    const orderDetails = useSelector((state) => state.orderDetails);
-    const {order, loading, error} = orderDetails;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(orderDetailsAction(orderId));
     }, [dispatch, orderId]);
+
+    const orderDetails = useSelector((state) => state.orderDetails);
+    const {order, loading, error} = orderDetails;
 
     return (
         <>{

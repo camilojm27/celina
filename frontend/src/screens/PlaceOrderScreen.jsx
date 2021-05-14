@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import {ORDER_CREATE_RESET} from "../constants/orderConstants";
-import {createOrder} from "../actions/orderActions";
+import {createOrderAction} from "../actions/orderActions";
 import './styles/PlaceOrderScreen.css'
 
 
@@ -25,7 +25,7 @@ export default function PlaceOrderScreen(props) {
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
     const dispatch = useDispatch();
     const placeOrderHandler = () => {
-        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+        dispatch(createOrderAction({ ...cart, orderItems: cart.cartItems }));
     };
     // TODO: Implementar el cambio de pantalla, cerrado de sesión
     useEffect(() => {

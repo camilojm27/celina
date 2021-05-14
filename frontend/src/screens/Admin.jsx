@@ -9,6 +9,7 @@ import {AiOutlineHome} from 'react-icons/ai'
 import {VscGraph} from 'react-icons/vsc'
 import {FiUsers} from 'react-icons/fi'
 import {GiClothes} from 'react-icons/gi'
+import OrderListScreen from "./Orders";
 
 
 const persistence = new Persistence()
@@ -65,7 +66,7 @@ export default function Admin() {
                         </button>
                         <button  className="admin-tabs"
                                  onClick={() => toggleTab(2)}>
-                            <VscGraph/> Reportes
+                            <VscGraph/> Ordenes
                         </button>
                         <button  className="admin-tabs"
                                  onClick={() => toggleTab(3)}>
@@ -87,9 +88,7 @@ export default function Admin() {
                     </div>
                 </div>
                 <div className={toggleState === 2 ? "admin-content  active-content-active" : "admin-content"}>
-                    <div className="status">
-                        <h1>En construcción</h1>
-                    </div>
+                    <OrderListScreen/>
                 </div>
                 <div className={toggleState === 3 ? "admin-content  active-content-active" : "admin-content"}>
                         <Categories fatherURL="admin"/>
