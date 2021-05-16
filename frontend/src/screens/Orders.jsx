@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {orderDeleteAction, orderListAction} from "../actions/orderActions";
+import { orderModifyAction, orderListAction } from "../actions/orderActions";
 import './styles/Orders.css'
-import {ORDER_DELETE_RESET} from "../constants/orderConstants";
-import {Link} from "react-router-dom";
+import { ORDER_DELETE_RESET } from "../constants/orderConstants";
 
 //Todo: al eliminar refrescar la pagina
 
@@ -20,9 +19,9 @@ export default function OrderListScreen(props) {
     } = orderDelete;
 
 
-    const deleteHandler = (order) => {
-        if (window.confirm('Are you sure to delete?')) {
-            dispatch(orderDeleteAction(order._id));
+    const modifyHandler = (order, action) => {
+        if (window.confirm(`Estas segur@ que quieres modificar la orden de ${order.shippingAddress.fullName}`)) {
+            dispatch(orderModifyAction(order._id, action));
         }
     };
     useEffect(() => {
@@ -42,46 +41,65 @@ export default function OrderListScreen(props) {
             ) : (
                 <table className="table">
                     <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>USUARIO</th>
-                        <th>FECHA</th>
-                        <th>TOTAL</th>
-                        <th>PAGADO</th>
-                        <th>ENTREGADO</th>
-                        <th>ACCIONES</th>
-                    </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>USUARIO</th>
+                            <th>FECHA</th>
+                            <th>TOTAL</th>
+                            <th>PAGADO</th>
+                            <th>ENTREGADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {orders.map((order) => (
-                        <tr key={order._id}>
-                            <td>{order._id}</td>
-                            <td>{order.shippingAddress.fullName}</td>
-                            <td>{order.createdAt}</td>
-                            <td>{order.totalPrice.toFixed(2)}</td>
-                            <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
-                            <td>
-                                {order.isDelivered
-                                    ? order.deliveredAt.substring(0, 10)
-                                    : 'No'}
-                            </td>
-                            <td>
-                                <button
-                                    type="button"
-                                    className="small"
-                                >
-                                    <Link to={`/order/${order._id}`}>Detalles</Link>
+                        {orders.map((order) => (
+                            <tr key={order._id}>
+                                <td>{order._id}</td>
+                                <td>{order.shippingAddress.fullName}</td>
+                                <td>{order.createdAt}</td>
+                                <td>{order.totalPrice.toFixed(2)}</td>
+                                <td>{order.isPaid ? order.paidAt : 'No'}</td>
+                                <td>
+                                    {order.isDelivered
+                                        ? order.deliveredAt
+                                        : 'No'}
+                                </td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className="small"
+                                    >
+                                        <a href={`/order/${order._id}`} target="_blank" rel="noreferrer">Detalles</a>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="small"
+                                        onClick={() => modifyHandler(order, 0)}
+                                    >
+                                        Eliminar
                                 </button>
-                                <button
-                                    type="button"
-                                    className="small"
-                                    onClick={() => deleteHandler(order)}
-                                >
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
+                                    {
+                                        !order.isPaid && <button
+                                            type="button"
+                                            className="small"
+                                            onClick={() => modifyHandler(order, 1)}>
+                                            Pagado
+                                            </button>
+                                    }
+                                    {
+                                        !order.isDelivered && 
+                                        
+                                        <button
+                                        type="button"
+                                        className="small"
+                                        onClick={() => modifyHandler(order, 2)}>
+                                        Entregado
+                                        </button>
+                                    }
+                                    
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             )}

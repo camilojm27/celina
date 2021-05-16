@@ -65,8 +65,7 @@
     color: var(--text-color);
 }
 
-.product-form h1, .product-form label, .product-form input::placeholder {
-}
+
 
 .product-form > div {
     display: flex;
@@ -140,7 +139,7 @@
     font-family: "Poppins", sans-serif;
     min-height: 80vh;
     margin: auto;
-    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    background: linear-gradient(to right top, #b6b6b6, #5d5d5d);
     display: flex;
     align-items: center;
     justify-content: center;

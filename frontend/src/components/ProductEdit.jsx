@@ -4,6 +4,10 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {detailsProduct} from "../actions/productActions";
 import Persistence from "../firebase/persistence";
+import { GrUpdate } from 'react-icons/gr'
+import { AiFillDelete } from 'react-icons/ai'
+
+
 const persistence = new Persistence()
 
 
@@ -106,11 +110,14 @@ function ProductEdit (props) {
                                     />
                                 </div>
 
-                                <div>
-                                    <label/>
-                                    <button className="button-action danger-color" type="submit" >
-                                        Actualizar :D
+                                <div className="row">
+                                        <button className="button-action danger-color" type="submit" >
+                                            <GrUpdate/> Actualizar
                                     </button>
+                                    <button className="button-action danger-color" >
+                                            <AiFillDelete/> Eliminar
+                                    </button>
+                                    
                                 </div>
 
                             </form>

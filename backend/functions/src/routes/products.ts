@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-const express = require("express");
+import { Request, Response } from "express";
+import express from "express";
 const productsApi = express.Router();
-import {db} from '../util/admin'
-import {isAuth} from '../util/auth';
+import {db} from "../util/admin"
+import {isAuth} from "../util/auth";
 import {firestore} from "firebase-admin/lib/firestore";
 import DocumentData = firestore.DocumentData;
 // Create a product with Auto ID
@@ -79,4 +79,4 @@ productsApi.get("/:product_id", (req: Request , res: Response) => {
 });
 
 
-module.exports = productsApi;
+export default productsApi;

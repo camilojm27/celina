@@ -17,5 +17,8 @@
 .table button {
     margin: 0 0.2rem;
     font-size: 24px;
-
+}
+.table a{
+    text-decoration: none;
+    color: black;
 }

@@ -1,5 +1,5 @@
-import admin from './admin';
-import { Request, Response , NextFunction} from 'express';
+import admin from "./admin";
+import { Request, Response , NextFunction} from "express";
 
 
 export const isAuth = async (req: Request, res : Response, next: NextFunction) => {
@@ -15,11 +15,13 @@ export const isAuth = async (req: Request, res : Response, next: NextFunction) =
 
                 console.error("Error while verifying token ", e);
                 res.status(403).json(e);
+                return
 
         }
 
     } else {
           res.status(401).send({message: "No Token"});
+          return
     }
 
 };

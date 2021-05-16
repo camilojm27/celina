@@ -1,4 +1,4 @@
-import admin from 'firebase-admin'
+import admin from "firebase-admin"
 import {firestore} from "firebase-admin/lib/firestore";
 import Firestore = firestore.Firestore;
 

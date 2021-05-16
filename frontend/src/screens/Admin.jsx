@@ -72,11 +72,7 @@ export default function Admin() {
                                  onClick={() => toggleTab(3)}>
                             <GiClothes/> Productos
                         </button>
-                        <button  className="admin-tabs"
-                                 onClick={() => toggleTab(4)}>
-                            <FiUsers/> Usuarios
-
-                        </button>
+                       
                     </div>
                     {/*<div className="pro">*/}
                     {/*    <h2>Join pro for free games.</h2>*/}
