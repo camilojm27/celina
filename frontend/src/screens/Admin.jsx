@@ -7,7 +7,7 @@ import Persistence from "../firebase/persistence";
 import './styles/Admin.css'
 import {AiOutlineHome} from 'react-icons/ai'
 import {VscGraph} from 'react-icons/vsc'
-import {FiUsers} from 'react-icons/fi'
+//import {FiUsers} from 'react-icons/fi'
 import {GiClothes} from 'react-icons/gi'
 import OrderListScreen from "./Orders";
 
@@ -72,7 +72,7 @@ export default function Admin() {
                                  onClick={() => toggleTab(3)}>
                             <GiClothes/> Productos
                         </button>
-                       
+
                     </div>
                     {/*<div className="pro">*/}
                     {/*    <h2>Join pro for free games.</h2>*/}

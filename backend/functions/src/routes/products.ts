@@ -78,5 +78,13 @@ productsApi.get("/:product_id", (req: Request , res: Response) => {
       }).catch((error: Error) => res.status(500).send(error));
 });
 
+productsApi.delete("/:product_id", (req: Request, res: Response) => {
+  db.collection("products").doc(req.params.product_id).delete()
+    .then(() => {
+  
+    res.status(200).send("Producto eliminado");
+      
+    }).catch((error: Error) => res.status(404).send(error));
+});
 
 export default productsApi;

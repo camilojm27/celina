@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import {ORDER_CREATE_RESET} from "../constants/orderConstants";
 import {createOrderAction} from "../actions/orderActions";
+import { signOut } from '../actions/userActions'
 import './styles/PlaceOrderScreen.css'
+import { toast } from 'react-toastify';
 
 
 export default function PlaceOrderScreen(props) {
@@ -139,8 +141,14 @@ export default function PlaceOrderScreen(props) {
                                     Crear orden
                                 </button>
                             </li>
-                            {loading && <h2>Cargando</h2>}
-                            {error && <p>{error}</p>}
+                                {loading && <h2>Cargando</h2>}
+                                {error === 'auth/id-token-expired' &&
+                                    dispatch(signOut())
+                                    &&
+                                    props.history.push('/login#placeorder')
+                                    &&
+                                    toast.warn('La sesión ha expido, debers iniciar sesion de nuevo')
+                                }
                         </ul>
                     </div>
                 </div>

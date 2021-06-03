@@ -6,6 +6,9 @@ import {detailsProduct} from "../actions/productActions";
 import Persistence from "../firebase/persistence";
 import { GrUpdate } from 'react-icons/gr'
 import { AiFillDelete } from 'react-icons/ai'
+import axios from 'axios';
+import { API } from '../constants/backend';
+import { toast } from 'react-toastify';
 
 
 const persistence = new Persistence()
@@ -114,7 +117,17 @@ function ProductEdit (props) {
                                         <button className="button-action danger-color" type="submit" >
                                             <GrUpdate/> Actualizar
                                     </button>
-                                    <button className="button-action danger-color" >
+                                    <button className="button-action danger-color" type="button" onClick={()=> {
+                                        axios.delete(`${API}/products/${productID}`)
+                                        .then((data) => {
+                                            if (data.status === 200) {
+                                                toast.success('Producto eliminado')
+                                                props.history.push('/admin')
+
+                                            } 
+                                        })
+                                            .catch(() => toast.error('Error eliminando el productos'))
+                                    }} >
                                             <AiFillDelete/> Eliminar
                                     </button>
                                     

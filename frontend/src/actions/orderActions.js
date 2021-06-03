@@ -5,10 +5,16 @@ import {
     ORDER_CREATE_REQUEST,
     ORDER_CREATE_SUCCESS,
     ORDER_DELETE_FAIL as ORDER_MODIFY_FAIL,
-    ORDER_DELETE_REQUEST as ORDER_MODIFY_REQUEST, ORDER_DELETE_SUCCESS as ORDER_MODIFY_SUCCESS,
+    ORDER_DELETE_REQUEST as ORDER_MODIFY_REQUEST,
+    ORDER_DELETE_SUCCESS as ORDER_MODIFY_SUCCESS,
     ORDER_DETAILS_FAIL,
     ORDER_DETAILS_REQUEST,
-    ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS,
+    ORDER_DETAILS_SUCCESS,
+    ORDER_LIST_FAIL,
+    ORDER_LIST_REQUEST,
+    ORDER_LIST_SUCCESS, ORDER_LIST_USER_FAIL,
+    ORDER_LIST_USER_REQUEST,
+    ORDER_LIST_USER_SUCCESS,
 } from '../constants/orderConstants';
 import { API } from "../constants/backend";
 
@@ -18,7 +24,6 @@ export const createOrderAction = (order) => async (dispatch, getState) => {
         const {
             userSigning: { userInfo },
         } = getState();
-        console.warn(userInfo)
         const { data } = await Axios.post(`${API}/orders`, order, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
@@ -33,8 +38,8 @@ export const createOrderAction = (order) => async (dispatch, getState) => {
             type: ORDER_CREATE_FAIL,
             payload:
                 error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+                    ? error.response.data.code
+                    : error.code,
         });
     }
 };
@@ -68,9 +73,10 @@ export const orderModifyAction = (orderId, action) => async (dispatch, getState)
     dispatch({ type: ORDER_MODIFY_REQUEST, payload: orderId });
 
     try {
+        let data;
         switch (action) {
             case 0:
-                let  data  = await Axios.delete(`${API}/orders/${orderId}`, {
+                data  = await Axios.delete(`${API}/orders/${orderId}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 })
 
@@ -79,14 +85,14 @@ export const orderModifyAction = (orderId, action) => async (dispatch, getState)
                 break;
 
             case 1:
-                data = await Axios.put(`${API}/orders/${orderId}/pay`, {
+                data = await Axios.put(`${API}/orders/${orderId}/pay`, {}, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 })
 
                 dispatch({ type: ORDER_MODIFY_SUCCESS, payload: data.data })
                 break;
             case 2:
-                data = await Axios.put(`${API}/orders/${orderId}/deliver`, {
+                data = await Axios.put(`${API}/orders/${orderId}/deliver`, {},{
                     headers: { 
                         Authorization: `Bearer ${userInfo.token}` 
                     }
@@ -124,13 +130,38 @@ export const orderListAction = () => async (dispatch, getState) => {
             headers: { Authorization: `Bearer ${userInfo.token}` }
         }
         )
-        console.log('ORDERS', data)
 
         dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
 
     } catch (error) {
         dispatch({
             type: ORDER_LIST_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const orderListMineAction = () => async (dispatch, getState) => {
+    dispatch({ type: ORDER_LIST_USER_REQUEST });
+
+    const {
+        userSigning: { userInfo },
+    } = getState();
+
+    try {
+        const { data } = await Axios.get(`${API}/orders/mine`, {
+            headers: { Authorization: `Bearer ${userInfo.token}` }
+        }
+        )
+
+        dispatch({ type: ORDER_LIST_USER_SUCCESS, payload: data });
+
+    } catch (error) {
+        dispatch({
+            type: ORDER_LIST_USER_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

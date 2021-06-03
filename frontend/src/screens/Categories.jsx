@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import ProductsList from "../components/ProductsList";
 import CategoriesPanel from "../components/CategoriesPanel";
-import SearchBar from "../components/SearchBar"
-import {withRouter} from "react-router"
+import SearchBar from "../components/SearchBar";
+import {withRouter} from "react-router-dom";
 
 const SectionCategories = styled.section`
   padding-top: 30px;
