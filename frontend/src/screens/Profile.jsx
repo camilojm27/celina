@@ -187,8 +187,16 @@ const Profile = ({match}) => {
                 </div>
 
                 <div className={toggleState === 3 ? "admin-content  active-content-active" : "admin-content"}>
-                    <h2>Información de cuenta</h2>
+                    <h2>Ajustes de privacidad</h2>
+                    <form onSubmit={handleSubmit(onSubmit)} className='PForm'>
 
+                        <fieldset>
+                            <label htmlFor="cbox1">Deseo recibir promociones</label>
+                            <input type="checkbox" id="cbox1" value="first_checkbox"/>
+
+                        </fieldset>
+                        <button className="button-action" type='submit'>Guardar Cambios</button>
+                    </form>
                 </div>
 
             </section>
