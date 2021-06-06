@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from "react-hook-form";
 import {listProducts} from '../actions/productActions';
 import Categories from "./Categories";
 import Persistence from "../firebase/persistence";
-import './styles/Admin.css'
 import {AiOutlineHome} from 'react-icons/ai'
 import {VscGraph} from 'react-icons/vsc'
 //import {FiUsers} from 'react-icons/fi'

@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {saveShippingAddress} from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
-import './styles/Shipping.css'
 
 export default function ShippingAddressScreen(props) {
     const cart = useSelector((state) => state.cart);

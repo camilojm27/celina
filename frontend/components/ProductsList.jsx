@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import '../components/styles/Product.css'
-import {useHistory} from 'react-router-dom';
+import Link from 'next/link'
 import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../actions/productActions";
 
@@ -23,7 +21,6 @@ export default function ProductsList(props) {
         }
     }, [dispatch, productList.lenght])
 
-    let history = useHistory();
 
     return (
         <section className="products">
@@ -61,7 +58,7 @@ export default function ProductsList(props) {
                                 }).map( product =>
 
                                     <div className="product" key={product._id}>
-                                        <Link to={{
+                                        <a href={{
                                             pathname: `/product/${product._id}`,
                                         }}>
                                             <img className="product-image" src={product.images[0]} alt=""/>
@@ -69,7 +66,7 @@ export default function ProductsList(props) {
                                                 <h3>{product.name}</h3>
                                                 <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
                                             </div>
-                                        </Link>
+                                        </a>
 
                                     </div>
                                 ))

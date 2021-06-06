@@ -1,5 +1,3 @@
-import React from 'react';
-import './styles/CheckoutSteps.css'
 export default function CheckoutSteps(props) {
     return (
         <div className="row checkout-steps">

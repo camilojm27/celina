@@ -1,15 +1,13 @@
-import React, {useState} from 'react'
-import {useSelector, useDispatch} from "react-redux"
+import { useState } from 'react'
+import { useSelector, useDispatch } from "react-redux"
+import Link from "next/link";
+import { signOut } from "../actions/userActions";
 
 //STYLES
-import './styles/Header.css'
 
 //ASSETS
-import CARRITO from '../assets/img/carito.png'
-import {Link} from "react-router-dom";
-import {signOut} from "../actions/userActions";
-import {StyledBurger, Ul} from "./styles/HeaderStyled";
-
+import { StyledBurger, Ul } from "./styles/HeaderStyled";
+import { BiCart } from 'react-icons/bi'
 
 function Header() {
     const cart = useSelector((state) => state.cart);
@@ -21,27 +19,27 @@ function Header() {
     const [open, setOpen] = useState(false)
 
 
-    const signOutHandler = () =>{
+    const signOutHandler = () => {
         dispatch(signOut())
     }
-    return(
+    return (
         <header className="header">
-            <Link to="/">
-            <h1>CELINA</h1>
+            <Link href="/">
+                <h1>CELINA</h1>
             </Link>
             <StyledBurger open={open} onClick={() => setOpen(!open)}>
                 <div />
                 <div />
                 <div />
             </StyledBurger>
-            <Ul onClick={()=> setOpen(false)} open={open} className="header__list">
-                <Link to="/categories">Productos</Link>
-                <Link to="/sobre-nosotros">Sobre Nosotros</Link>
-                <Link to="/contacto">Contacto</Link>
+            <Ul onClick={() => setOpen(false)} open={open} className="header__list">
+                <Link href="/categories">Productos</Link>
+                <Link href="/sobre-nosotros">Sobre Nosotros</Link>
+                <Link href="/contacto">Contacto</Link>
 
 
                 <li>
-                    
+
                     {userInfo ? (
 
                         <div className="dropdown">
@@ -50,39 +48,41 @@ function Header() {
                             </Link>
                             <ul className="dropdown-content">
                                 {
-                                userInfo.isAdmin === undefined &&
-                                       <li>
-                                        <Link to="/admin">
+                                    userInfo.isAdmin === undefined &&
+                                    <li>
+                                        <Link href="/admin">
                                             ADMINISTRAR 😎
                                         </Link>
-                                    </li>  
-                                    
+                                    </li>
+
                                 }
                                 <li>
-                                    <Link to="/profile">Perfil</Link>
+                                    <Link href="/profile">Perfil</Link>
                                 </li>
                                 <li>
-                                    <Link to="/orderhistory">Historial de ordenes</Link>
+                                    <Link href="/orderhistory">Historial de ordenes</Link>
                                 </li>
                                 <li>
-                                    <Link to="#signout" onClick={signOutHandler}>
+                                    <Link href="#signout" onClick={signOutHandler}>
                                         Cerrar Sesión
                                     </Link>
                                 </li>
-                                
+
                             </ul>
                         </div>
 
                     ) : (
-                        <Link to="/login">Iniciar Sesión</Link>
+                        <Link href="/login">Iniciar Sesión</Link>
                     )}
 
                 </li>
-                <Link to="/cart">
-                    <img id="cart" src={CARRITO} alt="" />
-                    {cartItems.length > 0 && (
-                        <span className="badge">{cartItems.length}</span>
-                    )}
+                <Link href="/cart">
+                    <div>
+                        <BiCart size={50} />
+                        {cartItems.length > 0 && (
+                            <span className="badge">{cartItems.length}</span>
+                        )}
+                    </div>
                 </Link>
             </Ul>
         </header>

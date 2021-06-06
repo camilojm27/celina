@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 import CheckoutSteps from '../components/CheckoutSteps';
 import {ORDER_CREATE_RESET} from "../constants/orderConstants";
 import {createOrderAction} from "../actions/orderActions";
 import { signOut } from '../actions/userActions'
-import './styles/PlaceOrderScreen.css'
 import { toast } from 'react-toastify';
 
 
@@ -81,7 +80,7 @@ export default function PlaceOrderScreen(props) {
                                                     />
                                                 </div>
                                                 <div className="min-30">
-                                                    <Link to={`/product/${item.product}`}>
+                                                    <Link href={`/product/${item.product}`}>
                                                         {item.name}
                                                     </Link>
                                                 </div>

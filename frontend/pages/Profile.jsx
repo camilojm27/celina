@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { FiSettings } from 'react-icons/fi';
 import { BsClipboard } from 'react-icons/bs'
 import { RiSpyLine } from 'react-icons/ri'
-import './styles/Profile.css'
 import axios from 'axios';
 import localidades1 from './localidades1.json'
 import {useDispatch, useSelector} from "react-redux";

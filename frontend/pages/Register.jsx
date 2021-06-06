@@ -1,6 +1,5 @@
-import React, {useReducer} from "react";
-import './styles/Register.css'
-import {Link} from "react-router-dom";
+import {useReducer} from "react";
+import Link from "next/link";
 import '../firebase/auth'
 import Auth from "../firebase/auth";
 import {signing} from "../actions/userActions";
@@ -115,7 +114,7 @@ function Register(props) {
                 </div>
 
                 <div>
-                    <p>¿Ya tiene una cuenta? <Link to={`/login?redirect=`}> <strong>Iniciar Sesión</strong> </Link></p>
+                    <p>¿Ya tiene una cuenta? <Link href={`/login?redirect=`}> <strong>Iniciar Sesión</strong> </Link></p>
 
                 </div>
             </div>

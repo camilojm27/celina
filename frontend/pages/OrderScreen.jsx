@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 import {orderDetailsAction} from '../actions/orderActions';
 
 
@@ -79,7 +79,7 @@ export default function OrderScreen(props) {
                                                                 />
                                                             </div>
                                                             <div className="min-30">
-                                                                <Link to={`/product/${item.product}`}>
+                                                                <Link href={`/product/${item.product}`}>
                                                                     {item.name}
                                                                 </Link>
                                                             </div>

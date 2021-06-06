@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ProductsList from "../components/ProductsList";
 import CategoriesPanel from "../components/CategoriesPanel";
 import SearchBar from "../components/SearchBar";
-import {withRouter} from "react-router-dom";
+import {withRouter} from "next/link";
 
 const SectionCategories = styled.section`
   padding-top: 30px;

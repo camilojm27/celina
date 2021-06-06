@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 import styles from './styles/ProductScreen.css'
-import '../components/styles/Buttons.css'
 
 import SimpleImageSlider from "react-simple-image-slider";
 import {useDispatch, useSelector} from "react-redux";

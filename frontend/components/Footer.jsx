@@ -1,6 +1,4 @@
-import React from 'react'
-import './styles/Footer.css'
-import {Link} from "react-router-dom";
+import Link from "next/link";
 
 function Footer() {
     return (
@@ -32,9 +30,9 @@ function Footer() {
             <div>
                 <ul>
                     <li>
-                        <Link to="/garantia">Garantía y Devoluciones </Link>
-                        <Link to="/politicas">Politicas de privacidad </Link>
-                        <Link to="/contacto">Contactanos</Link>
+                        <Link href="/garantia">Garantía y Devoluciones </Link>
+                        <Link href="/politicas">Politicas de privacidad </Link>
+                        <Link href="/contacto">Contactanos</Link>
                     </li>
                 </ul>
             </div>

@@ -1,7 +1,5 @@
-import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "../actions/cartActions";
-import './styles/CartScreen.css'
 
 export default function CartScreen(props) {
 
