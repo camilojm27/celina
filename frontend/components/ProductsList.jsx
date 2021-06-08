@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../actions/productActions";
 
@@ -7,7 +8,7 @@ import {listProducts} from "../actions/productActions";
 
 
 export default function ProductsList(props) {
-
+    const router = useRouter()
     const dispatch = useDispatch()
 
     
@@ -38,7 +39,7 @@ export default function ProductsList(props) {
                                     return product
                                 }).map(product =>
                                     <div className="product-admin" key={product._id} onClick={() =>
-                                        history.push(`/edit/${product._id}`)
+                                        router.push(`/edit/${product._id}`)
                                     }>
                                         <img className="product-image-small" src={product.images[0]} alt=""/>
                                         <div className="product-detail">
@@ -58,15 +59,16 @@ export default function ProductsList(props) {
                                 }).map( product =>
 
                                     <div className="product" key={product._id}>
-                                        <a href={{
-                                            pathname: `/product/${product._id}`,
-                                        }}>
-                                            <img className="product-image" src={product.images[0]} alt=""/>
-                                            <div className="product-detail">
-                                                <h3>{product.name}</h3>
-                                                <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
-                                            </div>
-                                        </a>
+                                        <Link href={`/product/${product._id}`}>
+                                            <a>
+                                                <img className="product-image" src={product.images[0]} alt="" />
+                                                <div className="product-detail">
+                                                    <h3>{product.name}</h3>
+                                                    <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
+                                                </div>
+                                            </a>
+                                            
+                                        </Link>
 
                                     </div>
                                 ))

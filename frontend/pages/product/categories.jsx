@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import ProductsList from "../components/ProductsList";
-import CategoriesPanel from "../components/CategoriesPanel";
-import SearchBar from "../components/SearchBar";
-import {withRouter} from "next/link";
+import ProductsList from "../../components/ProductsList";
+import CategoriesPanel from "../../components/CategoriesPanel";
+import SearchBar from "../../components/SearchBar";
 
 const SectionCategories = styled.section`
   padding-top: 30px;
@@ -11,10 +10,10 @@ const SectionCategories = styled.section`
 `;
 
 
-const Categories = ({fatherURL, match}) => {
+const Categories = () => {
 
-    const categoriesID = match.params.id
-
+    const categoriesID = 'Blusa'
+    const fatherURL = ''
     return (
         <>
             <SearchBar/>
@@ -33,4 +32,4 @@ const Categories = ({fatherURL, match}) => {
     )
 }
 
-export default withRouter(Categories)
+export default Categories

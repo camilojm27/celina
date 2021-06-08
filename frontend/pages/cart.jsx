@@ -1,8 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
+import { useRouter } from 'next/router'
 import {addToCart, removeFromCart} from "../actions/cartActions";
 
 export default function CartScreen(props) {
-
+    const router = useRouter()
     const cart = useSelector((state) => state.cart)
     const {cartItems} = cart
     const dispatch = useDispatch()
@@ -69,7 +70,7 @@ export default function CartScreen(props) {
                                     <li>
                                         <button
                                             type="button"
-                                            onClick={() => props.history.push('/login?redirect=shipping')}
+                                            onClick={() => router.push('/login?redirect=shipping')}
                                             className="button-action "
                                             disabled={cartItems.length === 0}
                                         >

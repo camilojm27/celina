@@ -1,21 +1,29 @@
-import React, {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {useRouter} from "next/router";
 import {useDispatch, useSelector} from 'react-redux';
 import {savePaymentMethod} from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
-export default function PaymentMethodScreen(props) {
+export default function Payment() {
+    const router = useRouter();
     const cart = useSelector((state) => state.cart);
     const {shippingAddress} = cart;
-    if (!shippingAddress.address) {
-        props.history.push('/shipping');
-    }
+
+    useEffect(()=> {
+        if (!shippingAddress.address) {
+            router.push('/shipping');
+        }
+    })
+
     const [paymentMethod, setPaymentMethod] = useState('PayPal');
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(savePaymentMethod(paymentMethod));
-        props.history.push('/placeorder');
+        router.push('/placeorder');
     };
+
+
     return (
         <section className="shipping">
 

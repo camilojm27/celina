@@ -30,7 +30,7 @@ function ProductEdit (props) {
         colors = colors.toString().split(',')
         console.info(name, description, category, colors, stock, price)
         await persistence.updateProduct(productID, name, description, category, colors, stock, price)
-        props.history.push('/admin')
+        router.push('/admin')
     }
 
     return(
@@ -122,7 +122,7 @@ function ProductEdit (props) {
                                         .then((data) => {
                                             if (data.status === 200) {
                                                 toast.success('Producto eliminado')
-                                                props.history.push('/admin')
+                                                router.push('/admin')
 
                                             } 
                                         })

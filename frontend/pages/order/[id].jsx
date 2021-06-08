@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useRouter} from 'next/router'
 import Link from 'next/link';
-import {orderDetailsAction} from '../actions/orderActions';
+import {orderDetailsAction} from '../../actions/orderActions';
 
 
-export default function OrderScreen(props) {
-    const orderId = props.match.params.id;
+export default function OrderScreen() {
+    const router = useRouter();
+    const orderId = router.query.id;
 
     const dispatch = useDispatch();
 

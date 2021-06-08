@@ -1,18 +1,18 @@
 import {useEffect, useState} from "react";
-
-import styles from './styles/ProductScreen.css'
-
-import SimpleImageSlider from "react-simple-image-slider";
+import { useRouter } from 'next/router'
 import {useDispatch, useSelector} from "react-redux";
-import {detailsProduct} from "../actions/productActions";
-import {addToCart} from "../actions/cartActions";
+import {detailsProduct} from "../../actions/productActions";
+import {addToCart} from "../../actions/cartActions";
 
 //import ButtonAction from "../components/ButtonAction";
 
-const ProductScreen = (props) => {
+const ProductScreen = () => {
+    const router = useRouter()
+    const { id } = router.query
+
     const size = sliderSize();
     const dispatch = useDispatch()
-    const productID = props.match.params.id
+    const productID = id
     const productDetails = useSelector(state => state.productDetails)
 
     let [colorState, setColor] = useState("generic");
@@ -31,7 +31,7 @@ const ProductScreen = (props) => {
             return
         }
         dispatch(addToCart(productID, qtyState, colorState))
-        props.history.push(`/cart`)
+        router.push(`/cart`)
     }
 
     function verifyStock() {
@@ -61,12 +61,7 @@ const ProductScreen = (props) => {
 
                             <figure className="details__product">
                                 <h4>{product.name}</h4>
-                                <SimpleImageSlider
-                                    width={size}
-                                    height={size}
-                                    images={product.images.map(img => ({url: img}))}
-                                    style={styles}
-                                />
+                                
 
                             </figure>
                             <div className="details__buy">
@@ -122,15 +117,19 @@ const ProductScreen = (props) => {
 }
 
 function sliderSize() {
-    let size, width = window.screen.availWidth;
-    if (width <= 500) {
-        size = 300;
-    } else if (width <= 720) {
-        size = 400;
-    } else {
-        size = 430;
-    }
+    let size;
+    if (typeof window !== 'undefined') {
+        let width = window.screen.availWidth;
+        if (width <= 500) {
+            size = 300;
+        } else if (width <= 720) {
+            size = 400;
+        } else {
+            size = 430;
+        }
 
+    }
+   
     return size;
 
 }

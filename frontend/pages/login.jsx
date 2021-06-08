@@ -4,25 +4,30 @@ import Auth from "../firebase/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {signing} from "../actions/userActions";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 
-export default function Login(props) {
+export default function Login() {
+
+    const router = useRouter()
     const dispatch = useDispatch()
+    const {register, handleSubmit} = useForm()
 
-    const redirect = props.location.search
-        ? props.location.search.split('=')[1]
+    const redirect = router.query.redirect
+        ? router.query.redirect
         : '/';
+    console.log('query', router.query)
+    console.log('redirect ',redirect)
 
     const userSigning = useSelector((state) => state.userSigning)
     const { userInfo } = userSigning
 
-    const {register, handleSubmit} = useForm()
 
     useEffect(() => {
         if (userInfo) {
-            props.history.push(redirect);
+            router.push(redirect);
         }
-    }, [props.history, redirect, userInfo]);
+    }, [redirect, userInfo]);
 
     async function onSubmit(data) {
         try{
@@ -42,7 +47,7 @@ export default function Login(props) {
            const userCredential = await Auth.loginWithGoogle()
             dispatch(signing(userCredential))
             setTimeout(() => {
-                props.history.push('/')
+                //router.push('/')
             }, 1500)
         }
         catch (e) {

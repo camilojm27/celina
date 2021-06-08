@@ -1,11 +1,25 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {saveShippingAddress} from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import {useRouter} from "next/router";
 
-export default function ShippingAddressScreen(props) {
+export default function Shipping() {
+    const router = useRouter();
     const cart = useSelector((state) => state.cart);
     const {shippingAddress} = cart;
+
+    const userSigning = useSelector((state) => state.userSigning)
+    const { userInfo } = userSigning
+
+    useEffect(()=>{
+        if (!userInfo) {
+            router.push('/login');
+        }
+    })
+
+
+
     const [fullName, setFullName] = useState(shippingAddress.fullName);
     const [address, setAddress] = useState(shippingAddress.address);
     const [city, setCity] = useState(shippingAddress.city);
@@ -17,7 +31,7 @@ export default function ShippingAddressScreen(props) {
         dispatch(
             saveShippingAddress({fullName, address, city, postalCode, state})
         );
-        props.history.push('/payment');
+        router.push('/payment');
     };
     return (
         <section className="shipping">

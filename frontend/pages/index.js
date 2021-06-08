@@ -10,7 +10,7 @@ export default function Home(props) {
                 <p className="banner--text">Lorem ipsum dolor sit amet <br /> consectetur adipisicing elit. Deleniti, impedit.</p>
             </figure>
             <br />
-            <section onClick={() => props.history.push('/categories')} className="home--categories">
+            <section onClick={() => router.push('/categories')} className="home--categories">
                 <div className="home--categorie">
                     <p>Tops</p>
                     <img className="home--categories__img" src="https://firebasestorage.googleapis.com/v0/b/celina-tienda.appspot.com/o/assets%2Fcelina.tienda_127184453_201420841433429_462873709041527074_n.jpg?alt=media&token=04ba402b-072b-45fa-93ff-6ecd9b969e6a" alt="" />

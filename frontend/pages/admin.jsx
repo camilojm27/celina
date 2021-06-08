@@ -2,19 +2,21 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from "react-hook-form";
 import {listProducts} from '../actions/productActions';
-import Categories from "./Categories";
+import Categories from "./product/categories";
 import Persistence from "../firebase/persistence";
 import {AiOutlineHome} from 'react-icons/ai'
 import {VscGraph} from 'react-icons/vsc'
-//import {FiUsers} from 'react-icons/fi'
 import {GiClothes} from 'react-icons/gi'
 import OrderListScreen from "./Orders";
+import {useRouter} from "next/router";
 
 
 const persistence = new Persistence()
 
 
 export default function Admin() {
+    const router = useRouter()
+
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
@@ -27,6 +29,9 @@ export default function Admin() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        if (!userInfo) {
+            router.push('/');
+        }
         dispatch(listProducts())
     }, [dispatch])
 

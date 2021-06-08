@@ -30,7 +30,13 @@ if (typeof window !== "undefined") {
                 : [],
             shippingAddress: localStorage.getItem('shippingAddress')
                 ? JSON.parse(localStorage.getItem('shippingAddress'))
-                : {},
+                : {
+                    fullName: '',
+                    address: '',
+                    city: '',
+                    postalCode: '',
+                    state: '',
+                },
             paymentMethod: 'PayPal',
         },
     };
@@ -42,7 +48,13 @@ if (typeof window !== "undefined") {
         },
         cart: {
             cartItems: [],
-            shippingAddress: {},
+            shippingAddress: {
+                fullName: '',
+                address: '',
+                city: '',
+                postalCode: '',
+                state: '',
+            },
             paymentMethod: 'PayPal',
         },
     }

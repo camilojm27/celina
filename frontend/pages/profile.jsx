@@ -4,18 +4,21 @@ import { FiSettings } from 'react-icons/fi';
 import { BsClipboard } from 'react-icons/bs'
 import { RiSpyLine } from 'react-icons/ri'
 import axios from 'axios';
-import localidades1 from './localidades1.json'
+import localidades1 from '../public/localidades1.json'
 import {useDispatch, useSelector} from "react-redux";
 import {orderListAction, orderListMineAction, orderListUserAction} from "../actions/orderActions";
+import {useRouter} from "next/router";
 
-const Profile = ({match}) => {
+const Profile = () => {
+    //const router = useRouter();
+    //const memuID = router.query.id;
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
     };
 
-    const memuID = match.params.id
 
     const dispatch = useDispatch();
 

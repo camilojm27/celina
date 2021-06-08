@@ -8,11 +8,11 @@ import { signOut } from '../actions/userActions'
 import { toast } from 'react-toastify';
 
 
-export default function PlaceOrderScreen(props) {
+export default function Placeorder(props) {
     const cart = useSelector((state) => state.cart);
     const obj = cart.shippingAddress
     if (Object.keys(obj).length === 0 && obj.constructor === Object) {
-        props.history.push('/payment');
+        router.push('/payment');
     }
     const orderCreate = useSelector((state) => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
@@ -31,7 +31,7 @@ export default function PlaceOrderScreen(props) {
     // TODO: Implementar el cambio de pantalla, cerrado de sesión
     useEffect(() => {
         if (success) {
-            props.history.push(`/order/${order.orderId}`);
+            router.push(`/order/${order.orderId}`);
             dispatch({ type: ORDER_CREATE_RESET });
         }
     }, [dispatch, order, props.history, success]);
@@ -144,7 +144,7 @@ export default function PlaceOrderScreen(props) {
                                 {error === 'auth/id-token-expired' &&
                                     dispatch(signOut())
                                     &&
-                                    props.history.push('/login#placeorder')
+                                    router.push('/login#placeorder')
                                     &&
                                     toast.warn('La sesión ha expido, debers iniciar sesion de nuevo')
                                 }

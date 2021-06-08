@@ -6,9 +6,6 @@ import { ToastContainer } from "react-toastify";
 export default function Layout({children}) {
     return (
         <div>
-        <ToastContainer position="top-center"
-            style={{ fontSize: "24px" }} />
-            
             <Header />
             <main>
                 {children}

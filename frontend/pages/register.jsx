@@ -1,4 +1,5 @@
 import {useReducer} from "react";
+import { useRouter } from 'next/router'
 import Link from "next/link";
 import '../firebase/auth'
 import Auth from "../firebase/auth";
@@ -16,6 +17,8 @@ const formReducer = (state, event) => {
 
 
 function Register(props) {
+    const router = useRouter()
+
     const dispatch = useDispatch()
     const [formData, setFormData] = useReducer(formReducer, {
         name: "",
@@ -39,7 +42,8 @@ function Register(props) {
 
         setTimeout(() => {
 
-            props.history.push('/')
+            router.push('/')
+
         }, 1000)
 
         dispatch(signing(user));
@@ -49,7 +53,7 @@ function Register(props) {
     async function handleGoogle() {
         const user = await Auth.loginWithGoogle()
         setTimeout(() => {
-            props.history.push('/')
+            router.push('/')
         }, 1500)
 
         dispatch(signing(user));
@@ -114,8 +118,7 @@ function Register(props) {
                 </div>
 
                 <div>
-                    <p>¿Ya tiene una cuenta? <Link href={`/login?redirect=`}> <strong>Iniciar Sesión</strong> </Link></p>
-
+                    <p>¿Ya tiene una cuenta? <Link href={`/login?redirect=`}>Iniciar Sesión</Link></p>
                 </div>
             </div>
         </section>

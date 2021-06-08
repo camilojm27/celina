@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import Link from "next/link";
 import { signOut } from "../actions/userActions";
@@ -12,8 +12,8 @@ import { BiCart } from 'react-icons/bi'
 function Header() {
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
-    const userSigning = useSelector((state) => state.userSigning);
-    const { userInfo } = userSigning;
+    let userSigning = useSelector((state) => state.userSigning);
+    let { userInfo } = userSigning;
     const dispatch = useDispatch()
 
     const [open, setOpen] = useState(false)
@@ -43,7 +43,7 @@ function Header() {
                     {userInfo ? (
 
                         <div className="dropdown">
-                            <Link id="username" to="#">
+                            <Link id="username" href='#'>
                                 {userInfo.name}
                             </Link>
                             <ul className="dropdown-content">

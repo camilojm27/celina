@@ -3,7 +3,7 @@ import firebase from "./app";
 import { toast } from 'react-toastify';
 import Axios from 'axios'
 import {API} from '../constants/backend'
-
+// Todo: Crear un hook para el manejo de estado
 class Auth {
     static async registerEmail(name, email, pass) {
         return new Promise((resolve, reject) => {
