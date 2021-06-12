@@ -9,8 +9,8 @@ El proyecto está siendo refactorizado a Next.JS para mejorar el SEO, puede revi
 Detalles de la tienda:
 
 - Este repositorio cuenta con el Backend (Typescritp) y el Frontend (JavaScript) de la aplicacion
-- Del lado del cliente, uso para simulacion de compras mediante su cuenta de usuario
-- Del lado de la administracion, la gestión del inventario y las ordenes
+- Compra de productos
+- Creacion de productos y manejo de inventario (Administración)
 
 ## Equipo de desarrollo
 
