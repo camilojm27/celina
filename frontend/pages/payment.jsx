@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from 'react-redux';
-import {savePaymentMethod} from '../actions/cartActions';
+import {savePaymentMethod} from '../redux/actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 export default function Payment() {

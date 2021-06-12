@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import { useRouter } from 'next/router'
-import {addToCart, removeFromCart} from "../actions/cartActions";
+import {addToCart, removeFromCart} from "../redux/actions/cartActions";
 
 export default function CartScreen(props) {
     const router = useRouter()

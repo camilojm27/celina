@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useRouter} from 'next/router'
 import Link from 'next/link';
-import {orderDetailsAction} from '../../actions/orderActions';
+import {orderDetailsAction} from '../../redux/actions/orderActions';
 
 
 export default function OrderScreen() {

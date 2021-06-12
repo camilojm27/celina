@@ -6,7 +6,7 @@ import { RiSpyLine } from 'react-icons/ri'
 import axios from 'axios';
 import localidades1 from '../public/localidades1.json'
 import {useDispatch, useSelector} from "react-redux";
-import {orderListAction, orderListMineAction, orderListUserAction} from "../actions/orderActions";
+import {orderListAction, orderListMineAction, orderListUserAction} from "../redux/actions/orderActions";
 import {useRouter} from "next/router";
 
 const Profile = () => {

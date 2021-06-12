@@ -2,9 +2,10 @@ import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import Auth from "../firebase/auth";
 import {useDispatch, useSelector} from "react-redux";
-import {signing} from "../actions/userActions";
+import {signing} from "../redux/actions/userActions";
 import Link from "next/link";
 import {useRouter} from "next/router";
+import {useAuth} from "../firebase/authHooks";
 
 
 export default function Login() {
@@ -19,15 +20,15 @@ export default function Login() {
     console.log('query', router.query)
     console.log('redirect ',redirect)
 
-    const userSigning = useSelector((state) => state.userSigning)
-    const { userInfo } = userSigning
+    const { user } = useAuth();
+
 
 
     useEffect(() => {
-        if (userInfo) {
+        if (user) {
             router.push(redirect);
         }
-    }, [redirect, userInfo]);
+    }, [redirect, user]);
 
     async function onSubmit(data) {
         try{

@@ -2,12 +2,12 @@ import React, {useEffect} from 'react'
 import '../screens/styles/Admin.css'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {detailsProduct} from "../actions/productActions";
+import {detailsProduct} from "../redux/actions/productActions";
 import Persistence from "../firebase/persistence";
 import { GrUpdate } from 'react-icons/gr'
 import { AiFillDelete } from 'react-icons/ai'
 import axios from 'axios';
-import { API } from '../constants/backend';
+import { API } from '../redux/constants/backend';
 import { toast } from 'react-toastify';
 
 

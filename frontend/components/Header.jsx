@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import Link from "next/link";
-import { signOut } from "../actions/userActions";
+import { signOut } from "../redux/actions/userActions";
 
 //STYLES
 
 //ASSETS
 import { StyledBurger, Ul } from "./styles/HeaderStyled";
 import { BiCart } from 'react-icons/bi'
+import {useAuth} from "../firebase/authHooks";
 
 function Header() {
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
-    let userSigning = useSelector((state) => state.userSigning);
-    let { userInfo } = userSigning;
+    const { user } = useAuth();
     const dispatch = useDispatch()
 
     const [open, setOpen] = useState(false)
@@ -40,15 +40,16 @@ function Header() {
 
                 <li>
 
-                    {userInfo ? (
+                    {user ? (
 
                         <div className="dropdown">
                             <Link id="username" href='#'>
-                                {userInfo.name}
+                                <a>{user.displayName}</a>
+
                             </Link>
                             <ul className="dropdown-content">
                                 {
-                                    userInfo.isAdmin === undefined &&
+                                    user.isAdmin === undefined &&
                                     <li>
                                         <Link href="/admin">
                                             ADMINISTRAR 😎

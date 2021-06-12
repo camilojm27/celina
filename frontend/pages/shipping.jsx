@@ -1,19 +1,19 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {saveShippingAddress} from '../actions/cartActions';
+import {saveShippingAddress} from '../redux/actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import {useRouter} from "next/router";
+import {useAuth} from "../firebase/authHooks";
 
 export default function Shipping() {
     const router = useRouter();
     const cart = useSelector((state) => state.cart);
     const {shippingAddress} = cart;
 
-    const userSigning = useSelector((state) => state.userSigning)
-    const { userInfo } = userSigning
+    const { user } = useAuth();
 
     useEffect(()=>{
-        if (!userInfo) {
+        if (!user) {
             router.push('/login');
         }
     })

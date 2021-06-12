@@ -1,16 +1,16 @@
 import { useMemo } from 'react'
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
-import {productDetailsReducer, productListReducer} from './reducers/productReducers'
-import {cartReducer} from "./reducers/cartReducers";
-import {userSigningReducer} from "./reducers/userReducers";
+import {productDetailsReducer, productListReducer} from './redux/reducers/productReducers'
+import {cartReducer} from "./redux/reducers/cartReducers";
+import {userSigningReducer} from "./redux/reducers/userReducers";
 import {
     orderCreateReducer,
     orderDeleteReducer,
     orderDetailsReducer,
     orderListMineReducer,
     orderListReducer
-} from "./reducers/orderReducers";
+} from "./redux/reducers/orderReducers";
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 let store

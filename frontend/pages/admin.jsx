@@ -1,14 +1,15 @@
 import {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useForm} from "react-hook-form";
-import {listProducts} from '../actions/productActions';
+import {listProducts} from '../redux/actions/productActions';
 import Categories from "./product/categories";
 import Persistence from "../firebase/persistence";
 import {AiOutlineHome} from 'react-icons/ai'
 import {VscGraph} from 'react-icons/vsc'
 import {GiClothes} from 'react-icons/gi'
-import OrderListScreen from "./Orders";
+import OrderListScreen from "./orders";
 import {useRouter} from "next/router";
+import {useAuth} from "../firebase/authHooks";
 
 
 const persistence = new Persistence()
@@ -22,14 +23,13 @@ export default function Admin() {
         setToggleState(index);
     };
 
-    const userSigning = useSelector((state) => state.userSigning);
-    const {userInfo} = userSigning;
-
+    const { userInfo } = useAuth();
+    console.log(userInfo)
     const {register, handleSubmit, reset} = useForm()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (!userInfo) {
+        if (userInfo) {
             router.push('/');
         }
         dispatch(listProducts())
@@ -49,17 +49,20 @@ export default function Admin() {
 
     }
 
-    console.log(userSigning)
 
     return (
         <section className="admin">
             <section className="glass">
                 <aside className="dashboard">
-                    <div className="user">
-                        <img src={userInfo.picture} alt=""/>
-                        <h3>{userInfo.name.toUpperCase()}</h3>
-                        <p>Administrador 😎</p>
-                    </div>
+                    {
+                        userInfo ? (  <div className="user">
+                            <img src={userInfo.photoURL} alt=""/>
+                            <h3>{userInfo.displayName.toUpperCase()}</h3>
+                            <p>Administrador 😎</p>
+                        </div> ) :
+                            ''
+                    }
+
                     <div className="links">
                         <button
                             className="admin-tabs"

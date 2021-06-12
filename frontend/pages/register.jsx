@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 import '../firebase/auth'
 import Auth from "../firebase/auth";
-import {signing} from "../actions/userActions";
+import {signing} from "../redux/actions/userActions";
 import {useDispatch} from "react-redux";
 
 

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {useDispatch, useSelector} from "react-redux";
-import {listProducts} from "../actions/productActions";
+import {listProducts} from "../redux/actions/productActions";
 
 
 

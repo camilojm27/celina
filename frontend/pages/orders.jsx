@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderModifyAction, orderListAction } from "../actions/orderActions";
-import { ORDER_DELETE_RESET } from "../constants/orderConstants";
+import { orderModifyAction, orderListAction } from "../redux/actions/orderActions";
+import { ORDER_DELETE_RESET } from "../redux/constants/orderConstants";
 
 //Todo: al eliminar refrescar la pagina
 

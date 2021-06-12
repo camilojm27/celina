@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import Axios from "axios";
-import {API} from "../constants/backend";
+import {API} from "../redux/constants/backend";
 import Link from "next/link";
 
 const Li = styled.li`

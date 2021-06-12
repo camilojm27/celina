@@ -2,13 +2,15 @@ import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import Link from 'next/link';
 import CheckoutSteps from '../components/CheckoutSteps';
-import {ORDER_CREATE_RESET} from "../constants/orderConstants";
-import {createOrderAction} from "../actions/orderActions";
-import { signOut } from '../actions/userActions'
+import {ORDER_CREATE_RESET} from "../redux/constants/orderConstants";
+import {createOrderAction} from "../redux/actions/orderActions";
+import { signOut } from '../redux/actions/userActions'
 import { toast } from 'react-toastify';
+import {useRouter} from "next/router";
 
 
 export default function Placeorder(props) {
+    const router = useRouter()
     const cart = useSelector((state) => state.cart);
     const obj = cart.shippingAddress
     if (Object.keys(obj).length === 0 && obj.constructor === Object) {
@@ -135,7 +137,6 @@ export default function Placeorder(props) {
                                     type="button"
                                     onClick={placeOrderHandler}
                                     className="primary block"
-                                    disabled={cart.cartItems.length === 0}
                                 >
                                     Crear orden
                                 </button>
