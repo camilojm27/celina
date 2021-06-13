@@ -10,12 +10,12 @@ class Auth {
     }
     static async registerEmail(name, email, pass) {
         return new Promise((resolve, reject) => {
-            firebase.auth().createUserWithEmailAndPassword(email, pass)
+            this.getAuth().createUserWithEmailAndPassword(email, pass)
                 .then((userCredential) => {
                     userCredential.user.updateProfile({
                         displayName: name
                     })
-                    
+
                     Axios.post(`${API}/users/`, {
                         name,
                         email,
@@ -40,7 +40,7 @@ class Auth {
     static loginWithEmail(email, pass) {
         return new Promise((resolve, reject) => {
 
-            firebase.auth().signInWithEmailAndPassword(email, pass)
+            this.getAuth().signInWithEmailAndPassword(email, pass)
                 .then((user) => {
                     toast.success(`${user.user.displayName} Bienvenid@ a Celina`)
 
@@ -60,7 +60,7 @@ class Auth {
         return new Promise(((resolve, reject) => {
             const provider = new firebase.auth.GoogleAuthProvider()
 
-            firebase.auth().signInWithPopup(provider).then(result => {
+            this.getAuth().signInWithPopup(provider).then(result => {
                 toast.success(`Bienvenido a celina ${result.user.displayName}`)
 
                 resolve(this.userPropsToJson(result))
@@ -75,12 +75,12 @@ class Auth {
         }))
     }
     static isLogIn() {
-        let user = firebase.auth().currentUser
+        let user = this.getAuth().currentUser
         return !!user;
     }
 
     static logOut() {
-        firebase.auth().signOut()
+        this.getAuth().signOut()
             .then(() => {
                 toast.info('Se ha cerrado sesión correctamnete')
                 return true

@@ -8,16 +8,18 @@ import localidades1 from '../public/localidades1.json'
 import {useDispatch, useSelector} from "react-redux";
 import {orderListAction, orderListMineAction, orderListUserAction} from "../redux/actions/orderActions";
 import {useRouter} from "next/router";
+import {useAuth} from "../firebase/authHooks";
 
 const Profile = () => {
     //const router = useRouter();
     //const memuID = router.query.id;
-
+    const router = useRouter()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
     };
+    const { user } = useAuth();
 
 
     const dispatch = useDispatch();
@@ -26,6 +28,9 @@ const Profile = () => {
     const { loading, error, orders } = orderList;
 
     useEffect(() => {
+        if (user == null) {
+            router.push('/');
+        }
         dispatch(orderListMineAction());
     }, [dispatch]);
 

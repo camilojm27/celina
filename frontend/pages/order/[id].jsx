@@ -4,7 +4,7 @@ import {useRouter} from 'next/router'
 import Link from 'next/link';
 import {orderDetailsAction} from '../../redux/actions/orderActions';
 
-
+// Todo: Fix null token error
 export default function OrderScreen() {
     const router = useRouter();
     const orderId = router.query.id;
@@ -26,7 +26,7 @@ export default function OrderScreen() {
                     :
 
                     <section>
-                        
+
                         <h1>Orden </h1>
                         <p>código {orderId}</p>
                         <div className="row top">

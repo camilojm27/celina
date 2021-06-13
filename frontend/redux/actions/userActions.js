@@ -1,5 +1,5 @@
 import {USER_SIGN_OUT, USER_SIGNING_SUCCESS} from "../constants/userConstants";
-import Auth from "../../firebase/auth";
+
 
 export const signing = (data) => async (dispatch) => {
 
@@ -8,8 +8,7 @@ export const signing = (data) => async (dispatch) => {
 
 };
 export const signOut = () => (dispatch) => {
-    //localStorage.removeItem('userInfo');
+    localStorage.removeItem('userInfo');
     localStorage.removeItem('cartItems');
-    Auth.logOut()
     dispatch({type: USER_SIGN_OUT});
 };

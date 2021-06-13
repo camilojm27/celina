@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState} from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import Link from "next/link";
 import { signOut } from "../redux/actions/userActions";
@@ -9,8 +9,12 @@ import { signOut } from "../redux/actions/userActions";
 import { StyledBurger, Ul } from "./styles/HeaderStyled";
 import { BiCart } from 'react-icons/bi'
 import {useAuth} from "../firebase/authHooks";
+import Auth from "../firebase/auth";
+import nookies from "nookies";
+import {useRouter} from "next/router";
 
 function Header() {
+    const router = useRouter()
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
     const { user } = useAuth();
@@ -20,7 +24,10 @@ function Header() {
 
 
     const signOutHandler = () => {
+       Auth.logOut()
+        nookies.destroy(null, "token");
         dispatch(signOut())
+        router.push('/')
     }
     return (
         <header className="header">
@@ -40,7 +47,7 @@ function Header() {
 
                 <li>
 
-                    {user ? (
+                    {( user !== null) ? (
 
                         <div className="dropdown">
                             <Link id="username" href='#'>
@@ -63,10 +70,8 @@ function Header() {
                                 <li>
                                     <Link href="/orderhistory">Historial de ordenes</Link>
                                 </li>
-                                <li>
-                                    <Link href="#signout" onClick={signOutHandler}>
-                                        Cerrar Sesión
-                                    </Link>
+                                <li onClick={signOutHandler}>
+                                    Cerrar Sesión
                                 </li>
 
                             </ul>

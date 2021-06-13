@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import Auth from "../firebase/auth";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {signing} from "../redux/actions/userActions";
 import Link from "next/link";
 import {useRouter} from "next/router";

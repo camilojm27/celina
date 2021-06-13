@@ -19,9 +19,12 @@ export default function OrderListScreen(props) {
 
 
     const modifyHandler = (order, action) => {
-        if (window.confirm(`Estas segur@ que quieres modificar la orden de ${order.shippingAddress.fullName}`)) {
-            dispatch(orderModifyAction(order._id, action));
+        if (typeof window !== 'undefined'){
+            if (window.confirm(`Estas segur@ que quieres modificar la orden de ${order.shippingAddress.fullName}`)) {
+                dispatch(orderModifyAction(order._id, action));
+            }
         }
+
     };
     useEffect(() => {
         dispatch({ type: ORDER_DELETE_RESET });
@@ -86,8 +89,8 @@ export default function OrderListScreen(props) {
                                             </button>
                                     }
                                     {
-                                        !order.isDelivered && 
-                                        
+                                        !order.isDelivered &&
+
                                         <button
                                         type="button"
                                         className="small"
@@ -95,7 +98,7 @@ export default function OrderListScreen(props) {
                                         Entregado
                                         </button>
                                     }
-                                    
+
                                 </td>
                             </tr>
                         ))}

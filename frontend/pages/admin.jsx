@@ -17,19 +17,17 @@ const persistence = new Persistence()
 
 export default function Admin() {
     const router = useRouter()
-
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
     };
 
-    const { userInfo } = useAuth();
-    console.log(userInfo)
+    const { user } = useAuth();
     const {register, handleSubmit, reset} = useForm()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (userInfo) {
+        if (user == null) {
             router.push('/');
         }
         dispatch(listProducts())
@@ -55,9 +53,9 @@ export default function Admin() {
             <section className="glass">
                 <aside className="dashboard">
                     {
-                        userInfo ? (  <div className="user">
-                            <img src={userInfo.photoURL} alt=""/>
-                            <h3>{userInfo.displayName.toUpperCase()}</h3>
+                        user ? (  <div className="user">
+                            <img src={user.photoURL} alt=""/>
+                            <h3>{user.displayName.toUpperCase()}</h3>
                             <p>Administrador 😎</p>
                         </div> ) :
                             ''
