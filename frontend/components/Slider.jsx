@@ -1,8 +1,7 @@
 //idea https://github.com/briancodex/react-image-slider-carousel
-import "./styles/slyder.module.css";
+import styles from "./styles/Slider.module.css";
 import React, { useState } from 'react';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
-// Todo: Hacer un renderizado condicional de las flechas, Hacer que se apliquen los estilos
 
 const ImageSlider = ({ slides }) => {
     const [current, setCurrent] = useState(0);
@@ -21,17 +20,21 @@ const ImageSlider = ({ slides }) => {
     }
 
     return (
-        <section className='rslider'>
-            <FaArrowAltCircleLeft size={30} className='left-arrow' onClick={prevSlide} />
-            <FaArrowAltCircleRight size={30} className='right-arrow' onClick={nextSlide} />
+        <section>
+            {length > 1 &&
+            <div>
+                <FaArrowAltCircleLeft size={30}  onClick={prevSlide} />
+                <FaArrowAltCircleRight size={30}  onClick={nextSlide} />
+            </div>}
+
             {slides.map((slide, index) => {
                 return (
                     <div
-                        className={index === current ? 'slide active' : 'slide'}
+                        className={index === current ? `${styles.slide} ${styles.active}` : `${styles.slide}`}
                         key={index}
                     >
                         {index === current && (
-                            <img src={slide.image} height={400} alt='travel image' className='image' />
+                            <img src={slide.image} height={400} alt='travel image' className={styles.image} />
                         )}
                     </div>
                 );

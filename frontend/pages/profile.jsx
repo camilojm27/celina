@@ -35,18 +35,18 @@ const Profile = () => {
     }, [dispatch]);
 
     const onSubmit = data => console.log(data);
-    // const [localidades, setData] = useState({ hits: [] });
-
+    // const [localidades1, setData] = useState([]);
+    //
     // useEffect(() => {
     //     const fetchData = async () => {
     //         const result = await axios(
-    //             'https://dservicios.interrapidisimo.com/ApiServInter/api/Parametros/ObtenerLocalidadesColombia',
+    //             'https://servicios.interrapidisimo.com/ApiServInter/api/Parametros/ObtenerLocalidadesColombia',
     //         );
-
+    //
     //         setData(result.data);
     //     };
-
-    //     fetchData();
+    //
+    //     fetchData().then();
     // }, []);
 
 

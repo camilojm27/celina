@@ -20,7 +20,6 @@
 .env.production.local
 .eslintcache
 /frontend/.next
-/frontend/public/localidades1.json
 credentials.json*
 *.log
 
