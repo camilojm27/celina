@@ -1,7 +1,9 @@
 
 import ProductsList from "../components/ProductsList";
+import {useRouter} from "next/router";
 
 export default function Home(props) {
+    const router = useRouter()
 
 
     return (

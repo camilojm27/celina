@@ -1,29 +1,17 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {useRouter} from 'next/router'
 import Link from 'next/link';
-import {orderDetailsAction} from '../../redux/actions/orderActions';
+import nookies from "nookies";
+import Axios from "axios";
+import {API} from "../../redux/constants/backend";
 
-// Todo: Fix null token error
-export default function OrderScreen() {
+export default function OrderScreen({order}) {
     const router = useRouter();
     const orderId = router.query.id;
 
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(orderDetailsAction(orderId));
-    }, [dispatch, orderId]);
-
-    const orderDetails = useSelector((state) => state.orderDetails);
-    const {order, loading, error} = orderDetails;
 
     return (
-        <>{
-            loading ? <h1>Cargando</h1>
-                :
-                error ? <h1>{error}</h1>
-                    :
+
 
                     <section>
 
@@ -137,6 +125,42 @@ export default function OrderScreen() {
                             </div>
                         </div>
                     </section>
-        }</>
+
     );
+}
+
+export async function getServerSideProps(context) {
+try {
+    const cookies = nookies.get(context);
+    console.log(JSON.stringify(cookies, null, 2));
+
+    const {id} = context.params;
+
+    const {data} = await Axios.get(`${API}/orders/${id}`, {
+        headers: {Authorization: `Bearer ${cookies.token}`},
+    });
+
+    return {
+        props: {
+            order: data
+        }, // will be passed to the page component as props
+    }
+} catch (err) {
+    // either the `token` cookie didn't exist
+    // or token verification failed
+    // either way: redirect to the login page
+    // either the `token` cookie didn't exist
+    // or token verification failed
+    // either way: redirect to the login page
+    return {
+        redirect: {
+            permanent: false,
+            destination: "/login",
+        },
+        // `as never` is required for correct type inference
+        // by InferGetServerSidePropsType below
+        props: {},
+    };
+}
+
 }

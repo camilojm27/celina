@@ -58,7 +58,7 @@ function Header() {
                                 {
                                     user.isAdmin === undefined &&
                                     <li>
-                                        <Link href="/admin">
+                                        <Link href="/admin/dashboard">
                                             ADMINISTRAR 😎
                                         </Link>
                                     </li>

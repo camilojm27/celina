@@ -1,22 +1,22 @@
-import {useEffect, useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useState} from 'react'
 import {useForm} from "react-hook-form";
-import {listProducts} from '../redux/actions/productActions';
-import Categories from "./product/categories";
-import Persistence from "../firebase/persistence";
+import Categories from "../categories/[id]";
+import Persistence from "../../firebase/persistence";
 import {AiOutlineHome} from 'react-icons/ai'
 import {VscGraph} from 'react-icons/vsc'
 import {GiClothes} from 'react-icons/gi'
-import OrderListScreen from "./orders";
-import {useRouter} from "next/router";
-import {useAuth} from "../firebase/authHooks";
+import OrderListScreen from "../orders";
+import {useAuth} from "../../firebase/authHooks";
+import nookies from "nookies";
+import Axios from "axios";
+import {API} from "../../redux/constants/backend";
 
 
 const persistence = new Persistence()
 
 
-export default function Admin() {
-    const router = useRouter()
+export default function Admin({orders}) {
+
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
@@ -24,14 +24,8 @@ export default function Admin() {
 
     const { user } = useAuth();
     const {register, handleSubmit, reset} = useForm()
-    const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (user == null) {
-            router.push('/');
-        }
-        dispatch(listProducts())
-    }, [dispatch])
+
 
     const onSubmit = async (data) => {
 
@@ -89,7 +83,7 @@ export default function Admin() {
                     </div>
                 </div>
                 <div className={toggleState === 2 ? "admin-content  active-content-active" : "admin-content"}>
-                    <OrderListScreen/>
+                    <OrderListScreen orders={orders}/>
                 </div>
                 <div className={toggleState === 3 ? "admin-content  active-content-active" : "admin-content"}>
                         <Categories fatherURL="admin"/>
@@ -193,5 +187,38 @@ export default function Admin() {
             <div className="circle2"/>
         </section>
     )
+
+}
+export async function getServerSideProps(context) {
+    try {
+        const cookies = nookies.get(context);
+
+        const {data} = await Axios.get(`${API}/orders/`, {
+                headers: {Authorization: `Bearer ${cookies.token}`}
+            }
+        )
+
+        return {
+            props: {
+                orders: data
+            }, // will be passed to the page component as props
+        }
+    } catch (err) {
+        // either the `token` cookie didn't exist
+        // or token verification failed
+        // either way: redirect to the login page
+        // either the `token` cookie didn't exist
+        // or token verification failed
+        // either way: redirect to the login page
+        return {
+            redirect: {
+                permanent: false,
+                destination: "/login?redirect=admin/dashboard",
+            },
+            // `as never` is required for correct type inference
+            // by InferGetServerSidePropsType below
+            props: {},
+        };
+    }
 
 }

@@ -28,15 +28,14 @@ const CategoriesPanel = ({categoriesID, fatherURL}) => {
     return (
         <Panel>
             <ul>
-                <Link href={`/${fatherURL}`}>
-                    <Li className={categoriesID === '' ? 'steps-active' : ''}>Todas</Li>
+                <Link href={`/${fatherURL}/todos`} replace shallow>
+                    <a><Li className={categoriesID === '' ? 'steps-active' : ''}>Todas</Li></a>
                 </Link>
                 {
                     categories.map((cat) =>
-                        <Link href={`/${fatherURL}/${cat}`}>
-                            <Li  className={categoriesID === cat ? 'steps-active' : ''}>{cat}</Li>
+                        <Link key={cat} href={`/${fatherURL}/${cat}`} replace shallow>
+                            <a><Li  className={categoriesID === cat ? 'steps-active' : ''}>{cat}</Li></a>
                         </Link>
-
                     )
                 }
             </ul>
