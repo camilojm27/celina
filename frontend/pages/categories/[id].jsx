@@ -1,19 +1,10 @@
-import styled from 'styled-components';
 import ProductsList from "../../components/ProductsList";
 import CategoriesPanel from "../../components/CategoriesPanel";
-import SearchBar from "../../components/SearchBar";
-import { useRouter } from 'next/router'
-import {useEffect} from "react";
+import {useRouter} from 'next/router'
+import Axios from "axios";
 
 
-const SectionCategories = styled.section`
-  padding-top: 30px;
-  display: flex;
-  justify-content: center;
-`;
-
-
-const Categories = () => {
+const Categories = ({products, categories}) => {
 
     const router = useRouter()
     const categoriesID = router.query.id
@@ -21,28 +12,49 @@ const Categories = () => {
 
     const fatherURL = router.pathname === '/admin/[id]' ? 'admin' : 'categories'
 
-    useEffect(()=> {
-        console.log('query', router.query)
-        console.log('pathname', router.pathname)
-        console.log('basepath', router.basePath)
-    })
 
     return (
         <>
-            <SearchBar/>
-            <SectionCategories>
-                <CategoriesPanel fatherURL={fatherURL} categoriesID={categoriesID}/>
+            <section>
+                <CategoriesPanel categories={categories} fatherURL={fatherURL} categoriesID={categoriesID}/>
                 {fatherURL === 'admin'
-                    ? <ProductsList categoriesID={categoriesID} admin/>
+                    ? <ProductsList products={products} categoriesID={categoriesID} admin/>
                     :
-                    <ProductsList categoriesID={categoriesID}/>}
-
-            </SectionCategories>
+                    <ProductsList products={products} categoriesID={categoriesID}/>}
+                <style jsx>{`
+                  section {
+                    padding-top: 30px;
+                    display: flex;
+                    justify-content: center;
+                  }
+                `}</style>
+            </section>
 
         </>
 
 
     )
+}
+
+export async function getServerSideProps() {
+    let product = await Axios.get(
+        `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/`
+    );
+
+    let categoriesRes = await Axios.get(
+        `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/categories`
+    );
+
+    const products = product.data
+    const categories = categoriesRes.data
+
+    return {
+        props: {
+            products,
+            categories
+        }, // will be passed to the page component as props
+    }
+
 }
 
 export default Categories

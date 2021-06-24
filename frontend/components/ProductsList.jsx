@@ -1,81 +1,74 @@
-import React, {useEffect} from 'react'
+import {  useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import {useDispatch, useSelector} from "react-redux";
-import {listProducts} from "../redux/actions/productActions";
 
+// Todo: agregar no hay productos para esta búsqueda si da vacío
 
-
-
-export default function ProductsList(props) {
+export default function ProductsList({products, categoriesID, admin}) {
     const router = useRouter()
-    const dispatch = useDispatch()
+    const [search, setSearch] = useState('')
 
-    
-    const productList = useSelector((state) => state.productList)
-    const {loading, error, products} = productList
 
-    useEffect(() => {
-        if (!productList.lenght > 0) {
-            
-            dispatch(listProducts())
+    const filteredProducts = products.filter((product) => {
+        return product.name.toLowerCase().includes(search.toLowerCase())
+    })
+
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
+
+    function filterCategories(product) {
+        if (categoriesID) {
+            return product.category.toLowerCase() === categoriesID.toLowerCase()
         }
-    }, [dispatch, productList.lenght])
-
-
+        return product
+    }
     return (
-        <section className="products">
-            {
-                loading ? <h1>Cargando</h1>
-                    :
-                    error ? <h1>{error}</h1>
-                        :
-                        props.admin ?
-                            (
-                                Array.from(products).filter(function (product) {
-                                    if (props.categoriesID){
-                                        return  product.category === props.categoriesID
-                                    }
-                                    return product
-                                }).map(product =>
-                                    <div className="product-admin" key={product._id} onClick={() =>
-                                        router.push(`/edit/${product._id}`)
-                                    }>
-                                        <img className="product-image-small" src={product.images[0]} alt=""/>
-                                        <div className="product-detail">
-                                            <h3>{product.name}</h3>
-                                            <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
-                                        </div>
+        <>
+            <div className="searchBar">
+                <h2>¿Qué quieres comprar?</h2>
+                <input className="input" type="text" placeholder="Yo quiero..." onChange={handleSearch} />
+            </div>
 
-
+            <section className="products">
+                {
+                    admin ?
+                        (
+                            Array.from(filteredProducts).filter(filterCategories).map(product =>
+                                <div className="product-admin" key={product._id} onClick={() =>
+                                    router.push(`/edit/${product._id}`)
+                                }>
+                                    <img className="product-image-small" src={product.images[0]} alt="" />
+                                    <div className="product-detail">
+                                        <h3>{product.name}</h3>
+                                        <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
                                     </div>
-                                )) :
-                            (
-                                Array.from(products).filter(function (product) {
-                                    if (props.categoriesID){
-                                        return  product.category === props.categoriesID
-                                    }
-                                    return product
-                                }).map( product =>
-
-                                    <div className="product" key={product._id}>
-                                        <Link href={`/product/${product._id}`}>
-                                            <a>
-                                                <img className="product-image" src={product.images[0]} alt="" />
-                                                <div className="product-detail">
-                                                    <h3>{product.name}</h3>
-                                                    <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
-                                                </div>
-                                            </a>
-                                            
-                                        </Link>
-
-                                    </div>
-                                ))
-
-            }
 
 
-        </section>
+                                </div>
+                            )) :
+                        (
+                            Array.from(filteredProducts).filter(filterCategories).map(product =>
+
+                                <div className="product" key={product._id}>
+                                    <Link href={`/product/${product._id}`}>
+                                        <a>
+                                            <img className="product-image" src={product.images[0]} alt="" />
+                                            <div className="product-detail">
+                                                <h3>{product.name}</h3>
+                                                <strong>{Number.parseInt(product.price).toLocaleString('es-CO')}</strong>
+                                            </div>
+                                        </a>
+
+                                    </Link>
+
+                                </div>
+                            ))
+
+                }
+
+
+            </section>
+        </>
     )
 }

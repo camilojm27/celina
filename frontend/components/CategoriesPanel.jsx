@@ -19,11 +19,7 @@ const Panel = styled.aside`
   overflow: auto;
 `;
 
-const CategoriesPanel = ({categoriesID, fatherURL}) => {
-    let [categories, setCategories] = useState([])
-    useEffect(() => {
-        Axios.get(API + '/products/categories').then((res) => setCategories(res.data))
-    }, [])
+const CategoriesPanel = ({ categories, categoriesID, fatherURL}) => {
 
     return (
         <Panel>
