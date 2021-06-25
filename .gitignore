@@ -25,3 +25,4 @@ credentials.json*
 
 #Junk
 *.gz
+backend/functions/.runtimeconfig.json

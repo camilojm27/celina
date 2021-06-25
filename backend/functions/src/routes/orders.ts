@@ -1,17 +1,19 @@
 import { Request, Response, Router } from "express";
 const orderApi = Router();
 import admin, {db} from "../util/admin"
-import {isAuth} from "../util/auth";
+import {isAuth, isAdmin} from "../util/auth";
+import Mail from "../libs/nodemailer";
+const mail = new Mail();
 // Create a product with Auto ID
 
 orderApi.post("/", isAuth, async (req: Request, res: Response) =>{
     if (req.body.orderItems.length === 0) {
         res.status(400).json({message: "El carrito esta vacio"});
     } else {
-        const {shippingAddress, orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice} = req.body;
+        const {shippingAddress, orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice, paymentMethod} = req.body;
         const time = admin.firestore.FieldValue.serverTimestamp()
         const newOrder: any = {
-            shippingAddress, orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice,
+            shippingAddress, orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice, paymentMethod,
             user: req.body.user.uid,
             isPaid: false,
             paidAt: time,
@@ -29,7 +31,7 @@ orderApi.post("/", isAuth, async (req: Request, res: Response) =>{
 
 // Todo: Acordame de agregar autenticación a todas las rutas
 // TODO: Verificar los codigos de error
-orderApi.get("/", async (req: Request, res: Response) => {
+orderApi.get("/", isAuth, isAdmin, async (req: Request, res: Response) => {
     const result: FirebaseFirestore.DocumentData[] = []
     try {
         const orders = await db.collection("orders").get()
@@ -45,6 +47,7 @@ orderApi.get("/", async (req: Request, res: Response) => {
                 user: queryDocumentSnapshot.data().user,
                 isPaid: queryDocumentSnapshot.data().isPaid,
                 paidAt: queryDocumentSnapshot.data().paidAt.toDate().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
+                paymentMethod: queryDocumentSnapshot.data().paymentMethod,
                 isDelivered: queryDocumentSnapshot.data().isDelivered,
                 deliveredAt: queryDocumentSnapshot.data().deliveredAt.toDate().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
                 createdAt: queryDocumentSnapshot.data().createdAt.toDate(),
@@ -53,7 +56,7 @@ orderApi.get("/", async (req: Request, res: Response) => {
         res.send(result)
     } catch (e) {
         console.error(e);
-        
+
         res.status(500).send(e.message)
     }
 })
@@ -74,6 +77,7 @@ orderApi.get("/mine", isAuth, async (req: Request, res: Response) => {
                 user: queryDocumentSnapshot.data().user,
                 isPaid: queryDocumentSnapshot.data().isPaid,
                 paidAt: queryDocumentSnapshot.data().paidAt.toDate().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
+                paymentMethod: queryDocumentSnapshot.data().paymentMethod,
                 isDelivered: queryDocumentSnapshot.data().isDelivered,
                 deliveredAt: queryDocumentSnapshot.data().deliveredAt.toDate().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
                 createdAt: queryDocumentSnapshot.data().createdAt.toDate(),
@@ -90,8 +94,8 @@ orderApi.get("/mine", isAuth, async (req: Request, res: Response) => {
 
 
 // Todo: Implementar el modo transacional de firebase
-orderApi.put("/:id/pay", isAuth, async (req: Request, res: Response) => {
-
+orderApi.put("/:id/pay", isAuth, isAdmin, async (req: Request, res: Response) => {
+    const userMail = req.body.user.email;
     const orderRef = db.collection("orders").doc(req.params.id);
     const productRef = db.collection("products");
     try {
@@ -111,8 +115,8 @@ orderApi.put("/:id/pay", isAuth, async (req: Request, res: Response) => {
                const pos: number =  productCOLORTYPE.findIndex(fruit => fruit === orderItemProductCOLORTYPE);
                const newStock = product?.data()?.stock;
                 newStock[pos] -= orderItemProductQTY;
-               
-               
+
+
                 if (newStock[pos] < 0 && pos === -1){
                     throw `No hay stock disponible en el item ${orderItemProductID}`
                 }
@@ -131,6 +135,7 @@ orderApi.put("/:id/pay", isAuth, async (req: Request, res: Response) => {
 
         });
         res.send("Pago actualizado correctamente")
+        await mail.sendPayment(userMail)
         console.log("Transaction success", tres);
     } catch (e) {
         console.log("Transaction failure:", e);
@@ -138,7 +143,8 @@ orderApi.put("/:id/pay", isAuth, async (req: Request, res: Response) => {
     }
 })
 
-orderApi.put("/:id/deliver",  isAuth, async (req: Request, res: Response) => {
+orderApi.put("/:id/deliver",  isAuth, isAdmin, async (req: Request, res: Response) => {
+    const userMail = req.body.user.email;
     try {
         const put = await db.collection("orders").doc(req.params.id)
             .update({
@@ -148,12 +154,12 @@ orderApi.put("/:id/deliver",  isAuth, async (req: Request, res: Response) => {
         console.log("delivered", put);
 
         res.sendStatus(200);
-
+        await mail.sendDeliver(userMail)
     } catch (e) {
         res.status(404).send("La orden no existe")
     }
 })
-orderApi.delete("/:id", async (req: Request, res: Response) => {
+orderApi.delete("/:id", isAuth, isAdmin, async (req: Request, res: Response) => {
     try {
         await db.collection("orders").doc(req.params.id).delete();
         res.send("Orden eliminada correctamente")
@@ -162,7 +168,7 @@ orderApi.delete("/:id", async (req: Request, res: Response) => {
     }
 })
 
-orderApi.get("/:id",  async (req: Request, res: Response) =>{
+orderApi.get("/:id",isAuth,  async (req: Request, res: Response) =>{
     try {
 
         const order = await db.collection("orders").doc(req.params.id).get()
@@ -178,6 +184,7 @@ orderApi.get("/:id",  async (req: Request, res: Response) =>{
                 user: order?.data()?.user,
                 isPaid: order?.data()?.isPaid,
                 paidAt: order?.data()?.paidAt.toDate().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
+                paymentMethod: order?.data()?.paymentMethod,
                 isDelivered: order?.data()?.isDelivered,
                 deliveredAt: order?.data()?.deliveredAt.toDate().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
                 createdAt: order?.data()?.createdAt.toDate(),
