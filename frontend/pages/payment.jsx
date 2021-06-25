@@ -13,9 +13,10 @@ export default function Payment() {
         if (!shippingAddress.address) {
             router.push('/shipping');
         }
-    })
+        console.log(cart)
+    }, [cart, router, shippingAddress.address])
 
-    const [paymentMethod, setPaymentMethod] = useState('PayPal');
+    const [paymentMethod, setPaymentMethod] = useState('mercadopago');
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
@@ -36,31 +37,45 @@ export default function Payment() {
                 <div>
                     <h1>Método de Pago</h1>
                 </div>
+
                 <div>
                     <div>
                         <input
                             type="radio"
-                            id="efectivo"
-                            value="Efectivo"
+                            id="mercadopago"
+                            value="mercadopago"
                             name="paymentMethod"
                             required
                             checked
                             onChange={(e) => setPaymentMethod(e.target.value)}
                         />
-                            <label htmlFor="efectivo">Efectivo</label>
+                        <label htmlFor="mercadopago">PSE / Tarjeta de Credito</label>
                     </div>
                 </div>
                 <div>
                     <div>
                         <input
                             type="radio"
-                            id="transferencia"
-                                value="transferencia"
+                            id="efectivo"
+                            value="efectivo"
                             name="paymentMethod"
                             required
                             onChange={(e) => setPaymentMethod(e.target.value)}
                         />
-                        <label htmlFor="transferencia">Transferencia Bancaria / Nequi / Daviplata</label>
+                        <label htmlFor="efectivo">Contraentrega / Deposito Bancario</label>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <input
+                            type="radio"
+                            id="paypal"
+                            value="paypal"
+                            name="paymentMethod"
+                            required
+                            onChange={(e) => setPaymentMethod(e.target.value)}
+                        />
+                        <label htmlFor="paypal">Pago en Dolares (Paypal y Tarjeta de Credito)</label>
                     </div>
                 </div>
                 <div>

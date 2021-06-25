@@ -40,7 +40,7 @@ function Header() {
                 <div />
             </StyledBurger>
             <Ul onClick={() => setOpen(false)} open={open} className="header__list">
-                <Link href="/categories">Productos</Link>
+                <Link href="/categories/todos">Productos</Link>
                 <Link href="/sobre-nosotros">Sobre Nosotros</Link>
                 <Link href="/contacto">Contacto</Link>
 
@@ -58,7 +58,7 @@ function Header() {
                                 {
                                     user.isAdmin === undefined &&
                                     <li>
-                                        <Link href="/admin">
+                                        <Link href="/admin/dashboard">
                                             ADMINISTRAR 😎
                                         </Link>
                                     </li>

@@ -28,7 +28,7 @@ export default function Login() {
         if (user) {
             router.push(redirect);
         }
-    }, [redirect, user]);
+    }, [redirect, router, user]);
 
     async function onSubmit(data) {
         try{

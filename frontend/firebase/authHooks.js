@@ -23,9 +23,10 @@ export function AuthProvider({ children }) {
             }
             console.log('Si hay usuario? ', user)
             console.log(`updating token...`);
-            const token = await JSON.stringify(user.toJSON())
-            const token1 = await user.toJSON()
-            console.log(token1)
+            const token = await  user.getIdToken()
+            //Note: El context Provider USER tiene to-do el user, mientras que el COOKIE TOKEN solo el token
+            // const token1 = await user.toJSON()
+            // console.log(token1)
 
             setUser(user);
             nookies.destroy(null, "token");

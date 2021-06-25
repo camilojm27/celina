@@ -13,12 +13,12 @@ export default function CartScreen(props) {
         dispatch(removeFromCart(id));
     };
 
-
+    console.log(cartItems)
     return (
         <section className="cart">
             <h1>Carrito de Compras</h1>
             {
-                cartItems === 0 ?(
+                cartItems.length === 0 ?(
                     <h2>
                     El carrito está vacio
                 </h2>) :(

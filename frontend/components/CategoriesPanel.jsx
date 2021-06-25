@@ -1,46 +1,41 @@
-import styled from "styled-components";
-import {useEffect, useState} from "react";
-import Axios from "axios";
-import {API} from "../redux/constants/backend";
 import Link from "next/link";
 
-const Li = styled.li`
-  font-size: 2rem;
-  list-style: none;
-  padding: 0.25em 0.5em;
-  margin: 10px;
-  border-radius: 9px;
-  
-`;
 
-const Panel = styled.aside`
-  height: 500px;
-  width: 200px;
-  overflow: auto;
-`;
-
-const CategoriesPanel = ({categoriesID, fatherURL}) => {
-    let [categories, setCategories] = useState([])
-    useEffect(() => {
-        Axios.get(API + '/products/categories').then((res) => setCategories(res.data))
-    }, [])
+const CategoriesPanel = ({categories, categoriesID, fatherURL}) => {
 
     return (
-        <Panel>
+        <aside>
             <ul>
-                <Link href={`/${fatherURL}`}>
-                    <Li className={categoriesID === '' ? 'steps-active' : ''}>Todas</Li>
+                <Link href={`/${fatherURL}/todos`} replace shallow>
+                    <a>
+                        <li className={categoriesID === '' ? 'steps-active' : ''}>Todas</li>
+                    </a>
                 </Link>
                 {
                     categories.map((cat) =>
-                        <Link href={`/${fatherURL}/${cat}`}>
-                            <Li  className={categoriesID === cat ? 'steps-active' : ''}>{cat}</Li>
+                        <Link key={cat} href={`/${fatherURL}/${cat}`} replace shallow>
+                            <a><li className={categoriesID === cat ? 'steps-active' : ''}>{cat}</li></a>
                         </Link>
-
                     )
                 }
             </ul>
-        </Panel>
+            <style jsx>{
+                `aside {
+                  height: 500px;
+                  width: 200px;
+                  overflow: auto;
+                }
+
+                li {
+                  font-size: 2rem;
+                  list-style: none;
+                  padding: 0.25em 0.5em;
+                  margin: 10px;
+                  border-radius: 9px;
+                }
+                `
+            }</style>
+        </aside>
     )
 }
 export default CategoriesPanel

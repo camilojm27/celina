@@ -9,6 +9,8 @@ import {
 
 let shippingAddress
 let cartItems
+let paymentMethod
+
 
 if (typeof window !== "undefined") {
     cartItems = localStorage.getItem('cartItems')
@@ -24,6 +26,11 @@ if (typeof window !== "undefined") {
             postalCode: '',
             state: '',
         }
+
+    paymentMethod = localStorage.getItem('paymentMethod')
+        ? JSON.parse(localStorage.getItem('shippingAddress'))
+        : ''
+
 } else {
     cartItems = [];
     shippingAddress = {
@@ -33,9 +40,10 @@ if (typeof window !== "undefined") {
         postalCode: '',
         state: '',
     }
+    paymentMethod = ''
 }
 
-export const cartReducer = (state = {cartItems, shippingAddress}, action) => {
+export const cartReducer = (state = {cartItems, shippingAddress, paymentMethod}, action) => {
     switch (action.type) {
         case CART_ADD_ITEM:
             const item = action.payload

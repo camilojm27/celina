@@ -127,7 +127,6 @@ ul li {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    -webkit-justify-content: space-evenly;
     justify-content: space-evenly;
     border: 0.2rem solid silver;
     background-color: #f8f8f8;
@@ -348,7 +347,6 @@ h1 {
 .product-detail {
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-evenly;
     justify-content: space-evenly;
     -webkit-align-items: center;
     align-items: center;
@@ -387,7 +385,6 @@ h1 {
 .details__product {
     position: relative;
     overflow: hidden;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
 }
@@ -498,7 +495,6 @@ p {
     align-items: center;
 }
 .wrapper {
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     background-color: rgba(12, 109, 220, 0.29);
@@ -605,7 +601,6 @@ h2 {
     color: var(--text-color);
 }
 .searchBar {
-    margin-top: 15px;
     display: -webkit-flex;
     display: flex;
     -webkit-align-items: center;
@@ -614,6 +609,9 @@ h2 {
     justify-content: center;
     -webkit-flex-direction: column;
     flex-direction: column;
+    width: 70%;
+    margin: 15px auto auto;
+
 }
 @media only screen and (max-width: 600px) {
     .input {
@@ -635,7 +633,6 @@ h2 {
     z-index: 1;
 }
 .product {
-    height: -webkit-min-content;
     height: min-content;
     transition: box-shadow 0.3s;
 }
@@ -783,7 +780,6 @@ h2 {
 .dashboard {
     -webkit-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: space-evenly;
     justify-content: space-evenly;
     text-align: center;
     background: linear-gradient(to right bottom, hsla(0, 0%, 100%, 0.7), hsla(0, 0%, 100%, 0.3));

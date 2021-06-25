@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderModifyAction, orderListAction } from "../redux/actions/orderActions";
+import { orderModifyAction } from "../redux/actions/orderActions";
 import { ORDER_DELETE_RESET } from "../redux/constants/orderConstants";
+import nookies from "nookies";
+import Axios from "axios";
+import {API} from "../redux/constants/backend";
 
-//Todo: al eliminar refrescar la pagina
 
-export default function OrderListScreen(props) {
+export default function OrderListScreen({orders}) {
     const dispatch = useDispatch();
 
-    const orderList = useSelector((state) => state.orderList);
-    const { loading, error, orders } = orderList;
+
     const orderDelete = useSelector((state) => state.orderDelete);
     const {
         loading: loadingDelete,
@@ -28,7 +29,7 @@ export default function OrderListScreen(props) {
     };
     useEffect(() => {
         dispatch({ type: ORDER_DELETE_RESET });
-        dispatch(orderListAction());
+
     }, [dispatch, successDelete]);
 
     return (
@@ -36,11 +37,7 @@ export default function OrderListScreen(props) {
             <h1>Orders</h1>
             {loadingDelete && <h1>Eliminando...</h1>}
             {errorDelete && <h1>{errorDelete}</h1>}
-            {loading ? (
-                <h1>Cargando..</h1>
-            ) : error ? (
-                <h1>{error}</h1>
-            ) : (
+
                 <table className="table">
                     <thead>
                         <tr>
@@ -104,7 +101,40 @@ export default function OrderListScreen(props) {
                         ))}
                     </tbody>
                 </table>
-            )}
         </div>
     );
+}
+
+export async function getServerSideProps(context) {
+    try {
+        const cookies = nookies.get(context);
+
+        const {data} = await Axios.get(`${API}/orders/`, {
+                headers: {Authorization: `Bearer ${cookies.token}`}
+            }
+        )
+
+        return {
+            props: {
+                orders: data
+            }, // will be passed to the page component as props
+        }
+    } catch (err) {
+        // either the `token` cookie didn't exist
+        // or token verification failed
+        // either way: redirect to the login page
+        // either the `token` cookie didn't exist
+        // or token verification failed
+        // either way: redirect to the login page
+        return {
+            redirect: {
+                permanent: false,
+                destination: "/login",
+            },
+            // `as never` is required for correct type inference
+            // by InferGetServerSidePropsType below
+            props: {},
+        };
+    }
+
 }
