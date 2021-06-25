@@ -30,13 +30,19 @@ export default function Placeorder(props) {
     const placeOrderHandler = () => {
         dispatch(createOrderAction({ ...cart, orderItems: cart.cartItems }));
     };
-    // TODO: Implementar el cambio de pantalla, cerrado de sesión
+    // TODO: Cambiar router push por router replace
+    // Todo: Arrelgar error que aparece al recargar la pagina
+
     useEffect(() => {
+        console.log(cart)
+        if (!cart.paymentMethod) {
+            router.push('/payment');
+        }
         if (success) {
             router.push(`/order/${order.orderId}`);
             dispatch({ type: ORDER_CREATE_RESET });
         }
-    }, [dispatch, order, props.history, success]);
+    }, [cart,  dispatch, order, props.history, router, success]);
     return (
         <section className="place-order">
             <aside>

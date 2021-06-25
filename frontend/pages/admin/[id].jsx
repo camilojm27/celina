@@ -15,7 +15,7 @@ import {API} from "../../redux/constants/backend";
 const persistence = new Persistence()
 
 
-export default function Admin({orders}) {
+export default function Admin({orders, categories, products}) {
 
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
@@ -86,7 +86,7 @@ export default function Admin({orders}) {
                     <OrderListScreen orders={orders}/>
                 </div>
                 <div className={toggleState === 3 ? "admin-content  active-content-active" : "admin-content"}>
-                        <Categories fatherURL="admin"/>
+                        <Categories products={products} categories={categories} fatherURL="admin"/>
 
                 </div>
             </section>
@@ -193,14 +193,28 @@ export async function getServerSideProps(context) {
     try {
         const cookies = nookies.get(context);
 
+        let categoriesRes = await Axios.get(
+            `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/categories`
+        );
+
+        let product = await Axios.get(
+            `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/`
+        );
+
         const {data} = await Axios.get(`${API}/orders/`, {
                 headers: {Authorization: `Bearer ${cookies.token}`}
             }
         )
 
+
+        const categories = categoriesRes.data
+        const products = product.data
+
         return {
             props: {
-                orders: data
+                orders: data,
+                categories,
+                products
             }, // will be passed to the page component as props
         }
     } catch (err) {

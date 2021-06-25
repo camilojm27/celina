@@ -25,12 +25,13 @@ export default function ProductsList({products, categoriesID, admin}) {
     }
     return (
         <>
-            <div className="searchBar">
-                <h2>¿Qué quieres comprar?</h2>
-                <input className="input" type="text" placeholder="Yo quiero..." onChange={handleSearch} />
-            </div>
+
 
             <section className="products">
+                <div className="searchBar">
+                    <h2>¿Qué quieres comprar?</h2>
+                    <input className="input" type="text" placeholder="Yo quiero..." onChange={handleSearch} />
+                </div>
                 {
                     admin ?
                         (
