@@ -2,6 +2,7 @@ import ProductsList from "../../components/ProductsList";
 import CategoriesPanel from "../../components/CategoriesPanel";
 import {useRouter} from 'next/router'
 import Axios from "axios";
+import {API} from "../../redux/constants/backend";
 
 
 const Categories = ({products, categories}) => {
@@ -38,11 +39,11 @@ const Categories = ({products, categories}) => {
 
 export async function getServerSideProps() {
     let product = await Axios.get(
-        `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/`
+        `${API}/products/`
     );
 
     let categoriesRes = await Axios.get(
-        `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/categories`
+        `${API}/products/categories`
     );
 
     const products = product.data

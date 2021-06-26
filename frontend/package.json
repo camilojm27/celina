@@ -23,6 +23,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "testl": "next build && next start",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "devDependencies": {

@@ -134,8 +134,8 @@ orderApi.put("/:id/pay", isAuth, isAdmin, async (req: Request, res: Response) =>
             return "Productos comprados correctamente"
 
         });
+         mail.sendPayment(userMail)
         res.send("Pago actualizado correctamente")
-        await mail.sendPayment(userMail)
         console.log("Transaction success", tres);
     } catch (e) {
         console.log("Transaction failure:", e);
@@ -153,10 +153,11 @@ orderApi.put("/:id/deliver",  isAuth, isAdmin, async (req: Request, res: Respons
             })
         console.log("delivered", put);
 
+        mail.sendDeliver(userMail)
         res.sendStatus(200);
-        await mail.sendDeliver(userMail)
     } catch (e) {
         res.status(404).send("La orden no existe")
+        console.error(e)
     }
 })
 orderApi.delete("/:id", isAuth, isAdmin, async (req: Request, res: Response) => {

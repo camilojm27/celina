@@ -37,7 +37,7 @@ export default function ProductsList({products, categoriesID, admin}) {
                         (
                             Array.from(filteredProducts).filter(filterCategories).map(product =>
                                 <div className="product-admin" key={product._id} onClick={() =>
-                                    router.push(`/edit/${product._id}`)
+                                    router.push(`/product/edit/${product._id}`)
                                 }>
                                     <img className="product-image-small" src={product.images[0]} alt="" />
                                     <div className="product-detail">

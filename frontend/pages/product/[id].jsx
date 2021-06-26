@@ -4,28 +4,21 @@ import {useDispatch} from "react-redux";
 import {addToCart} from "../../redux/actions/cartActions";
 import Axios from "axios";
 import Slider from "../../components/Slider";
+import {API} from "../../redux/constants/backend";
 
-const ProductScreen = (props) => {
+const ProductScreen = ({product}) => {
+    const {colors, stock} = product;
     const router = useRouter()
     const {id} = router.query
-    const product = props.product;
     const imagesSlides = product.images.map((img) => (
         {image: img}
     ))
-    const size = sliderSize();
     const dispatch = useDispatch()
     const productID = id
-    //const productDetails = useSelector(state => state.productDetails)
-
-    let [colorState, setColor] = useState("generic");
+    let [colorState, setColor] = useState(colors[0]);
     const [qtyState, setQty] = useState(1);
-    //const {loading, error, product} = productDetails
+    const [qtyStateRay, setQtyRay] = useState([...Array(stock[0]).keys()]);
 
-    const colors = [], stock = []
-
-    // useEffect(() => {
-    //     dispatch(detailsProduct(productID))
-    // }, [dispatch, productID])
 
     const addToCartHandler = () => {
         if (colorState === 'generic') {
@@ -36,15 +29,14 @@ const ProductScreen = (props) => {
         router.push(`/cart`)
     }
 
-    function verifyStock() {
+
+    function correctStock() {
         if (product.colors.length === product.stock.length) {
             for (let i = 0; i < product.stock.length; i++) {
-                if (product.stock[i] !== 0) {
-                    colors.push(product.colors[i])
-                    stock.push(product.stock[i])
+                if (product.stock[i] < 0) {
+                    product.stock[i] = 0;
                 }
             }
-            //console.log(colors)
             return true
         }
         return false
@@ -52,93 +44,71 @@ const ProductScreen = (props) => {
 
 
     return (
-        <>
-            {
+        <section className="details">
 
+            <figure className="details__product">
+                <h4>{product.name}</h4>
+                <Slider slides={imagesSlides}/>
+            </figure>
+            <div className="details__buy">
+                <h2>{`$ ${product.price}`}</h2>
 
-                <section className="details">
-
-                    <figure className="details__product">
-                        <h4>{product.name}</h4>
-                        <Slider slides={imagesSlides}/>
-                    </figure>
-                    <div className="details__buy">
-                        <h2>{`$ ${product.price}`}</h2>
-
-                        {
-                            verifyStock() && (
-                                <>
-                                    <select value={colorState}
-                                            onChange={(e) => setColor(e.target.value)}>
-                                        {
-                                            colors.map(x => (
-                                                <option key={x} value={x}>{x}</option>
-                                            ))
-
-                                        }
-                                    </select>
-
-
-                                    <select value={qtyState}
-                                            onChange={(e) => setQty(e.target.value)}
-                                            onClick={(e) => setQty(e.target.value)}
-                                    >
-                                        {
-                                            [...Array(stock[colors.indexOf(colorState)]).keys()].map(x => (
-                                                <option key={x + 1} value={x + 1}>{x + 1}</option>
-                                            ))
-
-                                        }
-                                    </select>
-
-                                    <button className="button-action" onClick={
-                                        function () {
-                                            addToCartHandler()
-                                        }
+                {
+                    correctStock() && (
+                        <>
+                            <select value={colorState}
+                                    onChange={(e) => {
+                                        setColor(e.target.value)
+                                        setQtyRay([...Array(stock[e.target.selectedIndex]).keys()])
                                     }
-                                    >
-                                        Añadir al carrito
-                                    </button>
-                                </>
+                                    }>
+                                {
+                                    colors.map(x => (
+                                        <option key={x} value={x}>{x}</option>
+                                    ))
 
-                            )
-                        }
-                        <p>{product.description}</p>
+                                }
+                            </select>
 
-                    </div>
-                </section>
 
-            }
+                            <select value={qtyState}
+                                    onChange={(e) => setQty(e.target.value)}
+                            >
+                                {
+                                    qtyStateRay.map(x => (
+                                        <option key={x + 1} value={x + 1}>{x + 1}</option>
+                                    ))
 
-        </>
+                                }
+                            </select>
+
+                            <button className="button-action" onClick={
+                                function () {
+                                    if (qtyStateRay.length === 0) {
+                                        return
+                                    }
+                                    addToCartHandler()
+                                }
+                            }
+
+                            >
+                                Añadir al carrito
+                            </button>
+                        </>
+
+                    )
+                }
+                <p>{product.description}</p>
+
+            </div>
+        </section>
     )
 }
 
-function sliderSize()
-{
-    let size;
-    if (typeof window !== 'undefined') {
-        let width = window.screen.availWidth;
-        if (width <= 500) {
-            size = 300;
-        } else if (width <= 720) {
-            size = 400;
-        } else {
-            size = 430;
-        }
-
-    }
-
-    return size;
-
-}
-
-
-export async function getServerSideProps(context)
-{
+export async function getServerSideProps(context) {
     const {id} = context.params;
     let product = await Axios.get(
-        `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/${id}`
+        `${API}/products/${id}`
     );
 
     product = product.data

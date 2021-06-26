@@ -1,6 +1,7 @@
 import Axios from "axios";
 import ProductsList from "../components/ProductsList";
 import {useRouter} from "next/router";
+import {API} from "../redux/constants/backend";
 
 export default function Home({ products}) {
     const router = useRouter()
@@ -61,7 +62,7 @@ export default function Home({ products}) {
 
 export async function getServerSideProps() {
     let product = await Axios.get(
-        `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/`
+        `${API}/products/`
     );
 
     const products = product.data

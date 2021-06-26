@@ -194,11 +194,11 @@ export async function getServerSideProps(context) {
         const cookies = nookies.get(context);
 
         let categoriesRes = await Axios.get(
-            `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/categories`
+            `${API}/products/categories`
         );
 
         let product = await Axios.get(
-            `https://us-central1-celina-tienda.cloudfunctions.net/app/api/products/`
+            `${API}/products/`
         );
 
         const {data} = await Axios.get(`${API}/orders/`, {
