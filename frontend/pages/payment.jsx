@@ -46,7 +46,6 @@ export default function Payment() {
                             value="mercadopago"
                             name="paymentMethod"
                             required
-                            checked
                             onChange={(e) => setPaymentMethod(e.target.value)}
                         />
                         <label htmlFor="mercadopago">PSE / Tarjeta de Credito</label>

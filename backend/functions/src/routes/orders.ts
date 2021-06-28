@@ -94,10 +94,13 @@ orderApi.get("/mine", isAuth, async (req: Request, res: Response) => {
 
 
 // Todo: Implementar el modo transacional de firebase
-orderApi.put("/:id/pay", isAuth, isAdmin, async (req: Request, res: Response) => {
+orderApi.put("/:id/pay", isAuth,  async (req: Request, res: Response) => {
     const userMail = req.body.user.email;
+    const transactionData = req.body.transaction;
     const orderRef = db.collection("orders").doc(req.params.id);
     const productRef = db.collection("products");
+    const transactionRef = db.collection("transactions");
+    console.log(transactionData)
     try {
         const tres = await db.runTransaction(async t => {
             const doc = await t.get(orderRef);
@@ -128,14 +131,14 @@ orderApi.put("/:id/pay", isAuth, isAdmin, async (req: Request, res: Response) =>
             }
 
             // Acreditar el pago
-           await t.update(orderRef, {isPaid: true, paidAt: admin.firestore.FieldValue.serverTimestamp()})
-
+           await t.update(orderRef, {isPaid: true, paidAt: admin.firestore.FieldValue.serverTimestamp()});
+            await t.set(transactionRef.doc(req.params.id), transactionData);
 
             return "Productos comprados correctamente"
 
         });
          mail.sendPayment(userMail)
-        res.send("Pago actualizado correctamente")
+        res.send("Pago actualizado correctamente");
         console.log("Transaction success", tres);
     } catch (e) {
         console.log("Transaction failure:", e);

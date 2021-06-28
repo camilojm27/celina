@@ -22,7 +22,7 @@ export default function OrderListScreen({orders}) {
     const modifyHandler = (order, action) => {
         if (typeof window !== 'undefined'){
             if (window.confirm(`Estas segur@ que quieres modificar la orden de ${order.shippingAddress.fullName}`)) {
-                dispatch(orderModifyAction(order._id, action));
+                dispatch(orderModifyAction(order._id, action, {}));
             }
         }
 

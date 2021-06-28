@@ -3,12 +3,24 @@ import Link from 'next/link';
 import nookies from "nookies";
 import Axios from "axios";
 import {API} from "../../redux/constants/backend";
+import {PayPalButton} from "react-paypal-button-v2";
+import {orderModifyAction} from "../../redux/actions/orderActions";
+import {useDispatch, useSelector} from "react-redux";
+
+const paypalClientID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
+const TMR = 3700
+
 
 export default function OrderScreen({order}) {
+    const dispatch = useDispatch();
     const router = useRouter();
     const orderId = router.query.id;
-
+    const priceUSD = parseFloat(((Number(order.totalPrice) / TMR) * 1.05).toFixed(2))
     console.log(order)
+
+    const orderDelete = useSelector((state) => state.orderDelete);
+    const { loading, error, success } = orderDelete;
+
     return (
 
 
@@ -120,10 +132,45 @@ export default function OrderScreen({order}) {
                                     </div>
                                 </div>
                             </li>
+
+                            {order.paymentMethod === 'paypal' ?
+                                (<li>
+                                    <div className="row">
+                                        <div>
+                                            <strong> Precio En dolares </strong>
+                                        </div>
+                                        <div>
+                                            <strong>${priceUSD.toLocaleString('en-US')}</strong>
+                                        </div>
+                                    </div>
+                                </li>)
+
+                                : ''
+                            }
                         </ul>
                     </div>
+                    {/*<p>El precio en dolares utiza un TMR de {TMR.toLocaleString('es-CO')} + 5% </p>*/}
+
                 </div>
             </div>
+            {order.paymentMethod === 'paypal' && order.isPaid === false ? <div className="card card-body">
+                <PayPalButton
+                    amount={priceUSD}
+                    onSuccess={(details, data) => {
+                        alert("Transaction completed by " + details.payer.name.given_name);
+                        dispatch(orderModifyAction(order._id, 1, details));
+                        console.log(details)
+                        console.log(data)
+
+                    }}
+                    options={{
+                        clientId: paypalClientID
+                    }}
+
+                />
+            </div> :
+                ''}
+
         </section>
 
     );

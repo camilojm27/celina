@@ -65,7 +65,7 @@ export const orderDetailsAction = (orderId) => async (dispatch) => {
 
 };
 
-export const orderModifyAction = (orderId, action) => async (dispatch) => {
+export const orderModifyAction = (orderId, action, payGateWayData) => async (dispatch) => {
 
 
     dispatch({type: ORDER_MODIFY_REQUEST, payload: orderId});
@@ -85,8 +85,10 @@ export const orderModifyAction = (orderId, action) => async (dispatch) => {
                 break;
 
             case 1:
-                data = await Axios.put(`${API}/orders/${orderId}/pay`, {}, {
+                data = await Axios.put(`${API}/orders/${orderId}/pay`,
+                    {transaction: payGateWayData}, {
                     headers: {Authorization: `Bearer ${userInfo}`}
+
                 })
 
                 dispatch({type: ORDER_MODIFY_SUCCESS, payload: data.data})

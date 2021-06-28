@@ -8,6 +8,7 @@ import { signOut } from '../redux/actions/userActions'
 import { toast } from 'react-toastify';
 import {useRouter} from "next/router";
 
+const TMR = 3700
 
 export default function Placeorder(props) {
     const router = useRouter()
@@ -27,6 +28,7 @@ export default function Placeorder(props) {
     cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
     const dispatch = useDispatch();
+    const priceUSD = parseFloat(((Number(cart.totalPrice) / TMR) * 1.05).toFixed(2))
     const placeOrderHandler = () => {
         dispatch(createOrderAction({ ...cart, orderItems: cart.cartItems }));
     };
@@ -138,6 +140,20 @@ export default function Placeorder(props) {
                                     </div>
                                 </div>
                             </li>
+                            {cart.paymentMethod === 'paypal' ?
+                                (<li>
+                                    <div className="row">
+                                        <div>
+                                            <strong> Precio En dolares </strong>
+                                        </div>
+                                        <div>
+                                            <strong>${priceUSD.toLocaleString('en-US')}</strong>
+                                        </div>
+                                    </div>
+                                </li>)
+
+                                : ''
+                            }
                             <li>
                                 <button
                                     type="button"
