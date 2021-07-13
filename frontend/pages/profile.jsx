@@ -6,9 +6,13 @@ import { RiSpyLine } from 'react-icons/ri'
 import axios from 'axios';
 import localidades1 from '../public/localidades1.json'
 import {useDispatch, useSelector} from "react-redux";
-import {orderListAction, orderListMineAction, orderListUserAction} from "../redux/actions/orderActions";
+import { orderListMineAction,} from "../redux/actions/orderActions";
 import {useRouter} from "next/router";
 import {useAuth} from "../firebase/authHooks";
+import nookies from "nookies";
+import Axios from "axios";
+import {API} from "../redux/constants/backend";
+import styles from "./styles/Profile.module.css"
 
 const Profile = () => {
     //const router = useRouter();
@@ -32,7 +36,24 @@ const Profile = () => {
             router.push('/');
         }
         dispatch(orderListMineAction());
-    }, [dispatch]);
+    }, [dispatch, router, user]);
+
+    function deleteAccount(e) {
+
+       if (confirm('¿Quieres eliminar la cuenta?')) {
+           console.log('Deleted')
+
+       } else{
+           console.log('canceled')
+
+       }
+        e.preventDefault()
+    }
+
+    function changePromotion() {
+        console.log('Changed')
+
+    }
 
     const onSubmit = data => console.log(data);
     // const [localidades1, setData] = useState([]);
@@ -195,14 +216,15 @@ const Profile = () => {
 
                 <div className={toggleState === 3 ? "admin-content  active-content-active" : "admin-content"}>
                     <h2>Ajustes de privacidad</h2>
-                    <form onSubmit={handleSubmit(onSubmit)} className='PForm'>
+                    <form  className='PForm PForm-delete'>
 
                         <fieldset>
                             <label htmlFor="cbox1">Deseo recibir promociones</label>
-                            <input type="checkbox" id="cbox1" value="first_checkbox"/>
+                            <input onChange={() => changePromotion()} type="checkbox" id="cbox1" value="first_checkbox"/>
 
                         </fieldset>
-                        <button className="button-action" type='submit'>Guardar Cambios</button>
+                        <button onClick={(e) => deleteAccount(e)}  className="button-action danger-color" type='submit'>Eliminar Cuenta</button>
+
                     </form>
                 </div>
 
@@ -211,6 +233,43 @@ const Profile = () => {
 
         </section>
     )
+
 }
+
+// export async function getServerSideProps(context) {
+//     try {
+//         const cookies = nookies.get(context);
+//
+//
+//         const {data} = await Axios.get(`${API}/orders/`, {
+//                 headers: {Authorization: `Bearer ${cookies.token}`}
+//             }
+//         )
+//
+//         return {
+//             props: {
+//                 orders: data,
+//
+//             }, // will be passed to the page component as props
+//         }
+//     } catch (err) {
+//         // either the `token` cookie didn't exist
+//         // or token verification failed
+//         // either way: redirect to the login page
+//         // either the `token` cookie didn't exist
+//         // or token verification failed
+//         // either way: redirect to the login page
+//         return {
+//             redirect: {
+//                 permanent: false,
+//                 destination: "/login?redirect=profile",
+//             },
+//             // `as never` is required for correct type inference
+//             // by InferGetServerSidePropsType below
+//             props: {},
+//         };
+//     }
+//
+// }
 
 export default Profile

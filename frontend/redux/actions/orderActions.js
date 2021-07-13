@@ -13,9 +13,9 @@ import {
     ORDER_LIST_FAIL,
     ORDER_LIST_REQUEST,
     ORDER_LIST_SUCCESS,
-    ORDER_LIST_USER_FAIL,
-    ORDER_LIST_USER_REQUEST,
-    ORDER_LIST_USER_SUCCESS,
+    ORDER_LIST_MINE_FAIL,
+    ORDER_LIST_MINE_REQUEST,
+    ORDER_LIST_MINE_SUCCESS,
 } from '../constants/orderConstants';
 import {API} from "../constants/backend";
 import firebase from '../../firebase/app'
@@ -145,7 +145,7 @@ export const orderListAction = () => async (dispatch) => {
 
 export const orderListMineAction = () => async (dispatch) => {
 
-    dispatch({type: ORDER_LIST_USER_REQUEST});
+    dispatch({type: ORDER_LIST_MINE_REQUEST});
 
     try {
         const userInfo = await firebase.auth().currentUser.getIdToken()
@@ -154,11 +154,11 @@ export const orderListMineAction = () => async (dispatch) => {
             }
         )
 
-        dispatch({type: ORDER_LIST_USER_SUCCESS, payload: data});
+        dispatch({type: ORDER_LIST_MINE_SUCCESS, payload: data});
 
     } catch (error) {
         dispatch({
-            type: ORDER_LIST_USER_FAIL,
+            type: ORDER_LIST_MINE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

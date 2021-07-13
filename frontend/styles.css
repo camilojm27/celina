@@ -1031,6 +1031,9 @@ footer ul li {
 .PForm-city select {
     width: 200px;
 }
+.PForm-delete button{
+    margin-top: 50px;
+}
 @media only screen and (max-width: 600px) {
     .banner {
         background-size: contain;

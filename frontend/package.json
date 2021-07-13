@@ -24,10 +24,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "testl": "next build && next start",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "local": "next build && next start",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^11.0.1",
+    "cross-env": "^7.0.3",
     "eslint": "^7.28.0",
     "eslint-config-next": "^11.0.0",
     "source-map-explorer": "^2.5.2"

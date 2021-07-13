@@ -7,7 +7,7 @@ import {
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL,
     ORDER_LIST_REQUEST,
-    ORDER_LIST_SUCCESS, ORDER_LIST_USER_FAIL, ORDER_LIST_USER_REQUEST, ORDER_LIST_USER_SUCCESS,
+    ORDER_LIST_SUCCESS, ORDER_LIST_MINE_FAIL, ORDER_LIST_MINE_REQUEST, ORDER_LIST_MINE_SUCCESS,
 } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -59,11 +59,11 @@ export const orderListReducer = (state = {loading: true, orders: []}, action) =>
 export const orderListMineReducer = (state = {loading: true, orders: []}, action) => {
 
     switch (action.type) {
-        case ORDER_LIST_USER_REQUEST:
+        case ORDER_LIST_MINE_REQUEST:
             return {loading: true}
-        case ORDER_LIST_USER_SUCCESS:
+        case ORDER_LIST_MINE_SUCCESS:
             return {loading: false, orders: action.payload}
-        case ORDER_LIST_USER_FAIL:
+        case ORDER_LIST_MINE_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state;
