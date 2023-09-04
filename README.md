@@ -4,6 +4,10 @@ Este proyecto es un ecommerce hecho con React, Express, Firebase
 
 El proyecto está siendo refactorizado a Next.JS para mejorar el SEO, puede revisar la rama nextjs
 
+
+https://github.com/camilojm27/celina/assets/14319090/fa452097-549b-42cc-871f-dac0918fd56b
+
+
 ## Informacion de la aplicacion
 
 Detalles de la tienda:
