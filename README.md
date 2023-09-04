@@ -18,7 +18,7 @@ Detalles de la tienda:
 
 ## Equipo de desarrollo
 
-- [Camilo José Mezú Mina](https://camilomezu.com/) 🤠
+- [Camilo José Mezú Mina](https://camilojm27.github.io/) 🤠
 
 ## Instalación
 
